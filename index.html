@@ -1357,13 +1357,16 @@
                 <div class="login-panel">
                     <h2>Identificacion</h2>
                     <p class="text-muted text-sm">Conecta con GitHub para cargar y guardar tus materias.</p>
-                    <div class="github-connect">
-                        <label class="text-xs text-muted">Token de acceso
-                            <input id="github-token" class="w-full" type="password" autocomplete="off" placeholder="github_pat_...">
+                    <form class="github-connect" autocomplete="on" onsubmit="event.preventDefault(); app.connectGitHub();">
+                        <label class="text-xs text-muted">Nombre de usuario
+                            <input id="github-username" name="username" class="w-full" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="usuario de GitHub">
                         </label>
-                        <button class="primary" onclick="app.connectGitHub()">Conectar con GitHub</button>
+                        <label class="text-xs text-muted">Token de acceso
+                            <input id="github-token" name="password" class="w-full" type="password" autocomplete="current-password" placeholder="github_pat_...">
+                        </label>
+                        <button class="primary" type="submit">Conectar con GitHub</button>
                         <div id="github-status" class="github-status">Sin conectar.</div>
-                    </div>
+                    </form>
                     <div id="login-users" class="login-user-grid"></div>
                     <p class="login-note">Los ejemplos generales estaran disponibles despues de entrar y se copiaran a tus materias cuando quieras editarlos.</p>
                 </div>
@@ -2290,6 +2293,7 @@ const DepartmentUsers =         [
                 repo: 'planificador-github-test',
                 branch: 'main',
                 token: '',
+                username: '',
                 connected: false,
                 login: '',
                 role: '',
@@ -2378,6 +2382,7 @@ const DepartmentUsers =         [
                 AppState.github.owner = document.getElementById('github-owner')?.value.trim() || AppState.github.owner;
                 AppState.github.repo = document.getElementById('github-repo')?.value.trim() || AppState.github.repo;
                 AppState.github.branch = document.getElementById('github-branch')?.value.trim() || 'main';
+                AppState.github.username = document.getElementById('github-username')?.value.trim() || AppState.github.username;
                 AppState.github.token = document.getElementById('github-token')?.value.trim() || AppState.github.token;
                 if (!AppState.github.owner || !AppState.github.repo || !AppState.github.token) {
                     throw new Error('Introduce el token de acceso de GitHub.');
@@ -2458,6 +2463,9 @@ const DepartmentUsers =         [
                     app.readGitHubConfig();
                     const user = await app.githubFetch('https://api.github.com/user');
                     AppState.github.login = user.login || '';
+                    AppState.github.username = AppState.github.username || AppState.github.login;
+                    const usernameInput = document.getElementById('github-username');
+                    if (usernameInput && !usernameInput.value) usernameInput.value = AppState.github.username;
                     AppState.github.connected = false;
                     AppState.github.role = '';
                     AppState.github.authorizedUser = null;
