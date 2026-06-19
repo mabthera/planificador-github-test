@@ -394,12 +394,27 @@
             line-height: 1.45;
         }
 
+        .login-help-content p {
+            margin-bottom: 0.45rem;
+        }
+
         .login-help-content ol {
-            margin-left: 1.1rem;
+            margin: 0 0 0.75rem 1.1rem;
         }
 
         .login-help-content li + li {
             margin-top: 0.35rem;
+        }
+
+        .login-help-content a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .login-help-warning {
+            margin-top: 0.75rem;
+            font-size: 0.82rem;
+            color: var(--danger);
         }
 
         .login-panel {
@@ -1314,11 +1329,14 @@
                     <details class="login-help">
                         <summary>Ayuda para entrar</summary>
                         <div class="login-help-content">
+                            <p><strong>Cada docente crea su propio token en su cuenta de GitHub.</strong></p>
                             <ol>
-                                <li>Copia el token de acceso que te ha facilitado el departamento.</li>
-                                <li>Pegalo en el campo "Token de acceso".</li>
-                                <li>Pulsa "Conectar con GitHub" y elige tu carpeta.</li>
+                                <li>Entra en GitHub y abre <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Personal access tokens</a>.</li>
+                                <li>Genera un token para el planificador. Si GitHub pide permisos, dale acceso al repositorio <strong>planificador-github-test</strong> con <strong>Contents: Read and write</strong>.</li>
+                                <li>Copia el token cuando GitHub lo muestre.</li>
+                                <li>Vuelve aqui, pegalo en "Token de acceso" y pulsa "Conectar con GitHub".</li>
                             </ol>
+                            <p class="login-help-warning">No compartas el token: funciona como una contrasena para guardar cambios con tu cuenta.</p>
                         </div>
                     </details>
                 </div>
