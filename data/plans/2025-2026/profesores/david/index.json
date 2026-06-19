@@ -2,5 +2,13 @@
   "displayName": "David",
   "folder": "david",
   "academicYear": "2025-2026",
-  "subjects": []
+  "subjects": [
+    {
+      "id": "mqlc6mz1c1q4u06fqx",
+      "name": "1º ESO - Modelo 2025-2026 (copia)",
+      "file": "1_eso_-_modelo_2025-2026_copia_mqlc6mz1c1q4u06fqx.json",
+      "path": "data/plans/2025-2026/profesores/david/1_eso_-_modelo_2025-2026_copia_mqlc6mz1c1q4u06fqx.json",
+      "updatedAt": "2026-06-19T19:43:26.863Z"
+    }
+  ]
 }
