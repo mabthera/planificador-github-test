@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "ownerGithubLogin": "mabthera",
+  "academicYear": "2025-2026",
+  "id": "github-test-subject",
+  "name": "Materia de prueba GitHub",
+  "color": "#3498db",
+  "startDate": "2025-09-08",
+  "endDate": "2026-06-30",
+  "schedule": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 0
+  },
+  "planningMode": "unit",
+  "units": [],
+  "localHolidays": [],
+  "customDates": [],
+  "evaluations": {},
+  "updatedAt": "2026-06-19T18:25:15.030Z"
+}
