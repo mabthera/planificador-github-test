@@ -495,10 +495,19 @@
         }
 
         .folder-card {
-            justify-content: flex-start;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
             text-align: left;
             background: var(--bg-card);
-            min-height: 86px;
+            min-height: 72px;
+            gap: 0.2rem;
+        }
+
+        .folder-card .folder-count {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
         .folder-card.active {
@@ -2768,9 +2777,9 @@ const DepartmentUsers =         [
                     const index = AppState.github.indexes[user.folder] || { subjects: [] };
                     const count = (index.subjects || []).length;
                     const btn = document.createElement('button');
-                    const mode = app.canEditUser(user) ? 'editable' : 'lectura';
+                    const subjectLabel = count === 1 ? '1 materia' : `${count} materias`;
                     btn.className = `folder-card ${AppState.currentUser && AppState.currentUser.folder === user.folder ? 'active' : ''}`;
-                    btn.innerHTML = `<strong>${user.displayName}</strong><span>${count} materias ? ${mode}</span><span class="text-xs text-muted">${user.folder}</span>`;
+                    btn.innerHTML = `<strong>${user.displayName}</strong><span class="folder-count">${subjectLabel}</span>`;
                     btn.onclick = () => app.selectUser(user.folder);
                     container.appendChild(btn);
                 });
