@@ -3,7 +3,7 @@
     "ownerGithubLogin":  "mabthera",
     "academicYear":  "2025-2026",
     "id":  "github-test-subject",
-    "name":  "Materia de prueba GitHub",
+    "name":  "Materia de prueba GitHub actualizada",
     "color":  "#3498db",
     "startDate":  "2025-09-08",
     "endDate":  "2026-06-30",
@@ -27,5 +27,5 @@
     "evaluations":  {
 
                     },
-    "updatedAt":  "2026-06-19T08:10:57.5037716Z"
+    "updatedAt":  "2026-06-19T08:11:48.1989171Z"
 }
