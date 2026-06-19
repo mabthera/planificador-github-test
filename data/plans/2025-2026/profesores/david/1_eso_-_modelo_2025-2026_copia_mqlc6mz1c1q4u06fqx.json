@@ -24,7 +24,7 @@
       "id": "mqlc6mz134ifw1bl3d9",
       "name": "UD 02. Potencias, raíces y divisibilidad",
       "base": 12,
-      "extra": 2,
+      "extra": 0,
       "activities": []
     },
     {
@@ -152,6 +152,6 @@
   },
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-06-19T19:45:47.909Z",
+  "updatedAt": "2026-06-19T19:45:53.164Z",
   "githubPath": "data/plans/2025-2026/profesores/david/1_eso_-_modelo_2025-2026_copia_mqlc6mz1c1q4u06fqx.json"
 }
