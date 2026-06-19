@@ -1306,10 +1306,10 @@
                 </div>
                 <div class="flex gap-2">
                     <button onclick="app.navigateTo('combined')">Ver Calendario Combinado</button>
-                    <button onclick="app.importSubject()">Importar Asignatura</button>
+                    <button id="btn-import-subject" onclick="app.importSubject()">Importar Asignatura</button>
                     <input type="file" id="file-import" class="hidden" accept=".json"
                         onchange="app.handleFileSelect(this)">
-                    <button class="primary" onclick="app.createSubject()">+ Nueva Asignatura</button>
+                    <button id="btn-create-subject" class="primary" onclick="app.createSubject()">+ Nueva Asignatura</button>
                 </div>
             </div>
 
@@ -1539,31 +1539,44 @@ const DepartmentUsers =         [
                   {
                             "displayName": "Jaime",
                             "folder": "jaime",
+                            "githubLogin": "",
                             "role": "teacher"
                   },
                   {
                             "displayName": "David",
                             "folder": "david",
+                            "githubLogin": "",
                             "role": "teacher"
                   },
                   {
                             "displayName": "Almudena",
                             "folder": "almudena",
+                            "githubLogin": "",
+                            "role": "teacher"
+                  },
+                  {
+                            "displayName": "Pablo",
+                            "folder": "pablo",
+                            "githubLogin": "",
                             "role": "teacher"
                   },
                   {
                             "displayName": "Manuel",
                             "folder": "manuel",
+                            "githubLogin": "",
                             "role": "teacher"
                   },
                   {
                             "displayName": "Prov",
                             "folder": "prov",
+                            "githubLogin": "",
                             "role": "teacher"
                   }
         ];
 
-const SharedExamples =         [
+        const AdminGithubLogins = ['mabthera'];
+
+        const SharedExamples =         [
                   {
                             "id": "example-1-eso-modelo",
                             "sourceFile": "data/1__eso_modelo_2025_2026_planner.json",
@@ -2206,6 +2219,8 @@ const SharedExamples =         [
                 token: '',
                 connected: false,
                 login: '',
+                role: '',
+                authorizedUser: null,
                 fileShas: {},
                 indexes: {}
             },
@@ -2370,34 +2385,62 @@ const SharedExamples =         [
                     app.readGitHubConfig();
                     const user = await app.githubFetch('https://api.github.com/user');
                     AppState.github.login = user.login || '';
-                    AppState.github.connected = true;
+                    AppState.github.connected = false;
+                    AppState.github.role = '';
+                    AppState.github.authorizedUser = null;
                     await app.loadDepartmentFromGitHub();
+                    app.validateGitHubAuthorization();
+                    AppState.github.connected = true;
                     app.renderLogin();
-                    app.setGitHubStatus(`Conectado como ${AppState.github.login}. Elige una carpeta.`, 'ok');
+                    const roleLabel = app.isAdmin() ? 'administrador' : 'profesor';
+                    app.setGitHubStatus(`Conectado como ${AppState.github.login} (${roleLabel}). Elige una carpeta.`, 'ok');
                 } catch (error) {
                     AppState.github.connected = false;
+                    AppState.github.role = '';
+                    AppState.github.authorizedUser = null;
                     app.setGitHubStatus(error.message, 'error');
                 }
             },
 
-            ensureGitHubUserWorkspace: () => {
-                const login = AppState.github.login;
-                if (!login) return;
-                const folder = Utils.slugify(login).replace(/_/g, '-');
-                const exists = AppState.users.some(user => user.folder === folder);
-                if (!exists) {
-                    AppState.users.push({
-                        displayName: login,
-                        folder,
-                        role: 'github_user'
-                    });
+            isAdmin: () => AdminGithubLogins.includes(String(AppState.github.login || '').toLowerCase()),
+
+            validateGitHubAuthorization: () => {
+                const login = String(AppState.github.login || '').toLowerCase();
+                if (!login) throw new Error('GitHub no ha devuelto un usuario valido.');
+
+                if (app.isAdmin()) {
+                    AppState.github.role = 'admin';
+                    AppState.github.authorizedUser = { displayName: 'mabthera', folder: '*', githubLogin: 'mabthera', role: 'admin' };
+                    return;
                 }
+
+                const user = AppState.users.find(item => String(item.githubLogin || '').toLowerCase() === login);
+                if (!user) {
+                    throw new Error('Esta cuenta de GitHub no esta autorizada para usar esta aplicacion.');
+                }
+
+                AppState.github.role = user.role || 'teacher';
+                AppState.github.authorizedUser = user;
+            },
+
+            canEditUser: (user) => {
+                if (!user || !AppState.github.connected) return false;
+                if (app.isAdmin()) return true;
+                const login = String(AppState.github.login || '').toLowerCase();
+                return String(user.githubLogin || '').toLowerCase() === login;
+            },
+
+            canEditCurrentFolder: () => app.canEditUser(AppState.currentUser),
+
+            requireEditPermission: () => {
+                if (app.canEditCurrentFolder()) return true;
+                alert('Solo puedes escribir o anadir materias en tu propia carpeta. Esta carpeta esta en modo lectura.');
+                return false;
             },
 
             loadDepartmentFromGitHub: async () => {
                 const users = await app.readJsonFromGitHub('data/plans/2025-2026/users.json', { allowMissing: true });
                 if (Array.isArray(users) && users.length) AppState.users = users;
-                app.ensureGitHubUserWorkspace();
 
                 AppState.github.indexes = {};
                 await Promise.all(AppState.users.map(async user => {
@@ -2435,13 +2478,14 @@ const SharedExamples =         [
             },
 
             queueGitHubSave: () => {
-                if (!AppState.github.connected || !AppState.currentUser) return;
+                if (!AppState.github.connected || !AppState.currentUser || !app.canEditCurrentFolder()) return;
                 clearTimeout(AppState.saveTimer);
                 AppState.saveTimer = setTimeout(() => app.persistCurrentUserToGitHub(), 1200);
             },
 
             persistCurrentUserToGitHub: async () => {
-                if (!AppState.github.connected || !AppState.currentUser) return;
+                if (!AppState.github.connected || !AppState.currentUser || !app.canEditCurrentFolder()) return;
+                if (!app.canEditCurrentFolder()) return;
                 const user = AppState.currentUser;
                 try {
                     app.showToast('Guardando en GitHub...');
@@ -2518,7 +2562,7 @@ const SharedExamples =         [
                     app.pushHistory();
                     app.updateSessionUi();
                     app.navigateTo('dashboard');
-                    app.setGitHubStatus(`Carpeta activa: ${user.displayName}`, 'ok');
+                    app.setGitHubStatus(`Carpeta activa: ${user.displayName}${app.canEditCurrentFolder() ? '' : ' (solo lectura)'}`, app.canEditCurrentFolder() ? 'ok' : '');
                 } catch (error) {
                     console.error(error);
                     app.loadFromStorage();
@@ -2547,7 +2591,7 @@ const SharedExamples =         [
                 if (AppState.currentUser) {
                     header.classList.remove('hidden');
                     label.classList.remove('hidden');
-                    label.innerText = `${AppState.currentUser.displayName} / ${AppState.currentUser.folder}`;
+                    label.innerText = `${AppState.currentUser.displayName} / ${AppState.currentUser.folder}${app.canEditCurrentFolder() ? '' : ' / lectura'}`;
                     title.innerText = 'Dashboard';
                 } else {
                     header.classList.add('hidden');
@@ -2567,7 +2611,7 @@ const SharedExamples =         [
             },
 
             saveToStorage: () => {
-                if (!AppState.currentUser) return;
+                if (!AppState.currentUser || !app.canEditCurrentFolder()) return;
                 localStorage.setItem(app.getStorageKey(), JSON.stringify(AppState.data));
                 app.pushHistory();
                 app.queueGitHubSave();
@@ -2603,7 +2647,7 @@ const SharedExamples =         [
                 container.innerHTML = '';
 
                 if (folderInfo && AppState.currentUser) {
-                    folderInfo.innerText = `Carpeta: data/plans/2025-2026/profesores/${AppState.currentUser.folder}`;
+                    folderInfo.innerText = `Carpeta: data/plans/2025-2026/profesores/${AppState.currentUser.folder}${app.canEditCurrentFolder() ? '' : ' - modo lectura'}`;
                 }
 
                 if (AppState.data.subjects.length === 0) {
@@ -2618,7 +2662,7 @@ const SharedExamples =         [
                     card.className = 'card';
                     card.innerHTML = `
                         <div class="color-strip" style="background: ${sub.color}"></div>
-                        <span class="badge">${AppState.currentUser ? AppState.currentUser.displayName : 'Usuario'}</span>
+                        <span class="badge">${AppState.currentUser ? AppState.currentUser.displayName : 'Usuario'}${app.canEditCurrentFolder() ? '' : ' ? lectura'}</span>
                         <h3 class="text-xl mb-2 mt-4">${sub.name}</h3>
                         <p class="text-muted text-sm">${(sub.units || []).length} Unidades</p>
                         <p class="text-muted text-sm">Inicio: ${sub.startDate}${sub.endDate ? ' - Fin: ' + sub.endDate : ''}</p>
@@ -2631,8 +2675,28 @@ const SharedExamples =         [
                     container.appendChild(card);
                 });
 
+                app.updateEditControls();
                 app.renderDepartmentFolders();
                 app.renderSharedExamples();
+            },
+
+            updateEditControls: () => {
+                const canEdit = app.canEditCurrentFolder();
+                const createBtn = document.getElementById('btn-create-subject');
+                const importBtn = document.getElementById('btn-import-subject');
+                if (createBtn) createBtn.disabled = !canEdit;
+                if (importBtn) importBtn.disabled = !canEdit;
+            },
+
+            applyDetailEditPermissions: () => {
+                const canEdit = app.canEditCurrentFolder();
+                const detail = document.getElementById('view-detail');
+                if (!detail) return;
+                detail.querySelectorAll('input, select, textarea').forEach(el => { el.disabled = !canEdit; });
+                const editor = detail.querySelector('.editor-panel');
+                if (editor) editor.querySelectorAll('button').forEach(btn => { btn.disabled = !canEdit; });
+                const holidayBtn = document.getElementById('btn-holiday-mode');
+                if (holidayBtn) holidayBtn.disabled = !canEdit;
             },
 
             renderDepartmentFolders: () => {
@@ -2643,8 +2707,9 @@ const SharedExamples =         [
                     const index = AppState.github.indexes[user.folder] || { subjects: [] };
                     const count = (index.subjects || []).length;
                     const btn = document.createElement('button');
+                    const mode = app.canEditUser(user) ? 'editable' : 'lectura';
                     btn.className = `folder-card ${AppState.currentUser && AppState.currentUser.folder === user.folder ? 'active' : ''}`;
-                    btn.innerHTML = `<strong>${user.displayName}</strong><span>${count} materias</span><span class="text-xs text-muted">${user.folder}</span>`;
+                    btn.innerHTML = `<strong>${user.displayName}</strong><span>${count} materias ? ${mode}</span><span class="text-xs text-muted">${user.folder}</span>`;
                     btn.onclick = () => app.selectUser(user.folder);
                     container.appendChild(btn);
                 });
@@ -2675,6 +2740,7 @@ const SharedExamples =         [
             },
 
             copySharedExample: (exampleId) => {
+                if (!app.requireEditPermission()) return;
                 const example = AppState.sharedExamples.find(item => item.id === exampleId);
                 if (!example) return;
 
@@ -2712,6 +2778,7 @@ const SharedExamples =         [
             },
 
             createSubject: () => {
+                if (!app.requireEditPermission()) return;
                 const newSub = {
                     id: Utils.uuid(),
                     ownerFolder: AppState.currentUser ? AppState.currentUser.folder : '',
@@ -2788,6 +2855,7 @@ const SharedExamples =         [
                 app.renderCustomDates(sub);
                 app.renderCalendar(sub);
                 app.navigateTo('detail');
+                app.applyDetailEditPermissions();
             },
 
             addCustomDate: () => {
@@ -3096,6 +3164,7 @@ const SharedExamples =         [
             },
 
             saveCurrentSubject: () => {
+                if (!app.canEditCurrentFolder()) return;
                 const sub = AppState.data.subjects.find(s => s.id === AppState.currentSubjectId);
                 sub.name = document.getElementById('edit-name').value;
                 sub.startDate = document.getElementById('edit-start-date').value;
@@ -3517,6 +3586,7 @@ const SharedExamples =         [
             /* --- DUPLICATE SUBJECT --- */
 
             duplicateSubject: (id) => {
+                if (!app.requireEditPermission()) return;
                 const original = AppState.data.subjects.find(s => s.id === id);
                 if (!original) return;
 
@@ -3635,10 +3705,12 @@ const SharedExamples =         [
             },
 
             importSubject: () => {
+                if (!app.requireEditPermission()) return;
                 document.getElementById('file-import').click();
             },
 
             handleFileSelect: (input) => {
+                if (!app.requireEditPermission()) { input.value = ''; return; }
                 const file = input.files[0];
                 if (!file) return;
                 const reader = new FileReader();
