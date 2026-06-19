@@ -1270,26 +1270,13 @@
                 </div>
                 <div class="login-panel">
                     <h2>Identificacion</h2>
-                    <p class="text-muted text-sm">Conecta con tu cuenta de GitHub y elige la carpeta de trabajo. Cualquier cuenta autenticada puede entrar; todas las carpetas son visibles para el departamento.</p>
+                    <p class="text-muted text-sm">Conecta con GitHub para cargar y guardar tus materias.</p>
                     <div class="github-connect">
-                        <div class="row">
-                            <label class="text-xs text-muted">Owner
-                                <input id="github-owner" class="w-full" value="mabthera" autocomplete="off">
-                            </label>
-                            <label class="text-xs text-muted">Repositorio
-                                <input id="github-repo" class="w-full" value="planificador-github-test" autocomplete="off">
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label class="text-xs text-muted">Rama
-                                <input id="github-branch" class="w-full" value="main" autocomplete="off">
-                            </label>
-                            <label class="text-xs text-muted">Token
-                                <input id="github-token" class="w-full" type="password" autocomplete="off" placeholder="github_pat_...">
-                            </label>
-                        </div>
+                        <label class="text-xs text-muted">Token de acceso
+                            <input id="github-token" class="w-full" type="password" autocomplete="off" placeholder="github_pat_...">
+                        </label>
                         <button class="primary" onclick="app.connectGitHub()">Conectar con GitHub</button>
-                        <div id="github-status" class="github-status">Pendiente de conexion.</div>
+                        <div id="github-status" class="github-status">Sin conectar.</div>
                     </div>
                     <div id="login-users" class="login-user-grid"></div>
                     <p class="login-note">Los ejemplos generales estaran disponibles despues de entrar y se copiaran a tus materias cuando quieras editarlos.</p>
@@ -2307,7 +2294,7 @@ const DepartmentUsers =         [
                 AppState.github.branch = document.getElementById('github-branch')?.value.trim() || 'main';
                 AppState.github.token = document.getElementById('github-token')?.value.trim() || AppState.github.token;
                 if (!AppState.github.owner || !AppState.github.repo || !AppState.github.token) {
-                    throw new Error('Rellena owner, repositorio, rama y token de GitHub.');
+                    throw new Error('Introduce el token de acceso de GitHub.');
                 }
             },
 
