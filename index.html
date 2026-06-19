@@ -1264,13 +1264,13 @@
         <div id="view-login" class="view-container">
             <div class="login-shell">
                 <div class="login-hero">
-                    <span class="badge">Departamento 2025-2026</span>
+                    <span class="badge">Departamento 2026/27</span>
                     <h1>Planificador de materias</h1>
                     <p>Selecciona tu usuario para entrar en tu carpeta de trabajo. Cada profesor vera sus propias materias y mantendra acceso comun a los ejemplos generales.</p>
                 </div>
                 <div class="login-panel">
                     <h2>Identificacion</h2>
-                    <p class="text-muted text-sm">Conecta con GitHub y elige la carpeta de trabajo. Todas las carpetas son visibles para el departamento.</p>
+                    <p class="text-muted text-sm">Conecta con tu cuenta de GitHub y elige la carpeta de trabajo. Cualquier cuenta autenticada puede entrar; todas las carpetas son visibles para el departamento.</p>
                     <div class="github-connect">
                         <div class="row">
                             <label class="text-xs text-muted">Owner
@@ -2380,9 +2380,24 @@ const SharedExamples =         [
                 }
             },
 
+            ensureGitHubUserWorkspace: () => {
+                const login = AppState.github.login;
+                if (!login) return;
+                const folder = Utils.slugify(login).replace(/_/g, '-');
+                const exists = AppState.users.some(user => user.folder === folder);
+                if (!exists) {
+                    AppState.users.push({
+                        displayName: login,
+                        folder,
+                        role: 'github_user'
+                    });
+                }
+            },
+
             loadDepartmentFromGitHub: async () => {
                 const users = await app.readJsonFromGitHub('data/plans/2025-2026/users.json', { allowMissing: true });
                 if (Array.isArray(users) && users.length) AppState.users = users;
+                app.ensureGitHubUserWorkspace();
 
                 AppState.github.indexes = {};
                 await Promise.all(AppState.users.map(async user => {
