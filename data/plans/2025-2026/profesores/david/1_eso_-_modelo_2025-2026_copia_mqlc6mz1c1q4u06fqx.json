@@ -17,7 +17,7 @@
       "id": "mqlc6mz17iidrg3wi0p",
       "name": "UD 01. Números naturales y operaciones",
       "base": 12,
-      "extra": 0,
+      "extra": 5,
       "activities": []
     },
     {
@@ -152,6 +152,6 @@
   },
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-06-19T19:43:26.863Z",
+  "updatedAt": "2026-06-19T19:45:35.541Z",
   "githubPath": "data/plans/2025-2026/profesores/david/1_eso_-_modelo_2025-2026_copia_mqlc6mz1c1q4u06fqx.json"
 }
