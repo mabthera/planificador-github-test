@@ -1,0 +1,26 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor folders
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+~$*
+
+# Local exports/backups
+exports/
+backups/
+*.zip
+
+# Dependencies/build output, in case the project grows later
+node_modules/
+dist/
+build/
+coverage/

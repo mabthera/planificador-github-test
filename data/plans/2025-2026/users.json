@@ -1,0 +1,32 @@
+[
+  {
+    "displayName": "Jaime",
+    "folder": "jaime",
+    "role": "teacher"
+  },
+  {
+    "displayName": "David",
+    "folder": "david",
+    "role": "teacher"
+  },
+  {
+    "displayName": "Almudena",
+    "folder": "almudena",
+    "role": "teacher"
+  },
+  {
+    "displayName": "Manuel",
+    "folder": "manuel",
+    "role": "teacher"
+  },
+  {
+    "displayName": "Pablo",
+    "folder": "pablo",
+    "role": "teacher"
+  },
+  {
+    "displayName": "Prov",
+    "folder": "prov",
+    "role": "teacher"
+  }
+]

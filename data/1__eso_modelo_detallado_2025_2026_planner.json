@@ -1,0 +1,465 @@
+{
+  "id": "modelo_1eso_detallado_2025_2026",
+  "name": "1º ESO - Modelo detallado 2025-2026",
+  "color": "#d033db",
+  "startDate": "2025-09-08",
+  "endDate": "2026-06-19",
+  "schedule": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 0,
+    "5": 1
+  },
+  "planningMode": "activity",
+  "units": [
+    {
+      "id": "modelo_1eso_det_ud01",
+      "name": "UD 01. Números naturales y operaciones",
+      "base": 12,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud01_act01",
+          "name": "Diagnóstico inicial y numeración",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud01_act02",
+          "name": "Operaciones combinadas con naturales",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud01_act03",
+          "name": "Problemas aritméticos y cálculo mental",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud01_act04",
+          "name": "Repaso, prueba y corrección",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud02",
+      "name": "UD 02. Potencias, raíces y divisibilidad",
+      "base": 12,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud02_act01",
+          "name": "Potencias y propiedades básicas",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud02_act02",
+          "name": "Raíces cuadradas sencillas",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud02_act03",
+          "name": "Múltiplos, divisores y criterios de divisibilidad",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud02_act04",
+          "name": "MCD, mcm y problemas",
+          "sessions": 3,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud03",
+      "name": "UD 03. Números enteros",
+      "base": 11,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud03_act01",
+          "name": "Enteros en contextos reales",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud03_act02",
+          "name": "Representación y comparación en la recta",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud03_act03",
+          "name": "Operaciones con enteros",
+          "sessions": 5,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud03_act04",
+          "name": "Problemas y evaluación breve",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud04",
+      "name": "UD 04. Fracciones",
+      "base": 12,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud04_act01",
+          "name": "Concepto de fracción y fracciones equivalentes",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud04_act02",
+          "name": "Operaciones con fracciones",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud04_act03",
+          "name": "Problemas con fracciones",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud04_act04",
+          "name": "Repaso trimestral y evaluación",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud05",
+      "name": "UD 05. Números decimales",
+      "base": 11,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud05_act01",
+          "name": "Lectura, ordenación y valor posicional",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud05_act02",
+          "name": "Operaciones con decimales",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud05_act03",
+          "name": "Aproximación, redondeo y estimación",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud05_act04",
+          "name": "Problemas de medida y dinero",
+          "sessions": 3,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud06",
+      "name": "UD 06. Proporcionalidad y porcentajes",
+      "base": 11,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud06_act01",
+          "name": "Razones y proporciones",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud06_act02",
+          "name": "Regla de tres directa",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud06_act03",
+          "name": "Porcentajes en situaciones cotidianas",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud06_act04",
+          "name": "Taller de problemas y corrección",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud07",
+      "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
+      "base": 10,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud07_act01",
+          "name": "Expresiones algebraicas y traducción de enunciados",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud07_act02",
+          "name": "Valor numérico y simplificación básica",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud07_act03",
+          "name": "Ecuaciones de primer grado sencillas",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud07_act04",
+          "name": "Problemas algebraicos guiados",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud08",
+      "name": "UD 08. Tablas, coordenadas y gráficas",
+      "base": 10,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud08_act01",
+          "name": "Tablas de valores y patrones",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud08_act02",
+          "name": "Coordenadas cartesianas",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud08_act03",
+          "name": "Lectura e interpretación de gráficas",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud08_act04",
+          "name": "Proyecto corto de representación de datos",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud09",
+      "name": "UD 09. Rectas, ángulos y polígonos",
+      "base": 10,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud09_act01",
+          "name": "Rectas, semirrectas, segmentos y ángulos",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud09_act02",
+          "name": "Medida y clasificación de ángulos",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud09_act03",
+          "name": "Triángulos, cuadriláteros y polígonos",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud09_act04",
+          "name": "Construcciones geométricas con instrumentos",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud10",
+      "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
+      "base": 11,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud10_act01",
+          "name": "Perímetros y unidades de longitud",
+          "sessions": 2,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud10_act02",
+          "name": "Áreas de figuras planas",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud10_act03",
+          "name": "Teorema de Pitágoras en contextos sencillos",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud10_act04",
+          "name": "Problemas y evaluación",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud11",
+      "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
+      "base": 15,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud11_act01",
+          "name": "Prismas, pirámides y poliedros",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud11_act02",
+          "name": "Cilindros, conos y esferas",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud11_act03",
+          "name": "Desarrollos planos y áreas",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud11_act04",
+          "name": "Volúmenes y unidades cúbicas",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud11_act05",
+          "name": "Taller manipulativo y problemas",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "modelo_1eso_det_ud12",
+      "name": "UD 12. Estadística y probabilidad",
+      "base": 15,
+      "extra": 0,
+      "activities": [
+        {
+          "id": "modelo_1eso_det_ud12_act01",
+          "name": "Recogida y organización de datos",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud12_act02",
+          "name": "Tablas de frecuencia y gráficos estadísticos",
+          "sessions": 4,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud12_act03",
+          "name": "Media, mediana, moda y rango",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud12_act04",
+          "name": "Experimentos aleatorios y probabilidad simple",
+          "sessions": 3,
+          "extra": 0
+        },
+        {
+          "id": "modelo_1eso_det_ud12_act05",
+          "name": "Proyecto final y cierre de curso",
+          "sessions": 2,
+          "extra": 0
+        }
+      ]
+    }
+  ],
+  "localHolidays": [
+    "2025-10-31",
+    "2025-11-03",
+    "2025-12-22",
+    "2025-12-23",
+    "2025-12-24",
+    "2025-12-25",
+    "2025-12-26",
+    "2025-12-29",
+    "2025-12-30",
+    "2025-12-31",
+    "2026-01-01",
+    "2026-01-02",
+    "2026-01-05",
+    "2026-01-06",
+    "2026-01-07",
+    "2026-02-16",
+    "2026-02-17",
+    "2026-02-18",
+    "2026-03-19",
+    "2026-03-20",
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-03",
+    "2026-04-06",
+    "2026-05-01",
+    "2026-05-04",
+    "2026-06-22",
+    "2026-06-23",
+    "2026-06-24",
+    "2026-06-25",
+    "2026-06-26",
+    "2026-06-29",
+    "2026-06-30"
+  ],
+  "customDates": [
+    {
+      "date": "2026-01-12",
+      "label": "Recuperación 1ª evaluación"
+    },
+    {
+      "date": "2026-04-07",
+      "label": "Recuperación 2ª evaluación"
+    }
+  ],
+  "evaluations": {
+    "1": "2025-12-19",
+    "2": "2026-03-27",
+    "3": "2026-06-22"
+  }
+}

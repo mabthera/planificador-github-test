@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba GitHub Storage - Planificador</title>
+    <style>
+        :root {
+            --bg: #f6f7f9;
+            --panel: #ffffff;
+            --text: #172033;
+            --muted: #667085;
+            --border: #d0d5dd;
+            --primary: #1f6feb;
+            --primary-dark: #1557b0;
+            --danger: #b42318;
+            --success: #067647;
+            --warning: #b54708;
+            --code-bg: #101828;
+            --code-text: #e4e7ec;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        main {
+            width: min(1120px, calc(100% - 32px));
+            margin: 32px auto;
+        }
+
+        header {
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(320px, 420px) 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        section {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        h2 {
+            margin: 0 0 16px;
+            font-size: 1.1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 14px;
+            font-weight: 650;
+            font-size: 0.92rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            margin-top: 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 11px;
+            font: inherit;
+            color: var(--text);
+            background: #fff;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid rgba(31, 111, 235, 0.18);
+            border-color: var(--primary);
+        }
+
+        textarea {
+            min-height: 220px;
+            resize: vertical;
+            font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+            font-size: 0.88rem;
+        }
+
+        .hint {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        button {
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 9px 12px;
+            font: inherit;
+            font-weight: 650;
+            color: #fff;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        button.secondary {
+            color: var(--primary);
+            background: #fff;
+        }
+
+        button.secondary:hover {
+            background: #eff6ff;
+        }
+
+        button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 14px;
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.92rem;
+            background: #f2f4f7;
+            color: var(--muted);
+        }
+
+        .status.success {
+            background: #ecfdf3;
+            color: var(--success);
+        }
+
+        .status.error {
+            background: #fef3f2;
+            color: var(--danger);
+        }
+
+        .status.warning {
+            background: #fffaeb;
+            color: var(--warning);
+        }
+
+        pre {
+            min-height: 420px;
+            max-height: 680px;
+            overflow: auto;
+            margin: 0;
+            border-radius: 8px;
+            padding: 14px;
+            background: var(--code-bg);
+            color: var(--code-text);
+            font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+            font-size: 0.84rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .meta {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .meta strong {
+            color: var(--text);
+        }
+
+        @media (max-width: 860px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Prueba de guardado en GitHub</h1>
+            <p>Herramienta aislada para validar lectura y escritura de JSON en un repositorio de prueba.</p>
+        </header>
+
+        <div class="layout">
+            <section>
+                <h2>Conexion</h2>
+
+                <label>
+                    Owner
+                    <input id="owner" autocomplete="off" value="mabthera" placeholder="usuario-u-organizacion">
+                    <span class="hint">Cuenta u organizacion propietaria del repositorio.</span>
+                </label>
+
+                <label>
+                    Repositorio
+                    <input id="repo" autocomplete="off" value="planificador-github-test" placeholder="planificador-github-test">
+                    <span class="hint">Repositorio privado de prueba.</span>
+                </label>
+
+                <label>
+                    Rama
+                    <input id="branch" autocomplete="off" value="main">
+                </label>
+
+                <label>
+                    Token de GitHub
+                    <input id="token" type="password" autocomplete="off" placeholder="github_pat_...">
+                    <span class="hint">Debe tener permiso Contents: read and write. No se guarda en localStorage.</span>
+                </label>
+
+                <label>
+                    Ruta JSON
+                    <input id="path" autocomplete="off" placeholder="data/plans/2025-2026/profesores/usuario/github_test_subject.json">
+                    <span class="hint">Se rellena automaticamente despues de verificar el usuario.</span>
+                </label>
+
+                <div class="actions">
+                    <button id="verify-btn" type="button">Verificar usuario</button>
+                    <button id="save-btn" type="button">Guardar JSON de prueba</button>
+                    <button id="read-btn" type="button" class="secondary">Leer JSON</button>
+                    <button id="clear-btn" type="button" class="secondary">Limpiar salida</button>
+                </div>
+
+                <div id="status" class="status">Pendiente de conexion.</div>
+            </section>
+
+            <section>
+                <h2>Resultado</h2>
+                <div class="meta">
+                    <div>Usuario GitHub: <strong id="github-login">sin verificar</strong></div>
+                    <div>Ultimo SHA leido: <strong id="current-sha">sin archivo</strong></div>
+                </div>
+
+                <label>
+                    JSON que se guardara
+                    <textarea id="json-editor" spellcheck="false"></textarea>
+                </label>
+
+                <pre id="output">Sin salida todavia.</pre>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const els = {
+            owner: document.getElementById('owner'),
+            repo: document.getElementById('repo'),
+            branch: document.getElementById('branch'),
+            token: document.getElementById('token'),
+            path: document.getElementById('path'),
+            status: document.getElementById('status'),
+            output: document.getElementById('output'),
+            jsonEditor: document.getElementById('json-editor'),
+            githubLogin: document.getElementById('github-login'),
+            currentSha: document.getElementById('current-sha'),
+            verifyBtn: document.getElementById('verify-btn'),
+            saveBtn: document.getElementById('save-btn'),
+            readBtn: document.getElementById('read-btn'),
+            clearBtn: document.getElementById('clear-btn')
+        };
+
+        let currentUser = null;
+        let currentSha = null;
+
+        function setStatus(message, type = '') {
+            els.status.textContent = message;
+            els.status.className = type ? `status ${type}` : 'status';
+        }
+
+        function log(title, payload) {
+            const stamp = new Date().toLocaleString('es-ES');
+            const body = typeof payload === 'string' ? payload : JSON.stringify(payload, null, 2);
+            els.output.textContent = `[${stamp}] ${title}\n${body}`;
+        }
+
+        function requireConfig() {
+            const config = {
+                owner: els.owner.value.trim(),
+                repo: els.repo.value.trim(),
+                branch: els.branch.value.trim() || 'main',
+                token: els.token.value.trim(),
+                path: els.path.value.trim()
+            };
+
+            if (!config.owner) throw new Error('Falta el owner de GitHub.');
+            if (!config.repo) throw new Error('Falta el repositorio de GitHub.');
+            if (!config.token) throw new Error('Falta el token de GitHub.');
+
+            return config;
+        }
+
+        function sanitizePathPart(value) {
+            return value
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/[^a-z0-9_-]+/g, '-')
+                .replace(/^-+|-+$/g, '') || 'usuario';
+        }
+
+        function utf8ToBase64(value) {
+            const bytes = new TextEncoder().encode(value);
+            let binary = '';
+            const chunkSize = 0x8000;
+
+            for (let i = 0; i < bytes.length; i += chunkSize) {
+                const chunk = bytes.subarray(i, i + chunkSize);
+                binary += String.fromCharCode.apply(null, chunk);
+            }
+
+            return btoa(binary);
+        }
+
+        function base64ToUtf8(value) {
+            const clean = value.replace(/\s/g, '');
+            const binary = atob(clean);
+            const bytes = new Uint8Array(binary.length);
+
+            for (let i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+
+            return new TextDecoder().decode(bytes);
+        }
+
+        async function githubFetch(url, options = {}) {
+            const config = requireConfig();
+            const response = await fetch(url, {
+                ...options,
+                headers: {
+                    Accept: 'application/vnd.github+json',
+                    Authorization: `Bearer ${config.token}`,
+                    'X-GitHub-Api-Version': '2022-11-28',
+                    ...(options.headers || {})
+                }
+            });
+
+            const text = await response.text();
+            let data = null;
+
+            if (text) {
+                try {
+                    data = JSON.parse(text);
+                } catch (error) {
+                    data = { raw: text };
+                }
+            }
+
+            if (!response.ok) {
+                const detail = data && data.message ? data.message : response.statusText;
+                const error = new Error(`GitHub API ${response.status}: ${detail}`);
+                error.status = response.status;
+                error.data = data;
+                throw error;
+            }
+
+            return data;
+        }
+
+        function contentsUrl(config) {
+            const path = encodeURIComponent(config.path).replace(/%2F/g, '/');
+            return `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${path}`;
+        }
+
+        function buildTestSubject(login) {
+            return {
+                schemaVersion: 2,
+                ownerGithubLogin: login,
+                academicYear: '2025-2026',
+                id: 'github-test-subject',
+                name: 'Materia de prueba GitHub',
+                color: '#3498db',
+                startDate: '2025-09-08',
+                endDate: '2026-06-30',
+                schedule: {
+                    1: 1,
+                    2: 1,
+                    3: 1,
+                    4: 1,
+                    5: 0
+                },
+                planningMode: 'unit',
+                units: [],
+                localHolidays: [],
+                customDates: [],
+                evaluations: {},
+                updatedAt: new Date().toISOString()
+            };
+        }
+
+        function ensurePathForUser(login) {
+            if (els.path.value.trim()) return;
+
+            const folder = sanitizePathPart(login);
+            els.path.value = `data/plans/2025-2026/profesores/${folder}/github_test_subject.json`;
+        }
+
+        function refreshEditorForUser(login) {
+            const current = els.jsonEditor.value.trim();
+            if (current) return;
+
+            els.jsonEditor.value = JSON.stringify(buildTestSubject(login), null, 2);
+        }
+
+        async function verifyUser() {
+            setStatus('Verificando usuario en GitHub...');
+            const user = await githubFetch('https://api.github.com/user');
+
+            currentUser = user;
+            els.githubLogin.textContent = user.login || 'sin login';
+            ensurePathForUser(user.login);
+            refreshEditorForUser(user.login);
+
+            setStatus(`Usuario verificado: ${user.login}`, 'success');
+            log('Usuario verificado', {
+                login: user.login,
+                name: user.name,
+                id: user.id,
+                html_url: user.html_url
+            });
+
+            return user;
+        }
+
+        async function readJson({ silent404 = false } = {}) {
+            const config = requireConfig();
+            if (!config.path) throw new Error('Falta la ruta JSON.');
+
+            try {
+                setStatus('Leyendo JSON desde GitHub...');
+                const data = await githubFetch(`${contentsUrl(config)}?ref=${encodeURIComponent(config.branch)}`);
+
+                if (data.type !== 'file') {
+                    throw new Error('La ruta existe, pero no es un archivo.');
+                }
+
+                currentSha = data.sha;
+                els.currentSha.textContent = currentSha;
+
+                const jsonText = base64ToUtf8(data.content || '');
+                els.jsonEditor.value = JSON.stringify(JSON.parse(jsonText), null, 2);
+
+                setStatus('JSON leido correctamente.', 'success');
+                log('JSON leido desde GitHub', {
+                    path: data.path,
+                    sha: data.sha,
+                    size: data.size,
+                    content: JSON.parse(jsonText)
+                });
+
+                return data;
+            } catch (error) {
+                if (silent404 && error.status === 404) {
+                    currentSha = null;
+                    els.currentSha.textContent = 'archivo nuevo';
+                    setStatus('El archivo no existe todavia. Se creara al guardar.', 'warning');
+                    return null;
+                }
+
+                throw error;
+            }
+        }
+
+        async function getExistingFileForSave(config) {
+            try {
+                return await githubFetch(`${contentsUrl(config)}?ref=${encodeURIComponent(config.branch)}`);
+            } catch (error) {
+                if (error.status === 404) {
+                    currentSha = null;
+                    els.currentSha.textContent = 'archivo nuevo';
+                    return null;
+                }
+
+                throw error;
+            }
+        }
+
+        async function saveJson() {
+            if (!currentUser) {
+                await verifyUser();
+            }
+
+            const config = requireConfig();
+            if (!config.path) throw new Error('Falta la ruta JSON.');
+
+            let parsed = null;
+            try {
+                parsed = JSON.parse(els.jsonEditor.value);
+            } catch (error) {
+                throw new Error(`El contenido no es JSON valido: ${error.message}`);
+            }
+
+            parsed.updatedAt = new Date().toISOString();
+            if (!parsed.ownerGithubLogin && currentUser && currentUser.login) {
+                parsed.ownerGithubLogin = currentUser.login;
+            }
+
+            els.jsonEditor.value = JSON.stringify(parsed, null, 2);
+
+            setStatus('Comprobando si el archivo ya existe...');
+            const existing = await getExistingFileForSave(config);
+            const payload = {
+                message: `${existing ? 'Actualizar' : 'Crear'} materia de prueba GitHub`,
+                content: utf8ToBase64(JSON.stringify(parsed, null, 2) + '\n'),
+                branch: config.branch
+            };
+
+            if (existing && existing.sha) {
+                payload.sha = existing.sha;
+            }
+
+            setStatus('Guardando JSON en GitHub...');
+            const result = await githubFetch(contentsUrl(config), {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            currentSha = result.content && result.content.sha ? result.content.sha : null;
+            els.currentSha.textContent = currentSha || 'sin SHA';
+
+            setStatus('JSON guardado en GitHub.', 'success');
+            log('JSON guardado en GitHub', {
+                path: result.content && result.content.path,
+                sha: currentSha,
+                commit: result.commit && {
+                    sha: result.commit.sha,
+                    html_url: result.commit.html_url,
+                    message: result.commit.message
+                }
+            });
+        }
+
+        async function runAction(action) {
+            try {
+                toggleButtons(true);
+                await action();
+            } catch (error) {
+                setStatus(error.message, 'error');
+                log('Error', {
+                    message: error.message,
+                    status: error.status || null,
+                    details: error.data || null
+                });
+            } finally {
+                toggleButtons(false);
+            }
+        }
+
+        function toggleButtons(disabled) {
+            els.verifyBtn.disabled = disabled;
+            els.saveBtn.disabled = disabled;
+            els.readBtn.disabled = disabled;
+            els.clearBtn.disabled = disabled;
+        }
+
+        els.verifyBtn.addEventListener('click', () => runAction(verifyUser));
+        els.saveBtn.addEventListener('click', () => runAction(saveJson));
+        els.readBtn.addEventListener('click', () => runAction(() => readJson()));
+        els.clearBtn.addEventListener('click', () => {
+            els.output.textContent = 'Sin salida todavia.';
+            setStatus('Salida limpiada.');
+        });
+    </script>
+</body>
+</html>
