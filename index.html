@@ -358,6 +358,50 @@
             font-size: 1.05rem;
         }
 
+        .login-help {
+            margin-top: 1.25rem;
+            max-width: 34rem;
+        }
+
+        .login-help summary {
+            width: fit-content;
+            list-style: none;
+            background: var(--bg-card);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .login-help summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .login-help-content {
+            margin-top: 0.75rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--text-muted);
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+
+        .login-help-content ol {
+            margin-left: 1.1rem;
+        }
+
+        .login-help-content li + li {
+            margin-top: 0.35rem;
+        }
+
         .login-panel {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -1267,6 +1311,16 @@
                     <span class="badge">Departamento 2026/27</span>
                     <h1>Planificador de materias</h1>
                     <p>Selecciona tu usuario para entrar en tu carpeta de trabajo. Cada profesor vera sus propias materias y mantendra acceso comun a los ejemplos generales.</p>
+                    <details class="login-help">
+                        <summary>Ayuda para entrar</summary>
+                        <div class="login-help-content">
+                            <ol>
+                                <li>Copia el token de acceso que te ha facilitado el departamento.</li>
+                                <li>Pegalo en el campo "Token de acceso".</li>
+                                <li>Pulsa "Conectar con GitHub" y elige tu carpeta.</li>
+                            </ol>
+                        </div>
+                    </details>
                 </div>
                 <div class="login-panel">
                     <h2>Identificacion</h2>
