@@ -2474,6 +2474,27 @@ const DepartmentUsers =         [
                 return result;
             },
 
+            deleteFileFromGitHub: async (path, message) => {
+                let sha = AppState.github.fileShas[path];
+                if (!sha) {
+                    try {
+                        await app.readJsonFromGitHub(path, { allowMissing: false });
+                        sha = AppState.github.fileShas[path];
+                    } catch (error) {
+                        if (error.status === 404) return null;
+                        throw error;
+                    }
+                }
+                if (!sha) return null;
+                const result = await app.githubFetch(app.githubContentUrl(path), {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, sha, branch: AppState.github.branch })
+                });
+                delete AppState.github.fileShas[path];
+                return result;
+            },
+
             connectGitHub: async () => {
                 try {
                     app.setGitHubStatus('Conectando con GitHub...');
@@ -2559,8 +2580,10 @@ const DepartmentUsers =         [
             getSubjectPath: (subject) => {
                 const folder = AppState.currentUser ? AppState.currentUser.folder : 'sin_usuario';
                 const activePathPrefix = app.coursePath(`profesores/${folder}/`);
-                if (subject.githubPath && subject.githubPath.startsWith(activePathPrefix)) return subject.githubPath;
-                return app.coursePath(`profesores/${folder}/${Utils.slugify(subject.name)}_${subject.id}.json`);
+                const expectedFile = `${Utils.slugify(subject.name)}_${subject.id}.json`;
+                const expectedPath = `${activePathPrefix}${expectedFile}`;
+                if (subject.githubPath === expectedPath) return subject.githubPath;
+                return expectedPath;
             },
 
             loadUserHolidayChangesFromGitHub: async (user) => {
@@ -2611,8 +2634,12 @@ const DepartmentUsers =         [
                         subject.ownerFolder = user.folder;
                         subject.academicYear = ACADEMIC_YEAR;
                         subject.updatedAt = new Date().toISOString();
+                        const previousGithubPath = subject.githubPath;
                         subject.githubPath = app.getSubjectPath(subject);
                         await app.writeJsonToGitHub(subject.githubPath, subject, `Actualizar ${subject.name}`);
+                        if (previousGithubPath && previousGithubPath !== subject.githubPath) {
+                            await app.deleteFileFromGitHub(previousGithubPath, `Eliminar archivo antiguo de ${subject.name}`);
+                        }
                         const file = subject.githubPath.split('/').pop();
                         subjectsIndex.push({
                             id: subject.id,
