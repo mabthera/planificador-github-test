@@ -1,0 +1,157 @@
+{
+  "id": "mqm5iav7roulhwkadas",
+  "name": "1º ESO - Modelo 2025-2026 (copia)",
+  "color": "#d033db",
+  "startDate": "2025-09-08",
+  "endDate": "2026-06-19",
+  "schedule": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 0,
+    "5": 1
+  },
+  "planningMode": "unit",
+  "units": [
+    {
+      "id": "mqm5iav79f3xqq0o72g",
+      "name": "UD 01. Números naturales y operaciones",
+      "base": 12,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7nqtml6krl2d",
+      "name": "UD 02. Potencias, raíces y divisibilidad",
+      "base": 12,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav76pwsy1fev7t",
+      "name": "UD 03. Números enteros",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7b406ojvxbwo",
+      "name": "UD 04. Fracciones",
+      "base": 12,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7z9nejjkar9m",
+      "name": "UD 05. Números decimales",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7u835pz4d11",
+      "name": "UD 06. Proporcionalidad y porcentajes",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav75nu9lfvi0eq",
+      "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7e498ninnl6e",
+      "name": "UD 08. Tablas, coordenadas y gráficas",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7b57tqyi25ev",
+      "name": "UD 09. Rectas, ángulos y polígonos",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav7jy54gfy430k",
+      "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav74mcv65nujep",
+      "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
+      "base": 15,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqm5iav76jkd7dd3v6",
+      "name": "UD 12. Estadística y probabilidad",
+      "base": 15,
+      "extra": 0,
+      "activities": []
+    }
+  ],
+  "localHolidays": [
+    "2025-10-31",
+    "2025-11-03",
+    "2025-12-22",
+    "2025-12-23",
+    "2025-12-24",
+    "2025-12-25",
+    "2025-12-26",
+    "2025-12-29",
+    "2025-12-30",
+    "2025-12-31",
+    "2026-01-01",
+    "2026-01-02",
+    "2026-01-05",
+    "2026-01-06",
+    "2026-01-07",
+    "2026-02-16",
+    "2026-02-17",
+    "2026-02-18",
+    "2026-03-19",
+    "2026-03-20",
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-03",
+    "2026-04-06",
+    "2026-05-01",
+    "2026-05-04",
+    "2026-06-22",
+    "2026-06-23",
+    "2026-06-24",
+    "2026-06-25",
+    "2026-06-26",
+    "2026-06-29",
+    "2026-06-30"
+  ],
+  "customDates": [
+    {
+      "date": "2026-01-12",
+      "label": "Recuperación 1ª evaluación"
+    },
+    {
+      "date": "2026-04-07",
+      "label": "Recuperación 2ª evaluación"
+    }
+  ],
+  "evaluations": {
+    "1": "2025-12-19",
+    "2": "2026-03-27",
+    "3": "2026-06-22"
+  },
+  "ownerFolder": "david",
+  "source": "shared-example",
+  "updatedAt": "2026-06-20T09:24:19.898Z",
+  "githubPath": "data/plans/2025-2026/profesores/david/1_eso_-_modelo_2025-2026_copia_mqm5iav7roulhwkadas.json"
+}
