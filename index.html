@@ -1427,8 +1427,8 @@
                 <h2 id="detail-subject-name">Matemáticas</h2>
                 <div class="flex gap-2">
                     <button id="btn-holiday-mode" onclick="app.toggleHolidayMode()">Gestión Festivos</button>
-                    <button onclick="app.exportHolidays()">Exportar Festivos</button>
-                    <button onclick="app.importHolidays()">Importar Festivos</button>
+                    <button id="btn-export-holidays" onclick="app.exportHolidays()">Exportar Mis Festivos</button>
+                    <button id="btn-import-holidays" onclick="app.importHolidays()">Importar Mis Festivos</button>
                     <input type="file" id="import-holidays-file" class="hidden" accept=".json"
                         onchange="app.handleHolidayImport(this)">
                 </div>
@@ -1651,640 +1651,579 @@ const DepartmentUsers =         [
         ];
 
         const AdminGithubLogins = ['mabthera'];
+        const ACADEMIC_YEAR = '2026-2027';
+        const DEFAULT_COURSE_DATES = {
+            startDate: '2026-09-08',
+            endDate: '2027-06-30',
+            evaluations: {
+                1: '2026-12-18',
+                2: '2027-03-26',
+                3: '2027-06-22'
+            }
+        };
 
-        const SharedExamples =         [
-                  {
-                            "id": "example-1-eso-modelo",
-                            "sourceFile": "data/1__eso_modelo_2025_2026_planner.json",
-                            "subject": {
-                                      "id": "modelo_1eso_2025_2026",
-                                      "name": "1º ESO - Modelo 2025-2026",
-                                      "color": "#d033db",
-                                      "startDate": "2025-09-08",
-                                      "endDate": "2026-06-19",
-                                      "schedule": {
-                                                "1": 1,
-                                                "2": 1,
-                                                "3": 1,
-                                                "4": 0,
-                                                "5": 1
-                                      },
-                                      "planningMode": "unit",
-                                      "units": [
-                                                {
-                                                          "id": "modelo_1eso_ud01",
-                                                          "name": "UD 01. Números naturales y operaciones",
-                                                          "base": 12,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud02",
-                                                          "name": "UD 02. Potencias, raíces y divisibilidad",
-                                                          "base": 12,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud03",
-                                                          "name": "UD 03. Números enteros",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud04",
-                                                          "name": "UD 04. Fracciones",
-                                                          "base": 12,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud05",
-                                                          "name": "UD 05. Números decimales",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud06",
-                                                          "name": "UD 06. Proporcionalidad y porcentajes",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud07",
-                                                          "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
-                                                          "base": 10,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud08",
-                                                          "name": "UD 08. Tablas, coordenadas y gráficas",
-                                                          "base": 10,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud09",
-                                                          "name": "UD 09. Rectas, ángulos y polígonos",
-                                                          "base": 10,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud10",
-                                                          "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud11",
-                                                          "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
-                                                          "base": 15,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_ud12",
-                                                          "name": "UD 12. Estadística y probabilidad",
-                                                          "base": 15,
-                                                          "extra": 0,
-                                                          "activities": []
-                                                }
-                                      ],
-                                      "localHolidays": [
-                                                "2025-10-31",
-                                                "2025-11-03",
-                                                "2025-12-22",
-                                                "2025-12-23",
-                                                "2025-12-24",
-                                                "2025-12-25",
-                                                "2025-12-26",
-                                                "2025-12-29",
-                                                "2025-12-30",
-                                                "2025-12-31",
-                                                "2026-01-01",
-                                                "2026-01-02",
-                                                "2026-01-05",
-                                                "2026-01-06",
-                                                "2026-01-07",
-                                                "2026-02-16",
-                                                "2026-02-17",
-                                                "2026-02-18",
-                                                "2026-03-19",
-                                                "2026-03-20",
-                                                "2026-03-30",
-                                                "2026-03-31",
-                                                "2026-04-01",
-                                                "2026-04-02",
-                                                "2026-04-03",
-                                                "2026-04-06",
-                                                "2026-05-01",
-                                                "2026-05-04",
-                                                "2026-06-22",
-                                                "2026-06-23",
-                                                "2026-06-24",
-                                                "2026-06-25",
-                                                "2026-06-26",
-                                                "2026-06-29",
-                                                "2026-06-30"
-                                      ],
-                                      "customDates": [
-                                                {
-                                                          "date": "2026-01-12",
-                                                          "label": "Recuperación 1ª evaluación"
-                                                },
-                                                {
-                                                          "date": "2026-04-07",
-                                                          "label": "Recuperación 2ª evaluación"
-                                                }
-                                      ],
-                                      "evaluations": {
-                                                "1": "2025-12-19",
-                                                "2": "2026-03-27",
-                                                "3": "2026-06-22"
-                                      }
-                            }
-                  },
-                  {
-                            "id": "example-1-eso-modelo-detallado",
-                            "sourceFile": "data/1__eso_modelo_detallado_2025_2026_planner.json",
-                            "subject": {
-                                      "id": "modelo_1eso_detallado_2025_2026",
-                                      "name": "1º ESO - Modelo detallado 2025-2026",
-                                      "color": "#d033db",
-                                      "startDate": "2025-09-08",
-                                      "endDate": "2026-06-19",
-                                      "schedule": {
-                                                "1": 1,
-                                                "2": 1,
-                                                "3": 1,
-                                                "4": 0,
-                                                "5": 1
-                                      },
-                                      "planningMode": "activity",
-                                      "units": [
-                                                {
-                                                          "id": "modelo_1eso_det_ud01",
-                                                          "name": "UD 01. Números naturales y operaciones",
-                                                          "base": 12,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud01_act01",
-                                                                              "name": "Diagnóstico inicial y numeración",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud01_act02",
-                                                                              "name": "Operaciones combinadas con naturales",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud01_act03",
-                                                                              "name": "Problemas aritméticos y cálculo mental",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud01_act04",
-                                                                              "name": "Repaso, prueba y corrección",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud02",
-                                                          "name": "UD 02. Potencias, raíces y divisibilidad",
-                                                          "base": 12,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud02_act01",
-                                                                              "name": "Potencias y propiedades básicas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud02_act02",
-                                                                              "name": "Raíces cuadradas sencillas",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud02_act03",
-                                                                              "name": "Múltiplos, divisores y criterios de divisibilidad",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud02_act04",
-                                                                              "name": "MCD, mcm y problemas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud03",
-                                                          "name": "UD 03. Números enteros",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud03_act01",
-                                                                              "name": "Enteros en contextos reales",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud03_act02",
-                                                                              "name": "Representación y comparación en la recta",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud03_act03",
-                                                                              "name": "Operaciones con enteros",
-                                                                              "sessions": 5,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud03_act04",
-                                                                              "name": "Problemas y evaluación breve",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud04",
-                                                          "name": "UD 04. Fracciones",
-                                                          "base": 12,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud04_act01",
-                                                                              "name": "Concepto de fracción y fracciones equivalentes",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud04_act02",
-                                                                              "name": "Operaciones con fracciones",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud04_act03",
-                                                                              "name": "Problemas con fracciones",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud04_act04",
-                                                                              "name": "Repaso trimestral y evaluación",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud05",
-                                                          "name": "UD 05. Números decimales",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud05_act01",
-                                                                              "name": "Lectura, ordenación y valor posicional",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud05_act02",
-                                                                              "name": "Operaciones con decimales",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud05_act03",
-                                                                              "name": "Aproximación, redondeo y estimación",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud05_act04",
-                                                                              "name": "Problemas de medida y dinero",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud06",
-                                                          "name": "UD 06. Proporcionalidad y porcentajes",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud06_act01",
-                                                                              "name": "Razones y proporciones",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud06_act02",
-                                                                              "name": "Regla de tres directa",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud06_act03",
-                                                                              "name": "Porcentajes en situaciones cotidianas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud06_act04",
-                                                                              "name": "Taller de problemas y corrección",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud07",
-                                                          "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
-                                                          "base": 10,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud07_act01",
-                                                                              "name": "Expresiones algebraicas y traducción de enunciados",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud07_act02",
-                                                                              "name": "Valor numérico y simplificación básica",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud07_act03",
-                                                                              "name": "Ecuaciones de primer grado sencillas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud07_act04",
-                                                                              "name": "Problemas algebraicos guiados",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud08",
-                                                          "name": "UD 08. Tablas, coordenadas y gráficas",
-                                                          "base": 10,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud08_act01",
-                                                                              "name": "Tablas de valores y patrones",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud08_act02",
-                                                                              "name": "Coordenadas cartesianas",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud08_act03",
-                                                                              "name": "Lectura e interpretación de gráficas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud08_act04",
-                                                                              "name": "Proyecto corto de representación de datos",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud09",
-                                                          "name": "UD 09. Rectas, ángulos y polígonos",
-                                                          "base": 10,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud09_act01",
-                                                                              "name": "Rectas, semirrectas, segmentos y ángulos",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud09_act02",
-                                                                              "name": "Medida y clasificación de ángulos",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud09_act03",
-                                                                              "name": "Triángulos, cuadriláteros y polígonos",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud09_act04",
-                                                                              "name": "Construcciones geométricas con instrumentos",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud10",
-                                                          "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
-                                                          "base": 11,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud10_act01",
-                                                                              "name": "Perímetros y unidades de longitud",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud10_act02",
-                                                                              "name": "Áreas de figuras planas",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud10_act03",
-                                                                              "name": "Teorema de Pitágoras en contextos sencillos",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud10_act04",
-                                                                              "name": "Problemas y evaluación",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud11",
-                                                          "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
-                                                          "base": 15,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud11_act01",
-                                                                              "name": "Prismas, pirámides y poliedros",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud11_act02",
-                                                                              "name": "Cilindros, conos y esferas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud11_act03",
-                                                                              "name": "Desarrollos planos y áreas",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud11_act04",
-                                                                              "name": "Volúmenes y unidades cúbicas",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud11_act05",
-                                                                              "name": "Taller manipulativo y problemas",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                },
-                                                {
-                                                          "id": "modelo_1eso_det_ud12",
-                                                          "name": "UD 12. Estadística y probabilidad",
-                                                          "base": 15,
-                                                          "extra": 0,
-                                                          "activities": [
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud12_act01",
-                                                                              "name": "Recogida y organización de datos",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud12_act02",
-                                                                              "name": "Tablas de frecuencia y gráficos estadísticos",
-                                                                              "sessions": 4,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud12_act03",
-                                                                              "name": "Media, mediana, moda y rango",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud12_act04",
-                                                                              "name": "Experimentos aleatorios y probabilidad simple",
-                                                                              "sessions": 3,
-                                                                              "extra": 0
-                                                                    },
-                                                                    {
-                                                                              "id": "modelo_1eso_det_ud12_act05",
-                                                                              "name": "Proyecto final y cierre de curso",
-                                                                              "sessions": 2,
-                                                                              "extra": 0
-                                                                    }
-                                                          ]
-                                                }
-                                      ],
-                                      "localHolidays": [
-                                                "2025-10-31",
-                                                "2025-11-03",
-                                                "2025-12-22",
-                                                "2025-12-23",
-                                                "2025-12-24",
-                                                "2025-12-25",
-                                                "2025-12-26",
-                                                "2025-12-29",
-                                                "2025-12-30",
-                                                "2025-12-31",
-                                                "2026-01-01",
-                                                "2026-01-02",
-                                                "2026-01-05",
-                                                "2026-01-06",
-                                                "2026-01-07",
-                                                "2026-02-16",
-                                                "2026-02-17",
-                                                "2026-02-18",
-                                                "2026-03-19",
-                                                "2026-03-20",
-                                                "2026-03-30",
-                                                "2026-03-31",
-                                                "2026-04-01",
-                                                "2026-04-02",
-                                                "2026-04-03",
-                                                "2026-04-06",
-                                                "2026-05-01",
-                                                "2026-05-04",
-                                                "2026-06-22",
-                                                "2026-06-23",
-                                                "2026-06-24",
-                                                "2026-06-25",
-                                                "2026-06-26",
-                                                "2026-06-29",
-                                                "2026-06-30"
-                                      ],
-                                      "customDates": [
-                                                {
-                                                          "date": "2026-01-12",
-                                                          "label": "Recuperación 1ª evaluación"
-                                                },
-                                                {
-                                                          "date": "2026-04-07",
-                                                          "label": "Recuperación 2ª evaluación"
-                                                }
-                                      ],
-                                      "evaluations": {
-                                                "1": "2025-12-19",
-                                                "2": "2026-03-27",
-                                                "3": "2026-06-22"
-                                      }
-                            }
-                  }
-        ];
+        const SharedExamples = [
+          {
+                    "id": "example-1-eso-modelo",
+                    "sourceFile": "data/1__eso_modelo_2026_2027_planner.json",
+                    "subject": {
+                              "id": "modelo_1eso_2026_2027",
+                              "name": "1º ESO - Modelo 2026-2027",
+                              "color": "#d033db",
+                              "startDate": "2026-09-08",
+                              "endDate": "2027-06-30",
+                              "schedule": {
+                                        "1": 1,
+                                        "2": 1,
+                                        "3": 1,
+                                        "4": 0,
+                                        "5": 1
+                              },
+                              "planningMode": "unit",
+                              "units": [
+                                        {
+                                                  "id": "modelo_1eso_ud01",
+                                                  "name": "UD 01. Números naturales y operaciones",
+                                                  "base": 12,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud02",
+                                                  "name": "UD 02. Potencias, raíces y divisibilidad",
+                                                  "base": 12,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud03",
+                                                  "name": "UD 03. Números enteros",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud04",
+                                                  "name": "UD 04. Fracciones",
+                                                  "base": 12,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud05",
+                                                  "name": "UD 05. Números decimales",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud06",
+                                                  "name": "UD 06. Proporcionalidad y porcentajes",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud07",
+                                                  "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
+                                                  "base": 10,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud08",
+                                                  "name": "UD 08. Tablas, coordenadas y gráficas",
+                                                  "base": 10,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud09",
+                                                  "name": "UD 09. Rectas, ángulos y polígonos",
+                                                  "base": 10,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud10",
+                                                  "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud11",
+                                                  "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
+                                                  "base": 15,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_ud12",
+                                                  "name": "UD 12. Estadística y probabilidad",
+                                                  "base": 15,
+                                                  "extra": 0,
+                                                  "activities": []
+                                        }
+                              ],
+                              "customDates": [
+                                        {
+                                                  "date": "2027-01-11",
+                                                  "label": "Recuperación 1ª evaluación"
+                                        },
+                                        {
+                                                  "date": "2027-04-06",
+                                                  "label": "Recuperación 2ª evaluación"
+                                        }
+                              ],
+                              "evaluations": {
+                                        "1": "2026-12-18",
+                                        "2": "2027-03-26",
+                                        "3": "2027-06-22"
+                              },
+                              "academicYear": "2026-2027"
+                    }
+          },
+          {
+                    "id": "example-1-eso-modelo-detallado",
+                    "sourceFile": "data/1__eso_modelo_detallado_2026_2027_planner.json",
+                    "subject": {
+                              "id": "modelo_1eso_detallado_2026_2027",
+                              "name": "1º ESO - Modelo detallado 2026-2027",
+                              "color": "#d033db",
+                              "startDate": "2026-09-08",
+                              "endDate": "2027-06-30",
+                              "schedule": {
+                                        "1": 1,
+                                        "2": 1,
+                                        "3": 1,
+                                        "4": 0,
+                                        "5": 1
+                              },
+                              "planningMode": "activity",
+                              "units": [
+                                        {
+                                                  "id": "modelo_1eso_det_ud01",
+                                                  "name": "UD 01. Números naturales y operaciones",
+                                                  "base": 12,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud01_act01",
+                                                                      "name": "Diagnóstico inicial y numeración",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud01_act02",
+                                                                      "name": "Operaciones combinadas con naturales",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud01_act03",
+                                                                      "name": "Problemas aritméticos y cálculo mental",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud01_act04",
+                                                                      "name": "Repaso, prueba y corrección",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud02",
+                                                  "name": "UD 02. Potencias, raíces y divisibilidad",
+                                                  "base": 12,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud02_act01",
+                                                                      "name": "Potencias y propiedades básicas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud02_act02",
+                                                                      "name": "Raíces cuadradas sencillas",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud02_act03",
+                                                                      "name": "Múltiplos, divisores y criterios de divisibilidad",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud02_act04",
+                                                                      "name": "MCD, mcm y problemas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud03",
+                                                  "name": "UD 03. Números enteros",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud03_act01",
+                                                                      "name": "Enteros en contextos reales",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud03_act02",
+                                                                      "name": "Representación y comparación en la recta",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud03_act03",
+                                                                      "name": "Operaciones con enteros",
+                                                                      "sessions": 5,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud03_act04",
+                                                                      "name": "Problemas y evaluación breve",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud04",
+                                                  "name": "UD 04. Fracciones",
+                                                  "base": 12,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud04_act01",
+                                                                      "name": "Concepto de fracción y fracciones equivalentes",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud04_act02",
+                                                                      "name": "Operaciones con fracciones",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud04_act03",
+                                                                      "name": "Problemas con fracciones",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud04_act04",
+                                                                      "name": "Repaso trimestral y evaluación",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud05",
+                                                  "name": "UD 05. Números decimales",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud05_act01",
+                                                                      "name": "Lectura, ordenación y valor posicional",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud05_act02",
+                                                                      "name": "Operaciones con decimales",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud05_act03",
+                                                                      "name": "Aproximación, redondeo y estimación",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud05_act04",
+                                                                      "name": "Problemas de medida y dinero",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud06",
+                                                  "name": "UD 06. Proporcionalidad y porcentajes",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud06_act01",
+                                                                      "name": "Razones y proporciones",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud06_act02",
+                                                                      "name": "Regla de tres directa",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud06_act03",
+                                                                      "name": "Porcentajes en situaciones cotidianas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud06_act04",
+                                                                      "name": "Taller de problemas y corrección",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud07",
+                                                  "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
+                                                  "base": 10,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud07_act01",
+                                                                      "name": "Expresiones algebraicas y traducción de enunciados",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud07_act02",
+                                                                      "name": "Valor numérico y simplificación básica",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud07_act03",
+                                                                      "name": "Ecuaciones de primer grado sencillas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud07_act04",
+                                                                      "name": "Problemas algebraicos guiados",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud08",
+                                                  "name": "UD 08. Tablas, coordenadas y gráficas",
+                                                  "base": 10,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud08_act01",
+                                                                      "name": "Tablas de valores y patrones",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud08_act02",
+                                                                      "name": "Coordenadas cartesianas",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud08_act03",
+                                                                      "name": "Lectura e interpretación de gráficas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud08_act04",
+                                                                      "name": "Proyecto corto de representación de datos",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud09",
+                                                  "name": "UD 09. Rectas, ángulos y polígonos",
+                                                  "base": 10,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud09_act01",
+                                                                      "name": "Rectas, semirrectas, segmentos y ángulos",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud09_act02",
+                                                                      "name": "Medida y clasificación de ángulos",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud09_act03",
+                                                                      "name": "Triángulos, cuadriláteros y polígonos",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud09_act04",
+                                                                      "name": "Construcciones geométricas con instrumentos",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud10",
+                                                  "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
+                                                  "base": 11,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud10_act01",
+                                                                      "name": "Perímetros y unidades de longitud",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud10_act02",
+                                                                      "name": "Áreas de figuras planas",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud10_act03",
+                                                                      "name": "Teorema de Pitágoras en contextos sencillos",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud10_act04",
+                                                                      "name": "Problemas y evaluación",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud11",
+                                                  "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
+                                                  "base": 15,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud11_act01",
+                                                                      "name": "Prismas, pirámides y poliedros",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud11_act02",
+                                                                      "name": "Cilindros, conos y esferas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud11_act03",
+                                                                      "name": "Desarrollos planos y áreas",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud11_act04",
+                                                                      "name": "Volúmenes y unidades cúbicas",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud11_act05",
+                                                                      "name": "Taller manipulativo y problemas",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        },
+                                        {
+                                                  "id": "modelo_1eso_det_ud12",
+                                                  "name": "UD 12. Estadística y probabilidad",
+                                                  "base": 15,
+                                                  "extra": 0,
+                                                  "activities": [
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud12_act01",
+                                                                      "name": "Recogida y organización de datos",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud12_act02",
+                                                                      "name": "Tablas de frecuencia y gráficos estadísticos",
+                                                                      "sessions": 4,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud12_act03",
+                                                                      "name": "Media, mediana, moda y rango",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud12_act04",
+                                                                      "name": "Experimentos aleatorios y probabilidad simple",
+                                                                      "sessions": 3,
+                                                                      "extra": 0
+                                                            },
+                                                            {
+                                                                      "id": "modelo_1eso_det_ud12_act05",
+                                                                      "name": "Proyecto final y cierre de curso",
+                                                                      "sessions": 2,
+                                                                      "extra": 0
+                                                            }
+                                                  ]
+                                        }
+                              ],
+                              "customDates": [
+                                        {
+                                                  "date": "2027-01-11",
+                                                  "label": "Recuperación 1ª evaluación"
+                                        },
+                                        {
+                                                  "date": "2027-04-06",
+                                                  "label": "Recuperación 2ª evaluación"
+                                        }
+                              ],
+                              "evaluations": {
+                                        "1": "2026-12-18",
+                                        "2": "2027-03-26",
+                                        "3": "2027-06-22"
+                              },
+                              "academicYear": "2026-2027"
+                    }
+          }
+];
 
         const AppState = {
             data: {
                 subjects: [],
-                globalHolidays: [] // Shared holidays for all subjects
+                globalHolidays: [], // Base holidays shared by the school
+                userHolidayChanges: { added: [], removed: [] } // Per-user overrides for the active course
             },
             users: DepartmentUsers,
             sharedExamples: SharedExamples,
@@ -2354,7 +2293,11 @@ const DepartmentUsers =         [
                 const bytes = new Uint8Array(binary.length);
                 for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
                 return new TextDecoder().decode(bytes);
-            }
+            },
+            uniqueSortedDates: (dates) => Array.from(new Set((dates || [])
+                .map(date => String(date || '').trim())
+                .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date))
+            )).sort()
         };
 
         const app = {
@@ -2369,6 +2312,74 @@ const DepartmentUsers =         [
 
                 app.renderLogin();
                 app.navigateTo('login');
+            },
+
+            coursePath: (relativePath = '') => {
+                const suffix = relativePath ? `/${relativePath.replace(/^\/+/, '')}` : '';
+                return `data/plans/${ACADEMIC_YEAR}${suffix}`;
+            },
+
+            usersPath: () => app.coursePath('users.json'),
+            globalHolidaysPath: () => app.coursePath('festivos_globales.json'),
+            userIndexPath: (user) => app.coursePath(`profesores/${user.folder}/index.json`),
+            userHolidayPath: (user) => app.coursePath(`profesores/${user.folder}/festivos_usuario.json`),
+
+            emptyHolidayChanges: () => ({
+                academicYear: ACADEMIC_YEAR,
+                added: [],
+                removed: []
+            }),
+
+            emptyData: () => ({
+                subjects: [],
+                globalHolidays: [],
+                userHolidayChanges: app.emptyHolidayChanges()
+            }),
+
+            normalizeHolidayChanges: (value) => {
+                const changes = app.emptyHolidayChanges();
+                if (Array.isArray(value)) {
+                    changes.added = Utils.uniqueSortedDates(value);
+                    return changes;
+                }
+                if (value && typeof value === 'object') {
+                    changes.academicYear = value.academicYear || ACADEMIC_YEAR;
+                    changes.added = Utils.uniqueSortedDates(value.added || value.holidays || []);
+                    changes.removed = Utils.uniqueSortedDates(value.removed || []);
+                }
+                return changes;
+            },
+
+            getEffectiveHolidays: () => {
+                const base = new Set(Utils.uniqueSortedDates(AppState.data.globalHolidays));
+                const changes = app.normalizeHolidayChanges(AppState.data.userHolidayChanges);
+                changes.removed.forEach(date => base.delete(date));
+                changes.added.forEach(date => base.add(date));
+                return Array.from(base).sort();
+            },
+
+            isEffectiveHoliday: (dateStr) => app.getEffectiveHolidays().includes(dateStr),
+            isGlobalHoliday: (dateStr) => Utils.uniqueSortedDates(AppState.data.globalHolidays).includes(dateStr),
+
+            normalizeCurrentData: () => {
+                if (!AppState.data) AppState.data = {};
+                if (!AppState.data.subjects) AppState.data.subjects = [];
+                AppState.data.globalHolidays = Utils.uniqueSortedDates(AppState.data.globalHolidays);
+                AppState.data.userHolidayChanges = app.normalizeHolidayChanges(AppState.data.userHolidayChanges);
+            },
+
+            normalizeSubjectForActiveCourse: (subject, forceDates = false) => {
+                subject.academicYear = ACADEMIC_YEAR;
+                subject.ownerFolder = AppState.currentUser ? AppState.currentUser.folder : '';
+                delete subject.localHolidays;
+
+                const startsBeforeActiveCourse = subject.startDate && subject.startDate < DEFAULT_COURSE_DATES.startDate;
+                if (forceDates || startsBeforeActiveCourse) {
+                    subject.startDate = DEFAULT_COURSE_DATES.startDate;
+                    subject.endDate = DEFAULT_COURSE_DATES.endDate;
+                    subject.evaluations = { ...DEFAULT_COURSE_DATES.evaluations };
+                }
+                return subject;
             },
 
             setGitHubStatus: (message, type = '') => {
@@ -2520,16 +2531,19 @@ const DepartmentUsers =         [
             },
 
             loadDepartmentFromGitHub: async () => {
-                const users = await app.readJsonFromGitHub('data/plans/2025-2026/users.json', { allowMissing: true });
+                const globalHolidays = await app.readJsonFromGitHub(app.globalHolidaysPath(), { allowMissing: true }) || [];
+                AppState.data.globalHolidays = Utils.uniqueSortedDates(globalHolidays);
+
+                const users = await app.readJsonFromGitHub(app.usersPath(), { allowMissing: true });
                 if (Array.isArray(users) && users.length) AppState.users = users;
 
                 AppState.github.indexes = {};
                 await Promise.all(AppState.users.map(async user => {
-                    const indexPath = `data/plans/2025-2026/profesores/${user.folder}/index.json`;
+                    const indexPath = app.userIndexPath(user);
                     const index = await app.readJsonFromGitHub(indexPath, { allowMissing: true }) || {
                         displayName: user.displayName,
                         folder: user.folder,
-                        academicYear: '2025-2026',
+                        academicYear: ACADEMIC_YEAR,
                         subjects: []
                     };
                     AppState.github.indexes[user.folder] = index;
@@ -2539,23 +2553,37 @@ const DepartmentUsers =         [
             getSubjectPath: (subject) => {
                 if (subject.githubPath) return subject.githubPath;
                 const folder = AppState.currentUser ? AppState.currentUser.folder : 'sin_usuario';
-                return `data/plans/2025-2026/profesores/${folder}/${Utils.slugify(subject.name)}_${subject.id}.json`;
+                return app.coursePath(`profesores/${folder}/${Utils.slugify(subject.name)}_${subject.id}.json`);
+            },
+
+            loadUserHolidayChangesFromGitHub: async (user) => {
+                const changes = await app.readJsonFromGitHub(app.userHolidayPath(user), { allowMissing: true });
+                return app.normalizeHolidayChanges(changes);
             },
 
             loadUserFromGitHub: async (user) => {
                 const index = AppState.github.indexes[user.folder] || { subjects: [] };
                 const subjects = [];
                 for (const item of (index.subjects || [])) {
-                    const subjectPath = item.path || `data/plans/2025-2026/profesores/${user.folder}/${item.file}`;
+                    const subjectPath = item.path || app.coursePath(`profesores/${user.folder}/${item.file}`);
                     const subject = await app.readJsonFromGitHub(subjectPath, { allowMissing: true });
                     if (subject) {
                         subject.githubPath = subjectPath;
                         subject.ownerFolder = user.folder;
+                        subject.academicYear = subject.academicYear || ACADEMIC_YEAR;
                         subjects.push(subject);
                     }
                 }
-                const holidays = await app.readJsonFromGitHub('data/festivos_globales.json', { allowMissing: true }) || [];
-                AppState.data = { subjects, globalHolidays: holidays };
+                const globalHolidays = AppState.data.globalHolidays && AppState.data.globalHolidays.length
+                    ? AppState.data.globalHolidays
+                    : await app.readJsonFromGitHub(app.globalHolidaysPath(), { allowMissing: true }) || [];
+                const userHolidayChanges = await app.loadUserHolidayChangesFromGitHub(user);
+                AppState.data = {
+                    subjects,
+                    globalHolidays: Utils.uniqueSortedDates(globalHolidays),
+                    userHolidayChanges
+                };
+                app.normalizeCurrentData();
             },
 
             queueGitHubSave: () => {
@@ -2570,9 +2598,11 @@ const DepartmentUsers =         [
                 const user = AppState.currentUser;
                 try {
                     app.showToast('Guardando en GitHub...');
+                    app.normalizeCurrentData();
                     const subjectsIndex = [];
                     for (const subject of AppState.data.subjects) {
                         subject.ownerFolder = user.folder;
+                        subject.academicYear = ACADEMIC_YEAR;
                         subject.updatedAt = new Date().toISOString();
                         subject.githubPath = app.getSubjectPath(subject);
                         await app.writeJsonToGitHub(subject.githubPath, subject, `Actualizar ${subject.name}`);
@@ -2585,14 +2615,19 @@ const DepartmentUsers =         [
                             updatedAt: subject.updatedAt
                         });
                     }
-                    const indexPath = `data/plans/2025-2026/profesores/${user.folder}/index.json`;
+                    const indexPath = app.userIndexPath(user);
                     const index = {
                         displayName: user.displayName,
                         folder: user.folder,
-                        academicYear: '2025-2026',
+                        academicYear: ACADEMIC_YEAR,
                         subjects: subjectsIndex
                     };
                     await app.writeJsonToGitHub(indexPath, index, `Actualizar indice de ${user.displayName}`);
+                    await app.writeJsonToGitHub(
+                        app.userHolidayPath(user),
+                        app.normalizeHolidayChanges(AppState.data.userHolidayChanges),
+                        `Actualizar festivos personales de ${user.displayName}`
+                    );
                     AppState.github.indexes[user.folder] = index;
                     app.renderDepartmentFolders();
                     app.showToast('Guardado en GitHub');
@@ -2657,7 +2692,7 @@ const DepartmentUsers =         [
                 AppState.currentUser = null;
                 AppState.currentSubjectId = null;
                 AppState.selectedSubjects = [];
-                AppState.data = { subjects: [], globalHolidays: [] };
+                AppState.data = app.emptyData();
                 AppState.history = [];
                 AppState.historyIndex = -1;
                 app.updateSessionUi();
@@ -2683,16 +2718,16 @@ const DepartmentUsers =         [
 
             loadFromStorage: () => {
                 const saved = localStorage.getItem(app.getStorageKey());
-                AppState.data = { subjects: [], globalHolidays: [] };
+                AppState.data = app.emptyData();
                 if (saved) {
                     try { AppState.data = JSON.parse(saved); } catch (e) { console.error("Error loading data", e); }
                 }
-                if (!AppState.data.subjects) AppState.data.subjects = [];
-                if (!AppState.data.globalHolidays) AppState.data.globalHolidays = [];
+                app.normalizeCurrentData();
             },
 
             saveToStorage: () => {
                 if (!AppState.currentUser || !app.canEditCurrentFolder()) return;
+                app.normalizeCurrentData();
                 localStorage.setItem(app.getStorageKey(), JSON.stringify(AppState.data));
                 app.pushHistory();
                 app.queueGitHubSave();
@@ -2700,6 +2735,7 @@ const DepartmentUsers =         [
 
             saveToStorageRaw: () => {
                 if (!AppState.currentUser) return;
+                app.normalizeCurrentData();
                 localStorage.setItem(app.getStorageKey(), JSON.stringify(AppState.data));
             },
 
@@ -2728,7 +2764,7 @@ const DepartmentUsers =         [
                 container.innerHTML = '';
 
                 if (folderInfo && AppState.currentUser) {
-                    folderInfo.innerText = `Carpeta: data/plans/2025-2026/profesores/${AppState.currentUser.folder}${app.canEditCurrentFolder() ? '' : ' - modo lectura'}`;
+                    folderInfo.innerText = `Carpeta: ${app.coursePath(`profesores/${AppState.currentUser.folder}`)}${app.canEditCurrentFolder() ? '' : ' - modo lectura'}`;
                 }
 
                 if (AppState.data.subjects.length === 0) {
@@ -2778,6 +2814,8 @@ const DepartmentUsers =         [
                 if (editor) editor.querySelectorAll('button').forEach(btn => { btn.disabled = !canEdit; });
                 const holidayBtn = document.getElementById('btn-holiday-mode');
                 if (holidayBtn) holidayBtn.disabled = !canEdit;
+                const importHolidaysBtn = document.getElementById('btn-import-holidays');
+                if (importHolidaysBtn) importHolidaysBtn.disabled = !canEdit;
             },
 
             renderDepartmentFolders: () => {
@@ -2837,6 +2875,7 @@ const DepartmentUsers =         [
                 clone.name = `${clone.name}${suffix}`;
                 clone.ownerFolder = AppState.currentUser ? AppState.currentUser.folder : '';
                 clone.source = 'shared-example';
+                app.normalizeSubjectForActiveCourse(clone, true);
                 clone.units = clone.units || [];
                 clone.units.forEach(u => {
                     u.id = Utils.uuid();
@@ -2863,22 +2902,18 @@ const DepartmentUsers =         [
                 const newSub = {
                     id: Utils.uuid(),
                     ownerFolder: AppState.currentUser ? AppState.currentUser.folder : '',
+                    academicYear: ACADEMIC_YEAR,
                     name: 'Nueva Asignatura',
                     color: '#3498db',
-                    startDate: '2025-09-08',
-                    endDate: '2026-06-30',
+                    startDate: DEFAULT_COURSE_DATES.startDate,
+                    endDate: DEFAULT_COURSE_DATES.endDate,
                     schedule: { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1 },
                     planningMode: 'unit',
                     units: [
                         { id: Utils.uuid(), name: 'Unidad 1', base: 10, extra: 0, activities: [] }
                     ],
-                    localHolidays: [],
                     customDates: [],
-                    evaluations: {
-                        1: '2025-12-19',
-                        2: '2026-03-27',
-                        3: '2026-06-19'
-                    }
+                    evaluations: { ...DEFAULT_COURSE_DATES.evaluations }
                 };
                 AppState.data.subjects.push(newSub);
                 app.saveToStorage();
@@ -3001,16 +3036,23 @@ const DepartmentUsers =         [
             },
 
             clickDay: (dateStr) => {
-                if (!AppState.holidayMode) return;
+                if (!AppState.holidayMode || !app.requireEditPermission()) return;
 
-                const arr = AppState.data.globalHolidays;
+                const changes = app.normalizeHolidayChanges(AppState.data.userHolidayChanges);
+                const isGlobal = app.isGlobalHoliday(dateStr);
+                const isEffective = app.isEffectiveHoliday(dateStr);
 
-                const index = arr.indexOf(dateStr);
-                if (index > -1) {
-                    arr.splice(index, 1);
+                if (isEffective) {
+                    changes.added = changes.added.filter(date => date !== dateStr);
+                    if (isGlobal && !changes.removed.includes(dateStr)) changes.removed.push(dateStr);
                 } else {
-                    arr.push(dateStr);
+                    changes.removed = changes.removed.filter(date => date !== dateStr);
+                    if (!isGlobal && !changes.added.includes(dateStr)) changes.added.push(dateStr);
                 }
+
+                changes.added = Utils.uniqueSortedDates(changes.added);
+                changes.removed = Utils.uniqueSortedDates(changes.removed);
+                AppState.data.userHolidayChanges = changes;
 
                 app.saveToStorage();
                 const sub = AppState.data.subjects.find(s => s.id === AppState.currentSubjectId);
@@ -3018,21 +3060,23 @@ const DepartmentUsers =         [
             },
 
             exportHolidays: () => {
-                const holidays = AppState.data.globalHolidays || [];
+                const holidays = app.normalizeHolidayChanges(AppState.data.userHolidayChanges);
                 const dataStr = JSON.stringify(holidays, null, 2);
                 const blob = new Blob([dataStr], { type: "application/json" });
                 const url = URL.createObjectURL(blob);
                 const nav = document.createElement('a');
                 nav.href = url;
-                nav.download = `festivos_globales.json`;
+                nav.download = `festivos_usuario_${AppState.currentUser ? AppState.currentUser.folder : ACADEMIC_YEAR}.json`;
                 nav.click();
             },
 
             importHolidays: () => {
+                if (!app.requireEditPermission()) return;
                 document.getElementById('import-holidays-file').click();
             },
 
             handleHolidayImport: (input) => {
+                if (!app.requireEditPermission()) { input.value = ''; return; }
                 const file = input.files[0];
                 if (!file) return;
 
@@ -3040,18 +3084,17 @@ const DepartmentUsers =         [
                 reader.onload = (e) => {
                     try {
                         const json = JSON.parse(e.target.result);
-                        if (!Array.isArray(json)) {
-                            alert('El archivo debe ser una lista de fechas (array).');
-                            return;
-                        }
+                        const current = app.normalizeHolidayChanges(AppState.data.userHolidayChanges);
+                        const imported = app.normalizeHolidayChanges(json);
 
-                        const set = new Set([...AppState.data.globalHolidays, ...json]);
-                        AppState.data.globalHolidays = Array.from(set);
+                        current.added = Utils.uniqueSortedDates([...current.added, ...imported.added]);
+                        current.removed = Utils.uniqueSortedDates([...current.removed, ...imported.removed]);
+                        AppState.data.userHolidayChanges = current;
 
                         app.saveToStorage();
                         const sub = AppState.data.subjects.find(s => s.id === AppState.currentSubjectId);
                         app.renderCalendar(sub);
-                        alert(`Importados ${json.length} festivos globales.`);
+                        alert(`Importados ${imported.added.length + imported.removed.length} cambios de festivos personales.`);
                     } catch (err) {
                         console.error(err);
                         alert('Error al leer el archivo JSON.');
@@ -3331,7 +3374,7 @@ const DepartmentUsers =         [
             },
 
             calculateCalendar: (subject) => {
-                const localHolidays = new Set(AppState.data.globalHolidays || []);
+                const localHolidays = new Set(app.getEffectiveHolidays());
                 let currentDate = Utils.parseDate(subject.startDate);
 
                 // Use configurable end date or default to June 30
@@ -3527,7 +3570,7 @@ const DepartmentUsers =         [
                         let className = 'day-cell';
                         if (isWeekend) className += ' weekend';
 
-                        const isGlobalHoliday = AppState.data.globalHolidays && AppState.data.globalHolidays.includes(dateStr);
+                        const isGlobalHoliday = app.isEffectiveHoliday(dateStr);
 
                         if (isGlobalHoliday) {
                             className += ' holiday-cell';
@@ -3807,6 +3850,7 @@ const DepartmentUsers =         [
                         json.id = Utils.uuid();
                         json.ownerFolder = AppState.currentUser ? AppState.currentUser.folder : '';
                         delete json.githubPath;
+                        app.normalizeSubjectForActiveCourse(json);
                         AppState.data.subjects.push(json);
                         app.saveToStorage();
                         app.renderDashboard();
@@ -4027,7 +4071,7 @@ const DepartmentUsers =         [
                         let className = 'day-cell';
                         if (isWeekend) className += ' weekend';
 
-                        const isGlobalHoliday = AppState.data.globalHolidays && AppState.data.globalHolidays.includes(dateStr);
+                        const isGlobalHoliday = app.isEffectiveHoliday(dateStr);
 
                         if (isGlobalHoliday) {
                             className += ' holiday-cell';
@@ -4166,7 +4210,7 @@ const DepartmentUsers =         [
                     limitDate = new Date(endYear, 5, 30);
                 }
 
-                const globalHolidays = new Set(AppState.data.globalHolidays || []);
+                const globalHolidays = new Set(app.getEffectiveHolidays());
                 while (capDate <= limitDate) {
                     const dateStr = Utils.formatDate(capDate);
                     if (!globalHolidays.has(dateStr)) {

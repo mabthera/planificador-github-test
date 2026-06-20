@@ -1,40 +1,39 @@
 # Criterio de organizacion del proyecto
 
-Este proyecto se ha organizado para que funcione como un repositorio Git claro, facil de sincronizar y sencillo de mantener. La idea principal ha sido separar la aplicacion activa, los datos reutilizables, la documentacion y las versiones historicas.
+Este proyecto se ha organizado para que funcione como un repositorio Git claro, facil de sincronizar y sencillo de mantener. La idea principal es separar la aplicacion activa, los datos reutilizables y la documentacion, dejando fuera del arbol de trabajo las versiones historicas que ya no se usan.
 
 ## Version principal
 
-La version final indicada del planificador es `v2`. Por eso se ha colocado como `index.html` en la raiz del proyecto.
+La aplicacion activa esta en `index.html`, que queda como punto de entrada habitual de una aplicacion web estatica.
 
 Este nombre tiene varias ventajas:
 
-- Es el punto de entrada habitual de una aplicacion web estatica.
 - Permite abrir la aplicacion directamente en el navegador sin recordar nombres de version.
 - Facilita publicarla mas adelante en servicios como GitHub Pages.
 - Evita tener varias versiones activas compitiendo en la raiz del proyecto.
 
-La raiz queda asi reservada para los archivos importantes del proyecto, no para copias antiguas o pruebas.
+La raiz queda reservada para los archivos importantes del proyecto, no para copias antiguas o pruebas.
 
 ## Carpeta `data/`
 
-Los archivos JSON se han movido a `data/` porque son datos de trabajo o modelos importables por la aplicacion.
+Los archivos JSON de `data/` son datos de trabajo, modelos importables y datos conectados al curso activo.
 
 Separarlos del HTML ayuda a distinguir claramente entre:
 
 - Codigo de la aplicacion.
-- Datos de ejemplo.
 - Plantillas de programaciones.
-- Festivos globales.
+- Festivos globales del curso activo.
+- Carpetas de profesorado usadas por el guardado en GitHub.
 
-Tambien facilita localizar rapidamente que archivos se pueden importar, revisar o actualizar sin tocar la aplicacion principal.
+Tambien facilita localizar rapidamente que archivos se pueden importar, revisar o actualizar sin tocar la aplicacion principal. El curso activo queda en `data/plans/2026-2027/`.
 
-## Carpeta `archive/legacy/`
+## Historico
 
-Las versiones antiguas del planificador se han conservado en `archive/legacy/` en lugar de borrarlas.
+Las versiones antiguas del planificador y los datos del curso 2025-2026 se han retirado de la estructura activa.
 
-Esto permite mantener una referencia historica por si hace falta comparar cambios, recuperar alguna parte anterior o entender la evolucion del proyecto.
+El historial de Git queda como referencia para comparar cambios o recuperar alguna parte anterior si hace falta.
 
-No se dejan en la raiz porque eso genera confusion: cuando hay varios `planificador_v2.html`, `planificador_v3.html` o copias similares en el mismo nivel, no queda claro cual debe usarse. Al archivarlas, siguen disponibles pero ya no compiten con la version final.
+No se dejan copias antiguas en carpetas locales porque generan confusion: cuando hay varios `planificador_v2.html`, `planificador_v3.html` o copias similares, no queda claro cual debe usarse.
 
 ## Carpeta `docs/`
 
@@ -44,7 +43,7 @@ Se ha creado para que el README no tenga que contenerlo todo. El README queda co
 
 ## Archivos de configuracion
 
-Se han añadido archivos basicos para que el repositorio sea mas estable al sincronizarse:
+Se han anadido archivos basicos para que el repositorio sea mas estable al sincronizarse:
 
 - `.gitignore`: evita subir archivos temporales, copias locales, carpetas de editor y salidas generadas.
 - `.editorconfig`: define reglas comunes de formato para editores compatibles.
@@ -66,4 +65,4 @@ La estructura final queda pensada para tres usos:
 - Mantener los modelos JSON ordenados en `data/`.
 - Sincronizar el proyecto con Git sin mezclar archivos activos, documentacion e historico.
 
-La organizacion no elimina informacion: solo separa lo activo de lo historico y deja el proyecto preparado para crecer de forma mas clara.
+La organizacion mantiene en el arbol de trabajo solo lo que la aplicacion necesita hoy y deja el proyecto preparado para crecer de forma mas clara.

@@ -2,15 +2,16 @@
 
 Aplicacion web estatica para planificar sesiones, unidades, actividades, evaluaciones y festivos de un curso academico.
 
-La version final indicada para el proyecto es `v2`, conservada como `index.html` para que sea la entrada principal del repositorio.
+La entrada principal del proyecto es `index.html`.
 
 ## Como usarlo
 
 1. Abre `index.html` en el navegador.
-2. Importa los modelos JSON desde la carpeta `data/` cuando quieras cargar ejemplos o plantillas.
-3. Exporta tus datos desde la propia aplicacion para conservar copias de seguridad.
+2. Conecta con GitHub para cargar las carpetas de profesorado del curso activo.
+3. Copia una plantilla integrada o importa un JSON de `data/` si necesitas partir de un modelo.
+4. Exporta tus datos desde la propia aplicacion para conservar copias de seguridad.
 
-La aplicacion no necesita instalacion, servidor, base de datos ni dependencias externas. Guarda el trabajo en el almacenamiento local del navegador con la clave `planificador_data_v2`.
+La aplicacion no necesita instalacion, servidor, base de datos ni dependencias externas para abrirse. Guarda una copia local del trabajo en el navegador y sincroniza los datos del curso activo mediante GitHub.
 
 ## Estructura
 
@@ -18,18 +19,18 @@ La aplicacion no necesita instalacion, servidor, base de datos ni dependencias e
 .
 |-- index.html
 |-- data/
+|   |-- plans/
+|   |   `-- 2026-2027/
 |-- docs/
-|-- archive/
-|   `-- legacy/
 |-- .editorconfig
 |-- .gitignore
 `-- README.md
 ```
 
-- `index.html`: aplicacion principal, basada en `planificador_v2.html`.
-- `data/`: modelos JSON y festivos de ejemplo.
+- `index.html`: aplicacion principal.
+- `data/`: plantillas importables y datos del curso activo.
+- `data/plans/2026-2027/`: usuarios, festivos globales y carpetas de profesorado que lee la aplicacion.
 - `docs/`: documentacion interna del proyecto.
-- `archive/legacy/`: versiones anteriores conservadas como referencia.
 
 ## Preparar sincronizacion con Git
 
@@ -37,7 +38,7 @@ Si el repositorio ya tiene remoto configurado:
 
 ```bash
 git add .
-git commit -m "Organize project structure"
+git commit -m "Clean project structure"
 git push
 ```
 
@@ -52,10 +53,6 @@ git push -u origin main
 ## Notas de mantenimiento
 
 - Mantener `index.html` como unica version activa.
-- Guardar nuevas plantillas o ejemplos en `data/`.
-- Evitar editar archivos en `archive/legacy/` salvo que sea para documentar el historico.
+- Guardar nuevas plantillas importables en `data/`.
+- Mantener los datos conectados a GitHub dentro de `data/plans/<curso>/`.
 - Antes de sincronizar, comprobar que los JSON siguen siendo validos.
-
-## Planes de evolucion
-
-- `docs/PLAN_MULTIUSUARIO_GITHUB.md`: propuesta sencilla para convertir la aplicacion en multiusuario usando cuentas de GitHub y guardado directo de planificaciones JSON en el repositorio.

@@ -1,9 +1,9 @@
 {
-  "id": "mqlc6mz1c1q4u06fqx",
-  "name": "1º ESO - Modelo 2025-2026 (copia)",
+  "id": "modelo_1eso_2026_2027",
+  "name": "1º ESO - Modelo 2026-2027",
   "color": "#d033db",
-  "startDate": "2025-09-08",
-  "endDate": "2026-06-19",
+  "startDate": "2026-09-08",
+  "endDate": "2027-06-30",
   "schedule": {
     "1": 1,
     "2": 1,
@@ -14,144 +14,104 @@
   "planningMode": "unit",
   "units": [
     {
-      "id": "mqlc6mz17iidrg3wi0p",
+      "id": "modelo_1eso_ud01",
       "name": "UD 01. Números naturales y operaciones",
       "base": 12,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz134ifw1bl3d9",
+      "id": "modelo_1eso_ud02",
       "name": "UD 02. Potencias, raíces y divisibilidad",
       "base": 12,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz1n1ea9el9a3a",
+      "id": "modelo_1eso_ud03",
       "name": "UD 03. Números enteros",
       "base": 11,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz1ofr2w2z5bo",
+      "id": "modelo_1eso_ud04",
       "name": "UD 04. Fracciones",
       "base": 12,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz1oy0z1wz68xe",
+      "id": "modelo_1eso_ud05",
       "name": "UD 05. Números decimales",
       "base": 11,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz1q6pwf39yr9",
+      "id": "modelo_1eso_ud06",
       "name": "UD 06. Proporcionalidad y porcentajes",
       "base": 11,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz14q4y07fmog7",
+      "id": "modelo_1eso_ud07",
       "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
       "base": 10,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz103rx7hurosao",
+      "id": "modelo_1eso_ud08",
       "name": "UD 08. Tablas, coordenadas y gráficas",
       "base": 10,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz1bljkpwzfkii",
+      "id": "modelo_1eso_ud09",
       "name": "UD 09. Rectas, ángulos y polígonos",
       "base": 10,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz297c0o8ag2a",
+      "id": "modelo_1eso_ud10",
       "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
       "base": 11,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz2iau3t52qf8s",
+      "id": "modelo_1eso_ud11",
       "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
       "base": 15,
       "extra": 0,
       "activities": []
     },
     {
-      "id": "mqlc6mz2gdpujvn91yn",
+      "id": "modelo_1eso_ud12",
       "name": "UD 12. Estadística y probabilidad",
       "base": 15,
       "extra": 0,
       "activities": []
     }
   ],
-  "localHolidays": [
-    "2025-10-31",
-    "2025-11-03",
-    "2025-12-22",
-    "2025-12-23",
-    "2025-12-24",
-    "2025-12-25",
-    "2025-12-26",
-    "2025-12-29",
-    "2025-12-30",
-    "2025-12-31",
-    "2026-01-01",
-    "2026-01-02",
-    "2026-01-05",
-    "2026-01-06",
-    "2026-01-07",
-    "2026-02-16",
-    "2026-02-17",
-    "2026-02-18",
-    "2026-03-19",
-    "2026-03-20",
-    "2026-03-30",
-    "2026-03-31",
-    "2026-04-01",
-    "2026-04-02",
-    "2026-04-03",
-    "2026-04-06",
-    "2026-05-01",
-    "2026-05-04",
-    "2026-06-22",
-    "2026-06-23",
-    "2026-06-24",
-    "2026-06-25",
-    "2026-06-26",
-    "2026-06-29",
-    "2026-06-30"
-  ],
   "customDates": [
     {
-      "date": "2026-01-12",
+      "date": "2027-01-11",
       "label": "Recuperación 1ª evaluación"
     },
     {
-      "date": "2026-04-07",
+      "date": "2027-04-06",
       "label": "Recuperación 2ª evaluación"
     }
   ],
   "evaluations": {
-    "1": "2025-12-19",
-    "2": "2026-03-27",
-    "3": "2026-06-22"
+    "1": "2026-12-18",
+    "2": "2027-03-26",
+    "3": "2027-06-22"
   },
-  "ownerFolder": "david",
-  "source": "shared-example",
-  "updatedAt": "2026-06-19T19:45:53.164Z",
-  "githubPath": "data/plans/2025-2026/profesores/david/1_eso_-_modelo_2025-2026_copia_mqlc6mz1c1q4u06fqx.json"
+  "academicYear": "2026-2027"
 }

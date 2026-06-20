@@ -1,0 +1,38 @@
+[
+    {
+        "displayName":  "Jaime",
+        "folder":  "jaime",
+        "githubLogin":  "",
+        "role":  "teacher"
+    },
+    {
+        "displayName":  "David",
+        "folder":  "david",
+        "githubLogin":  "",
+        "role":  "teacher"
+    },
+    {
+        "displayName":  "Almudena",
+        "folder":  "almudena",
+        "githubLogin":  "",
+        "role":  "teacher"
+    },
+    {
+        "displayName":  "Pablo",
+        "folder":  "pablo",
+        "githubLogin":  "amecopa",
+        "role":  "teacher"
+    },
+    {
+        "displayName":  "Manuel",
+        "folder":  "manuel",
+        "githubLogin":  "",
+        "role":  "teacher"
+    },
+    {
+        "displayName":  "Prov",
+        "folder":  "prov",
+        "githubLogin":  "",
+        "role":  "teacher"
+    }
+]

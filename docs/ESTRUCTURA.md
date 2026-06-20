@@ -4,28 +4,27 @@ Este proyecto queda organizado como una aplicacion web estatica lista para versi
 
 ## Entrada principal
 
-`index.html` es la version activa. Procede de `planificador_v2.html`, indicada como version final del proyecto.
+`index.html` es la version activa de la aplicacion.
 
-## Datos
+## Datos activos
 
-La carpeta `data/` contiene ficheros JSON importables desde la aplicacion:
+La carpeta `data/` contiene solo plantillas importables y datos del curso activo:
 
-- `festivos_globales.json`: lista de fechas no lectivas.
-- `1__eso_planner.json`: ejemplo breve de 1 ESO.
-- `1__eso_modelo_2025_2026_planner.json`: modelo de 1 ESO para 2025-2026.
-- `1__eso_modelo_detallado_2025_2026_planner.json`: modelo detallado de 1 ESO para 2025-2026.
-- `2__bach_ccss_planner.json`: ejemplo de 2 Bachillerato CCSS.
-- `fpb_cc_aa__planner.json`: ejemplo de FPB CC AA.
+- `1__eso_modelo_2026_2027_planner.json`: modelo de 1 ESO para 2026-2027.
+- `1__eso_modelo_detallado_2026_2027_planner.json`: modelo detallado de 1 ESO para 2026-2027.
+- `plans/2026-2027/users.json`: usuarios disponibles en la pantalla de inicio.
+- `plans/2026-2027/festivos_globales.json`: lista de fechas no lectivas compartidas.
+- `plans/2026-2027/profesores/<usuario>/index.json`: indice de materias de cada profesor.
+- `plans/2026-2027/profesores/<usuario>/festivos_usuario.json`: ajustes personales de festivos.
 
 Todos los JSON se han comprobado como validos.
 
 ## Historico
 
-La carpeta `archive/legacy/` conserva versiones previas del HTML. No son la version activa, pero ayudan a recuperar cambios o comparar evolucion.
+Las versiones previas del HTML y los datos del curso 2025-2026 se han retirado del arbol activo para evitar duplicados y confusion. Si hace falta recuperar una version anterior, debe hacerse desde el historial de Git.
 
 ## Estado recomendado antes de sincronizar
 
 - `index.html` debe abrirse correctamente en navegador.
 - Los JSON de `data/` deben pasar validacion.
-- Las versiones antiguas deben quedarse en `archive/legacy/`.
 - El estado de Git debe revisarse antes de hacer commit.
