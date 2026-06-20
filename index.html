@@ -2373,6 +2373,12 @@ const DepartmentUsers =         [
                 subject.ownerFolder = AppState.currentUser ? AppState.currentUser.folder : '';
                 delete subject.localHolidays;
 
+                const folder = AppState.currentUser ? AppState.currentUser.folder : 'sin_usuario';
+                const activePathPrefix = app.coursePath(`profesores/${folder}/`);
+                if (subject.githubPath && !subject.githubPath.startsWith(activePathPrefix)) {
+                    delete subject.githubPath;
+                }
+
                 const startsBeforeActiveCourse = subject.startDate && subject.startDate < DEFAULT_COURSE_DATES.startDate;
                 if (forceDates || startsBeforeActiveCourse) {
                     subject.startDate = DEFAULT_COURSE_DATES.startDate;
@@ -2551,8 +2557,9 @@ const DepartmentUsers =         [
             },
 
             getSubjectPath: (subject) => {
-                if (subject.githubPath) return subject.githubPath;
                 const folder = AppState.currentUser ? AppState.currentUser.folder : 'sin_usuario';
+                const activePathPrefix = app.coursePath(`profesores/${folder}/`);
+                if (subject.githubPath && subject.githubPath.startsWith(activePathPrefix)) return subject.githubPath;
                 return app.coursePath(`profesores/${folder}/${Utils.slugify(subject.name)}_${subject.id}.json`);
             },
 
