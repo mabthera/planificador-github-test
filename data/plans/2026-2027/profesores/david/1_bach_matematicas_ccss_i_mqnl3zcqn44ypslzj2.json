@@ -65,7 +65,7 @@
     {
       "id": "bdu8a0lejvl5k9cvw2h",
       "name": "UD 8: Probabilidad y Combinatoria",
-      "base": 14,
+      "base": 13,
       "extra": 0,
       "activities": []
     },
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-06-21T09:33:50.141Z",
+  "updatedAt": "2026-06-21T09:33:52.895Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
