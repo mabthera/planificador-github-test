@@ -2408,6 +2408,8 @@ const DepartmentUsers =         [
                 indexes: {}
             },
             saveTimer: null,
+            isSavingToGitHub: false,
+            pendingGitHubSave: false,
             currentUser: null,
             currentSubjectId: null,
             holidayMode: false,
@@ -2616,7 +2618,7 @@ const DepartmentUsers =         [
                 }
             },
 
-            writeJsonToGitHub: async (path, value, message) => {
+            writeJsonToGitHub: async (path, value, message, { retryOnConflict = true } = {}) => {
                 let sha = AppState.github.fileShas[path];
                 if (!sha) {
                     try {
@@ -2632,13 +2634,22 @@ const DepartmentUsers =         [
                     branch: AppState.github.branch
                 };
                 if (sha) payload.sha = sha;
-                const result = await app.githubFetch(app.githubContentUrl(path), {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                if (result.content && result.content.sha) AppState.github.fileShas[path] = result.content.sha;
-                return result;
+                try {
+                    const result = await app.githubFetch(app.githubContentUrl(path), {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (result.content && result.content.sha) AppState.github.fileShas[path] = result.content.sha;
+                    return result;
+                } catch (error) {
+                    if (retryOnConflict && error.status === 409) {
+                        delete AppState.github.fileShas[path];
+                        await app.readJsonFromGitHub(path, { allowMissing: false });
+                        return app.writeJsonToGitHub(path, value, message, { retryOnConflict: false });
+                    }
+                    throw error;
+                }
             },
 
             deleteFileFromGitHub: async (path, message) => {
@@ -2785,13 +2796,27 @@ const DepartmentUsers =         [
 
             queueGitHubSave: () => {
                 if (!AppState.github.connected || !AppState.currentUser || !app.canEditCurrentFolder()) return;
+                AppState.pendingGitHubSave = true;
                 clearTimeout(AppState.saveTimer);
-                AppState.saveTimer = setTimeout(() => app.persistCurrentUserToGitHub(), 1200);
+                AppState.saveTimer = setTimeout(() => app.flushGitHubSaveQueue(), 1200);
+            },
+
+            flushGitHubSaveQueue: async () => {
+                if (AppState.isSavingToGitHub) return;
+                if (!AppState.pendingGitHubSave) return;
+                AppState.pendingGitHubSave = false;
+                await app.persistCurrentUserToGitHub();
             },
 
             persistCurrentUserToGitHub: async () => {
                 if (!AppState.github.connected || !AppState.currentUser || !app.canEditCurrentFolder()) return;
                 if (!app.canEditCurrentFolder()) return;
+                if (AppState.isSavingToGitHub) {
+                    AppState.pendingGitHubSave = true;
+                    return;
+                }
+                AppState.isSavingToGitHub = true;
+                let retryDelay = 400;
                 const user = AppState.currentUser;
                 try {
                     app.showToast('Guardando en GitHub...');
@@ -2831,10 +2856,18 @@ const DepartmentUsers =         [
                     );
                     AppState.github.indexes[user.folder] = index;
                     app.renderDepartmentFolders();
-                    app.showToast('Guardado en GitHub');
+                    app.showToast(AppState.pendingGitHubSave ? 'Guardado. Sincronizando cambios recientes...' : 'Guardado en GitHub');
                 } catch (error) {
                     console.error(error);
-                    app.showToast('Error al guardar en GitHub');
+                    AppState.pendingGitHubSave = true;
+                    retryDelay = 3500;
+                    app.showToast('No se pudo guardar en GitHub. Se reintentara...');
+                } finally {
+                    AppState.isSavingToGitHub = false;
+                    if (AppState.pendingGitHubSave) {
+                        clearTimeout(AppState.saveTimer);
+                        AppState.saveTimer = setTimeout(() => app.flushGitHubSaveQueue(), retryDelay);
+                    }
                 }
             },
 
