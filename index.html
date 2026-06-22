@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Planificador Portable</title>
+    <title>Planificador de materias</title>
     <style>
         :root {
             /* Light Theme & Modern Colors */
@@ -339,13 +339,20 @@
         }
 
         .login-shell {
-            min-height: 100%;
+            flex: 1;
+            min-height: 0;
+            width: 100%;
             display: grid;
             grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
             gap: 2rem;
             align-items: center;
             max-width: 1180px;
             margin: 0 auto;
+        }
+
+        #view-login {
+            display: flex;
+            flex-direction: column;
         }
 
         .login-hero h1 {
@@ -460,6 +467,88 @@
             font-size: 0.85rem;
         }
 
+        .app-footer {
+            display: grid;
+            gap: 12px;
+            justify-items: center;
+            text-align: center;
+            margin-top: 18px;
+            padding: 4px 18px 10px;
+            color: var(--text-muted);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .footer-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+            font-size: 0.94rem;
+            line-height: 1.55;
+            white-space: nowrap;
+        }
+
+        .footer-separator {
+            color: rgba(88, 101, 106, 0.55);
+            font-weight: 700;
+        }
+
+        .footer-highlight {
+            display: inline-block;
+            font-weight: 800;
+            color: var(--text-main);
+            background: rgba(28, 77, 127, 0.1);
+            border-radius: 999px;
+            padding: 2px 10px;
+            text-decoration: none;
+        }
+
+        a.footer-highlight:hover,
+        a.footer-highlight:focus-visible {
+            background: rgba(28, 77, 127, 0.16);
+            outline: none;
+        }
+
+        .license-subtitle {
+            max-width: 48ch;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .app-footer-compact {
+            flex-shrink: 0;
+            margin-top: 0;
+            padding: 0.25rem 1rem 0.35rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-card);
+            box-shadow: 0 -4px 12px rgba(17, 34, 57, 0.04);
+        }
+
+        .app-footer-compact .footer-meta {
+            gap: 0.35rem;
+            overflow-x: auto;
+            max-width: 100%;
+            font-size: 0.72rem;
+            line-height: 1.2;
+            scrollbar-width: none;
+        }
+
+        .app-footer-compact .footer-meta::-webkit-scrollbar {
+            display: none;
+        }
+
+        .app-footer-compact .footer-highlight {
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            font-weight: 700;
+        }
+
+        .app-footer-compact .license-subtitle {
+            display: none;
+        }
+
         .github-connect {
             display: grid;
             gap: 0.75rem;
@@ -535,10 +624,62 @@
             margin-top: 2rem;
         }
 
+        .institutional-badge {
+            color: var(--primary);
+            background: #eef2f7;
+            border: 1px solid var(--border);
+            margin-bottom: 0.85rem;
+        }
+
+        .dashboard-collapsible {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .dashboard-collapsible summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 1rem 1.25rem;
+        }
+
+        .dashboard-collapsible summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .dashboard-collapsible summary::after {
+            content: 'Mostrar';
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.25rem 0.65rem;
+            color: var(--primary);
+            background: var(--bg-body);
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .dashboard-collapsible[open] summary::after {
+            content: 'Ocultar';
+        }
+
+        .dashboard-collapsible-content {
+            border-top: 1px solid var(--border);
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        .dashboard-collapsible-content .subject-grid,
+        .dashboard-collapsible-content .department-folder-grid {
+            margin-top: 1rem;
+        }
+
         .dashboard-section-header {
             display: flex;
             justify-content: space-between;
-            align-items: end;
+            align-items: center;
             gap: 1rem;
         }
 
@@ -570,6 +711,16 @@
 
             .login-user-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-meta {
+                flex-wrap: wrap;
+                white-space: normal;
+            }
+
+            .app-footer-compact .footer-meta {
+                flex-wrap: nowrap;
+                white-space: nowrap;
             }
         }
 
@@ -1315,7 +1466,7 @@
 
     <header id="app-header" class="hidden">
         <div class="flex items-center gap-4">
-            <h1 class="text-xl">Planificador Portable</h1>
+            <h1 class="text-xl">Planificador de materias</h1>
             <span id="current-view-title" class="text-muted text-sm border-l pl-4 border-gray-600">Dashboard</span>
             <span id="current-user-label" class="session-pill hidden">Sin usuario</span>
         </div>
@@ -1335,9 +1486,9 @@
         <div id="view-login" class="view-container">
             <div class="login-shell">
                 <div class="login-hero">
-                    <span class="badge">Departamento 2026/27</span>
+                    <span class="badge institutional-badge">Departamento de Matemáticas - IES de Teis</span>
                     <h1>Planificador de materias</h1>
-                    <p>Selecciona tu usuario para entrar en tu carpeta de trabajo. Cada profesor vera sus propias materias y mantendra acceso comun a los ejemplos generales.</p>
+                    <p>Selecciona tu usuario para entrar en tu carpeta de trabajo. Cada docente vera sus propias materias y mantendra acceso comun a los ejemplos generales.</p>
                     <details class="login-help">
                         <summary>Ayuda para entrar</summary>
                         <div class="login-help-content">
@@ -1371,21 +1522,31 @@
                     <p class="login-note">Los ejemplos generales estaran disponibles despues de entrar y se copiaran a tus materias cuando quieras editarlos.</p>
                 </div>
             </div>
+            <footer class="app-footer" aria-label="Cr&eacute;ditos">
+                <div class="footer-meta">
+                    <span>Creado por:</span>
+                    <span class="footer-highlight">David Rodr&iacute;guez Vicente</span>
+                    <span class="footer-separator">|</span>
+                    <span>Licencia:</span>
+                    <a class="footer-highlight" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
+                </div>
+                <div class="license-subtitle">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</div>
+            </footer>
         </div>
 
         <!-- DASHBOARD VIEW -->
         <div id="view-dashboard" class="view-container hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2>Mis Asignaturas</h2>
+                    <h2>Mis asignaturas</h2>
                     <p id="dashboard-user-folder" class="text-muted text-sm">Carpeta de trabajo</p>
                 </div>
                 <div class="flex gap-2">
                     <button onclick="app.navigateTo('combined')">Ver Calendario Combinado</button>
-                    <button id="btn-import-subject" onclick="app.importSubject()">Importar Asignatura</button>
+                    <button id="btn-import-subject" onclick="app.importSubject()">Importar materia</button>
                     <input type="file" id="file-import" class="hidden" accept=".json"
                         onchange="app.handleFileSelect(this)">
-                    <button id="btn-create-subject" class="primary" onclick="app.createSubject()">+ Nueva Asignatura</button>
+                    <button id="btn-create-subject" class="primary" onclick="app.createSubject()">+ Nueva materia</button>
                 </div>
             </div>
 
@@ -1393,29 +1554,33 @@
                 <!-- Cards injected here -->
             </div>
 
-            <section class="dashboard-section">
-                <div class="dashboard-section-header">
-                    <div>
-                        <h2>Carpetas del departamento</h2>
-                        <p class="text-muted text-sm">Confianza total: puedes consultar y abrir cualquier carpeta.</p>
-                    </div>
-                    <span class="badge">GitHub</span>
-                </div>
-                <div id="department-folders" class="department-folder-grid"></div>
-            </section>
-
-            <section class="dashboard-section">
-                <div class="dashboard-section-header">
+            <details class="dashboard-section dashboard-collapsible">
+                <summary class="dashboard-section-header">
                     <div>
                         <h2>Ejemplos generales</h2>
-                        <p class="text-muted text-sm">Disponibles para todos los profesores. Copia uno para adaptarlo en tu carpeta.</p>
+                        <p class="text-muted text-sm">Disponibles para todos los docentes. Copia uno para adaptarlo en tu carpeta.</p>
                     </div>
                     <span class="badge">Compartidos</span>
+                </summary>
+                <div class="dashboard-collapsible-content">
+                    <div id="examples-list" class="subject-grid">
+                        <!-- Example cards injected here -->
+                    </div>
                 </div>
-                <div id="examples-list" class="subject-grid">
-                    <!-- Example cards injected here -->
+            </details>
+
+            <details class="dashboard-section dashboard-collapsible">
+                <summary class="dashboard-section-header">
+                    <div>
+                        <h2>Carpetas del departamento</h2>
+                        <p class="text-muted text-sm">Consulta las carpetas del departamento cuando necesites revisar materiales comunes.</p>
+                    </div>
+                    <span class="badge">GitHub</span>
+                </summary>
+                <div class="dashboard-collapsible-content">
+                    <div id="department-folders" class="department-folder-grid"></div>
                 </div>
-            </section>
+            </details>
         </div>
 
         <!-- SUBJECT DETAIL VIEW -->
@@ -1451,7 +1616,7 @@
                                         <input id="edit-name" type="text" class="w-full"
                                             oninput="app.saveCurrentSubject()">
                                     </label>
-                                    <label class="text-xs text-muted">Color de la Asignatura
+                                    <label class="text-xs text-muted">Color de la materia
                                         <div class="flex gap-2 items-center">
                                             <input id="edit-color" type="color" class="h-8"
                                                 oninput="app.saveCurrentSubject()">
@@ -1588,7 +1753,7 @@
             <!-- Subject Selector -->
             <div class="subject-selector">
                 <div class="flex justify-between items-center">
-                    <h4 class="font-bold">Selecciona las asignaturas a visualizar:</h4>
+                    <h4 class="font-bold">Selecciona las materias a visualizar:</h4>
                     <div class="flex gap-2">
                         <button class="text-xs" onclick="app.selectAllSubjects()">✓ Todas</button>
                         <button class="text-xs" onclick="app.deselectAllSubjects()">✗ Ninguna</button>
@@ -1606,6 +1771,17 @@
             </div>
         </div>
     </main>
+
+    <footer id="compact-footer" class="app-footer app-footer-compact hidden" aria-label="Cr&eacute;ditos">
+        <div class="footer-meta">
+            <span>Creado por:</span>
+            <span class="footer-highlight">David Rodr&iacute;guez Vicente</span>
+            <span class="footer-separator">|</span>
+            <span>Licencia:</span>
+            <a class="footer-highlight" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
+        </div>
+        <div class="license-subtitle">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</div>
+    </footer>
 
     <script>
         /**
@@ -2511,7 +2687,7 @@ const DepartmentUsers =         [
                     app.validateGitHubAuthorization();
                     AppState.github.connected = true;
                     app.renderLogin();
-                    const roleLabel = app.isAdmin() ? 'administrador' : 'profesor';
+                    const roleLabel = app.isAdmin() ? 'administrador' : 'docente';
                     app.setGitHubStatus(`Conectado como ${AppState.github.login} (${roleLabel}). Elige una carpeta.`, 'ok');
                 } catch (error) {
                     AppState.github.connected = false;
@@ -2737,15 +2913,18 @@ const DepartmentUsers =         [
                 const header = document.getElementById('app-header');
                 const label = document.getElementById('current-user-label');
                 const title = document.getElementById('current-view-title');
+                const compactFooter = document.getElementById('compact-footer');
 
                 if (AppState.currentUser) {
                     header.classList.remove('hidden');
                     label.classList.remove('hidden');
+                    if (compactFooter) compactFooter.classList.remove('hidden');
                     label.innerText = `${AppState.currentUser.displayName} / ${AppState.currentUser.folder}${app.canEditCurrentFolder() ? '' : ' / lectura'}`;
                     title.innerText = 'Dashboard';
                 } else {
                     header.classList.add('hidden');
                     label.classList.add('hidden');
+                    if (compactFooter) compactFooter.classList.add('hidden');
                     label.innerText = 'Sin usuario';
                 }
             },
@@ -2779,6 +2958,8 @@ const DepartmentUsers =         [
 
                 if (view === 'login') {
                     document.getElementById('app-header').classList.add('hidden');
+                    const compactFooter = document.getElementById('compact-footer');
+                    if (compactFooter) compactFooter.classList.add('hidden');
                 } else if (view === 'dashboard') {
                     app.updateSessionUi();
                     app.renderDashboard();
@@ -2787,6 +2968,9 @@ const DepartmentUsers =         [
                     app.updateSessionUi();
                     app.renderCombinedView();
                     document.getElementById('current-view-title').innerText = 'Calendario Combinado';
+                } else if (view === 'detail') {
+                    app.updateSessionUi();
+                    document.getElementById('current-view-title').innerText = 'Materia';
                 }
             },
 
@@ -2798,7 +2982,7 @@ const DepartmentUsers =         [
                 container.innerHTML = '';
 
                 if (folderInfo && AppState.currentUser) {
-                    folderInfo.innerText = `Carpeta: ${app.coursePath(`profesores/${AppState.currentUser.folder}`)}${app.canEditCurrentFolder() ? '' : ' - modo lectura'}`;
+                    folderInfo.innerText = `Carpeta de trabajo: ${AppState.currentUser.displayName}${app.canEditCurrentFolder() ? '' : ' - modo lectura'}`;
                 }
 
                 if (AppState.data.subjects.length === 0) {
@@ -2937,7 +3121,7 @@ const DepartmentUsers =         [
                     id: Utils.uuid(),
                     ownerFolder: AppState.currentUser ? AppState.currentUser.folder : '',
                     academicYear: ACADEMIC_YEAR,
-                    name: 'Nueva Asignatura',
+                    name: 'Nueva materia',
                     color: '#3498db',
                     startDate: DEFAULT_COURSE_DATES.startDate,
                     endDate: DEFAULT_COURSE_DATES.endDate,
@@ -3354,7 +3538,7 @@ const DepartmentUsers =         [
             },
 
             deleteCurrentSubject: () => {
-                if (!confirm('¿Eliminar asignatura completamente?')) return;
+                if (!confirm('¿Eliminar materia completamente?')) return;
                 AppState.data.subjects = AppState.data.subjects.filter(s => s.id !== AppState.currentSubjectId);
                 app.saveToStorage();
                 app.navigateTo('dashboard');
@@ -3766,7 +3950,7 @@ const DepartmentUsers =         [
                 AppState.data.subjects.push(clone);
                 app.saveToStorage();
                 app.renderDashboard();
-                app.showToast('📋 Asignatura duplicada');
+                app.showToast('📋 Materia duplicada');
             },
 
             /* --- UNDO / REDO SYSTEM --- */
@@ -3877,7 +4061,7 @@ const DepartmentUsers =         [
                         const json = JSON.parse(e.target.result);
 
                         if (!json.id || !json.units) {
-                            alert('El archivo no parece ser una asignatura válida.');
+                            alert('El archivo no parece ser una materia válida.');
                             return;
                         }
 
@@ -3888,7 +4072,7 @@ const DepartmentUsers =         [
                         AppState.data.subjects.push(json);
                         app.saveToStorage();
                         app.renderDashboard();
-                        alert('Asignatura importada correctamente.');
+                        alert('Materia importada correctamente.');
                     } catch (err) {
                         alert('Error al leer archivo JSON.');
                     }
@@ -4053,7 +4237,7 @@ const DepartmentUsers =         [
                 }
 
                 if (AppState.selectedSubjects.length === 0) {
-                    grid.innerHTML = '<p class="text-muted">Selecciona al menos una asignatura para ver el calendario.</p>';
+                    grid.innerHTML = '<p class="text-muted">Selecciona al menos una materia para ver el calendario.</p>';
                     return;
                 }
 
