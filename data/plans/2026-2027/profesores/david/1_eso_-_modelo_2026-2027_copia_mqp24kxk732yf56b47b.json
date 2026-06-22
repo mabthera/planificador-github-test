@@ -1,0 +1,121 @@
+{
+  "id": "mqp24kxk732yf56b47b",
+  "name": "1º ESO - Modelo 2026-2027 (copia)",
+  "color": "#d033db",
+  "startDate": "2026-09-08",
+  "endDate": "2027-06-30",
+  "schedule": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 0,
+    "5": 1
+  },
+  "planningMode": "unit",
+  "units": [
+    {
+      "id": "mqp24kxlecbzc25tjrb",
+      "name": "UD 01. Números naturales y operaciones",
+      "base": 12,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlgqdad92vqp6",
+      "name": "UD 02. Potencias, raíces y divisibilidad",
+      "base": 12,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxl0edp7eyrweid",
+      "name": "UD 03. Números enteros",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlw7fkadyyas9",
+      "name": "UD 04. Fracciones",
+      "base": 12,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxltd7sj3e5cys",
+      "name": "UD 05. Números decimales",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlgzclor5bdpl",
+      "name": "UD 06. Proporcionalidad y porcentajes",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlrga2e107bj",
+      "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlhmdyig54ddn",
+      "name": "UD 08. Tablas, coordenadas y gráficas",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlt82avipycw",
+      "name": "UD 09. Rectas, ángulos y polígonos",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlelnokbgocrc",
+      "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlt6933as0dfr",
+      "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
+      "base": 15,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqp24kxlfr8l3l1jzqo",
+      "name": "UD 12. Estadística y probabilidad",
+      "base": 15,
+      "extra": 0,
+      "activities": []
+    }
+  ],
+  "customDates": [
+    {
+      "date": "2027-01-11",
+      "label": "Recuperación 1ª evaluación"
+    },
+    {
+      "date": "2027-04-06",
+      "label": "Recuperación 2ª evaluación"
+    }
+  ],
+  "evaluations": {
+    "1": "2026-12-18",
+    "2": "2027-03-26",
+    "3": "2027-06-22"
+  },
+  "academicYear": "2026-2027",
+  "ownerFolder": "david",
+  "source": "shared-example",
+  "updatedAt": "2026-06-22T10:13:00.515Z",
+  "githubPath": "data/plans/2026-2027/profesores/david/1_eso_-_modelo_2026-2027_copia_mqp24kxk732yf56b47b.json"
+}
