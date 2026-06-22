@@ -68,6 +68,7 @@
             font-size: 16px;
             height: 100vh;
             overflow: hidden;
+            padding-bottom: 42px;
             display: flex;
             flex-direction: column;
         }
@@ -339,20 +340,13 @@
         }
 
         .login-shell {
-            flex: 1;
-            min-height: 0;
-            width: 100%;
+            min-height: 100%;
             display: grid;
             grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
             gap: 2rem;
             align-items: center;
             max-width: 1180px;
             margin: 0 auto;
-        }
-
-        #view-login {
-            display: flex;
-            flex-direction: column;
         }
 
         .login-hero h1 {
@@ -472,10 +466,19 @@
             gap: 12px;
             justify-items: center;
             text-align: center;
-            margin-top: 18px;
-            padding: 4px 18px 10px;
+            padding: 8px 18px;
             color: var(--text-muted);
             font-family: "Segoe UI", Arial, sans-serif;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-top: 1px solid var(--border);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+            z-index: 1000;
+            box-sizing: border-box;
+            backdrop-filter: blur(4px);
         }
 
         .footer-meta {
@@ -484,9 +487,16 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: nowrap;
-            font-size: 0.94rem;
+            max-width: 100%;
+            overflow-x: auto;
+            font-size: 0.8rem;
             line-height: 1.55;
             white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .footer-meta::-webkit-scrollbar {
+            display: none;
         }
 
         .footer-separator {
@@ -496,6 +506,7 @@
 
         .footer-highlight {
             display: inline-block;
+            flex-shrink: 0;
             font-weight: 800;
             color: var(--text-main);
             background: rgba(28, 77, 127, 0.1);
@@ -511,42 +522,9 @@
         }
 
         .license-subtitle {
-            max-width: 48ch;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .app-footer-compact {
             flex-shrink: 0;
-            margin-top: 0;
-            padding: 0.25rem 1rem 0.35rem;
-            border-top: 1px solid var(--border);
-            background: var(--bg-card);
-            box-shadow: 0 -4px 12px rgba(17, 34, 57, 0.04);
-        }
-
-        .app-footer-compact .footer-meta {
-            gap: 0.35rem;
-            overflow-x: auto;
-            max-width: 100%;
-            font-size: 0.72rem;
-            line-height: 1.2;
-            scrollbar-width: none;
-        }
-
-        .app-footer-compact .footer-meta::-webkit-scrollbar {
-            display: none;
-        }
-
-        .app-footer-compact .footer-highlight {
-            padding: 0;
-            background: transparent;
-            border-radius: 0;
-            font-weight: 700;
-        }
-
-        .app-footer-compact .license-subtitle {
-            display: none;
+            font-size: 0.8rem;
+            line-height: 1.5;
         }
 
         .github-connect {
@@ -713,14 +691,22 @@
                 grid-template-columns: 1fr;
             }
 
-            .footer-meta {
-                flex-wrap: wrap;
-                white-space: normal;
+            .app-footer {
+                padding-inline: 10px;
             }
 
-            .app-footer-compact .footer-meta {
-                flex-wrap: nowrap;
-                white-space: nowrap;
+            .footer-meta {
+                gap: 6px;
+                justify-content: flex-start;
+                font-size: 0.68rem;
+            }
+
+            .footer-highlight {
+                padding-inline: 6px;
+            }
+
+            .license-subtitle {
+                font-size: 0.68rem;
             }
         }
 
@@ -1257,6 +1243,20 @@
             --warning: #eab308;
         }
 
+        body.dark-mode .app-footer {
+            background-color: rgba(30, 30, 30, 0.92);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        body.dark-mode .footer-highlight {
+            background: rgba(59, 130, 246, 0.16);
+        }
+
+        body.dark-mode a.footer-highlight:hover,
+        body.dark-mode a.footer-highlight:focus-visible {
+            background: rgba(59, 130, 246, 0.24);
+        }
+
         body.dark-mode .day-cell {
             background: #1e1e1e;
         }
@@ -1522,16 +1522,7 @@
                     <p class="login-note">Los ejemplos generales estaran disponibles despues de entrar y se copiaran a tus materias cuando quieras editarlos.</p>
                 </div>
             </div>
-            <footer class="app-footer" aria-label="Cr&eacute;ditos">
-                <div class="footer-meta">
-                    <span>Creado por:</span>
-                    <span class="footer-highlight">David Rodr&iacute;guez Vicente</span>
-                    <span class="footer-separator">|</span>
-                    <span>Licencia:</span>
-                    <a class="footer-highlight" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
-                </div>
-                <div class="license-subtitle">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</div>
-            </footer>
+
         </div>
 
         <!-- DASHBOARD VIEW -->
@@ -1772,15 +1763,15 @@
         </div>
     </main>
 
-    <footer id="compact-footer" class="app-footer app-footer-compact hidden" aria-label="Cr&eacute;ditos">
+    <footer class="app-footer" aria-label="Cr&eacute;ditos">
         <div class="footer-meta">
             <span>Creado por:</span>
             <span class="footer-highlight">David Rodr&iacute;guez Vicente</span>
             <span class="footer-separator">|</span>
             <span>Licencia:</span>
             <a class="footer-highlight" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>
+            <span class="license-subtitle">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</span>
         </div>
-        <div class="license-subtitle">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</div>
     </footer>
 
     <script>
@@ -2913,18 +2904,15 @@ const DepartmentUsers =         [
                 const header = document.getElementById('app-header');
                 const label = document.getElementById('current-user-label');
                 const title = document.getElementById('current-view-title');
-                const compactFooter = document.getElementById('compact-footer');
 
                 if (AppState.currentUser) {
                     header.classList.remove('hidden');
                     label.classList.remove('hidden');
-                    if (compactFooter) compactFooter.classList.remove('hidden');
                     label.innerText = `${AppState.currentUser.displayName} / ${AppState.currentUser.folder}${app.canEditCurrentFolder() ? '' : ' / lectura'}`;
                     title.innerText = 'Dashboard';
                 } else {
                     header.classList.add('hidden');
                     label.classList.add('hidden');
-                    if (compactFooter) compactFooter.classList.add('hidden');
                     label.innerText = 'Sin usuario';
                 }
             },
@@ -2958,8 +2946,6 @@ const DepartmentUsers =         [
 
                 if (view === 'login') {
                     document.getElementById('app-header').classList.add('hidden');
-                    const compactFooter = document.getElementById('compact-footer');
-                    if (compactFooter) compactFooter.classList.add('hidden');
                 } else if (view === 'dashboard') {
                     app.updateSessionUi();
                     app.renderDashboard();
