@@ -5,7 +5,7 @@
   "name": "2ºFPB pasado",
   "color": "#3498db",
   "startDate": "2025-09-08",
-  "endDate": "2026-06-28",
+  "endDate": "2026-06-19",
   "schedule": {
     "1": 1,
     "2": 1,
@@ -29,6 +29,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-06-23T09:59:22.437Z",
+  "updatedAt": "2026-06-23T09:59:28.788Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_pasado_mqqh1ckb6qm8sgbq1sm.json"
 }
