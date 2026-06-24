@@ -32,7 +32,14 @@
     {
       "id": "mqsaxyw5unfrodkr6gs",
       "name": "03_SE",
-      "base": 56,
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqsb2brblpbepa3sulf",
+      "name": "Unidad 4",
+      "base": 5,
       "extra": 0,
       "activities": []
     }
@@ -43,6 +50,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-06-24T16:46:24.246Z",
+  "updatedAt": "2026-06-24T16:46:31.677Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
