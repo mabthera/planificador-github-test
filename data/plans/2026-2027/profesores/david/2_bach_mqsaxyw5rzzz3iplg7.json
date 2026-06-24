@@ -54,7 +54,7 @@
       "id": "mqsbbo8p8o9y4dmqcfu",
       "name": "06_derivadas",
       "base": 9,
-      "extra": 0,
+      "extra": 1,
       "activities": []
     },
     {
@@ -85,6 +85,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T16:58:00.053Z",
+  "updatedAt": "2026-06-24T16:59:32.003Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
