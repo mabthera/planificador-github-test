@@ -74,7 +74,7 @@
     {
       "id": "mqsbelorjx3vzw8kewr",
       "name": "09_integrais",
-      "base": 7,
+      "base": 8,
       "extra": -8,
       "activities": []
     },
@@ -113,6 +113,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T17:26:55.449Z",
+  "updatedAt": "2026-06-24T17:27:18.966Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_25_26_mqsaxyw5rzzz3iplg7.json"
 }
