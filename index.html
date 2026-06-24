@@ -3412,7 +3412,7 @@ const DepartmentUsers =         [
                         <div class="flex flex-col gap-2">
                             <div class="text-xs text-muted flex justify-between">
                                 <span>Actividades (${u.activities.length})</span>
-                                <span>Total: ${(u.activities.reduce((s, a) => s + (parseInt(a.sessions) || 0) + (parseInt(a.extra) || 0), 0))} (B:${totalActSessions} + E:${u.activities.reduce((s, a) => s + (parseInt(a.extra) || 0), 0)})</span>
+                                <span>Total: ${u.activities.reduce((s, a) => s + app.sessionTotal(a.sessions, a.extra), 0)} (B:${totalActSessions} + E:${u.activities.reduce((s, a) => s + app.sessionNumber(a.extra), 0)})</span>
                             </div>
                             
                             <!-- Header for inputs -->
