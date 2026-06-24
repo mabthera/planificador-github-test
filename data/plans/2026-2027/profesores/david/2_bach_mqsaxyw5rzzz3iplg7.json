@@ -70,6 +70,13 @@
       "base": 8,
       "extra": 0,
       "activities": []
+    },
+    {
+      "id": "mqsbelorjx3vzw8kewr",
+      "name": "Unidad 9",
+      "base": 5,
+      "extra": 0,
+      "activities": []
     }
   ],
   "customDates": [],
@@ -78,6 +85,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T16:55:31.396Z",
+  "updatedAt": "2026-06-24T16:56:04.563Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
