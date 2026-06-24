@@ -5,7 +5,7 @@
   "name": "2ºBach",
   "color": "#3498db",
   "startDate": "2025-09-08",
-  "endDate": "2026-05-08",
+  "endDate": "2026-05-07",
   "schedule": {
     "1": 1,
     "2": 1,
@@ -113,6 +113,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T17:11:14.936Z",
+  "updatedAt": "2026-06-24T17:11:26.580Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
