@@ -3564,13 +3564,20 @@ const DepartmentUsers =         [
             },
 
             /* --- CALCULATOR CORE (WATERFALL) --- */
+            sessionNumber: (value) => parseInt(value) || 0,
+
+            sessionTotal: (base, extra = 0) => Math.max(0, app.sessionNumber(base) + app.sessionNumber(extra)),
+
+            getTotalRequiredSessions: (subject) => app.getSchedulableItems(subject)
+                .reduce((total, item) => total + item.totalSessions, 0),
+
             getSchedulableItems: (subject) => {
                 const mode = subject.planningMode || 'unit';
 
                 if (mode === 'unit') {
                     return subject.units.map((u, idx) => ({
                         ...u,
-                        totalSessions: (u.base || 0) + (u.extra || 0),
+                        totalSessions: app.sessionTotal(u.base, u.extra),
                         type: 'unit',
                         unitIndex: idx,
                         hue: (parseInt(subject.color.replace('#', ''), 16) + (idx * 30)) % 360,
@@ -3594,7 +3601,7 @@ const DepartmentUsers =         [
 
                                 items.push({
                                     ...a,
-                                    totalSessions: (parseInt(a.sessions) || 0) + (parseInt(a.extra) || 0),
+                                    totalSessions: app.sessionTotal(a.sessions, a.extra),
                                     type: 'activity',
                                     unitIndex: idx,
                                     parentUnitId: u.id,
@@ -4403,7 +4410,7 @@ const DepartmentUsers =         [
                 const statsContent = document.getElementById('stats-content');
                 if (!statsContent) return;
 
-                let totalSessions = 0;
+                const totalSessions = app.getTotalRequiredSessions(subject);
                 let scheduledSessions = 0;
 
                 let tCap = { 1: 0, 2: 0, 3: 0 };
@@ -4421,19 +4428,6 @@ const DepartmentUsers =         [
                     }
                     return 1;
                 };
-
-                // Sum required sessions
-                if (subject.planningMode === 'activity') {
-                    subject.units.forEach(u => {
-                        (u.activities || []).forEach(a => {
-                            totalSessions += (parseInt(a.sessions) || 0) + (parseInt(a.extra) || 0);
-                        });
-                    });
-                } else {
-                    subject.units.forEach(u => {
-                        totalSessions += (parseInt(u.base) || 0) + (parseInt(u.extra) || 0);
-                    });
-                }
 
                 // 2. Calculate Total Possible Capacity (Totales - Espacio en el calendario)
                 let allowedCapacity = 0;
@@ -4476,7 +4470,7 @@ const DepartmentUsers =         [
                     }
                 });
 
-                const pendingSessions = allowedCapacity - totalSessions;
+                const pendingSessions = allowedCapacity - scheduledSessions;
 
                 const tPend = {
                     1: tCap[1] - tProg[1],
@@ -4535,8 +4529,8 @@ const DepartmentUsers =         [
                             <span class="stat-value">${allowedCapacity}</span>
                             <div class="stat-label">Sesiones Totales</div>
                         </div>
-                        <div class="stat-card" title="Sesiones que conforman el temario">
-                            <span class="stat-value success">${totalSessions}</span>
+                        <div class="stat-card" title="Sesiones colocadas en el calendario${scheduledSessions !== totalSessions ? ` de ${totalSessions} previstas en el temario` : ''}">
+                            <span class="stat-value ${scheduledSessions < totalSessions ? 'warning' : 'success'}">${scheduledSessions}</span>
                             <div class="stat-label">Programadas</div>
                         </div>
                         <div class="stat-card" title="Sesiones vacías que no han sido asignadas en el temario">
