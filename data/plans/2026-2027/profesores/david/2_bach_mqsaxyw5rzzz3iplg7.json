@@ -82,7 +82,7 @@
       "id": "mqsbo8fknr9fex9uhh",
       "name": "10_probabilidade",
       "base": 10,
-      "extra": 0,
+      "extra": 1,
       "activities": []
     },
     {
@@ -113,6 +113,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T17:05:30.439Z",
+  "updatedAt": "2026-06-24T17:05:58.022Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
