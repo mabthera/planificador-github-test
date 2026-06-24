@@ -3,7 +3,7 @@
   "ownerFolder": "david",
   "academicYear": "2026-2027",
   "name": "2ºFPB 25/26",
-  "color": "#3498db",
+  "color": "#fedb12",
   "startDate": "2025-09-08",
   "endDate": "2026-03-11",
   "schedule": {
@@ -43,6 +43,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-06-24T17:14:39.177Z",
+  "updatedAt": "2026-06-24T17:14:54.269Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_25_26_mqqh1ckb6qm8sgbq1sm.json"
 }
