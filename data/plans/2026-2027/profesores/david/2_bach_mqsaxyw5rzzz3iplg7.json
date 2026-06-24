@@ -60,7 +60,7 @@
     {
       "id": "mqsbc69pp4cht2c1vod",
       "name": "07_aplicación",
-      "base": 5,
+      "base": 9,
       "extra": 0,
       "activities": []
     }
@@ -71,6 +71,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T16:54:29.784Z",
+  "updatedAt": "2026-06-24T16:54:37.602Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
