@@ -68,7 +68,7 @@
       "id": "mqsbcxlsr8nx8322h3e",
       "name": "08_representación",
       "base": 13,
-      "extra": 2,
+      "extra": -2,
       "activities": []
     },
     {
@@ -85,6 +85,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T17:02:11.381Z",
+  "updatedAt": "2026-06-24T17:02:17.818Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
