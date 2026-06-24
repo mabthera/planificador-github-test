@@ -25,7 +25,7 @@
     {
       "id": "mqsaxyw51gv4t5nfsqj",
       "name": "02_determinantes",
-      "base": 8,
+      "base": 10,
       "extra": 0,
       "activities": []
     },
@@ -50,6 +50,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T16:49:04.679Z",
+  "updatedAt": "2026-06-24T16:51:48.964Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
