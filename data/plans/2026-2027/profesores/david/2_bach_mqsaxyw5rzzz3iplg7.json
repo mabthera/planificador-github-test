@@ -18,8 +18,8 @@
     {
       "id": "mqsaxyw5y4d9zvfwmur",
       "name": "01_matrices",
-      "base": 12,
-      "extra": 0,
+      "base": 9,
+      "extra": 3,
       "activities": []
     },
     {
@@ -85,6 +85,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T16:56:13.805Z",
+  "updatedAt": "2026-06-24T16:56:24.422Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
