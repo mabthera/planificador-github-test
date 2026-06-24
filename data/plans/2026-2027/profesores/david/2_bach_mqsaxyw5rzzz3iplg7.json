@@ -46,8 +46,8 @@
     {
       "id": "mqsbbejhzrnhepf8pzb",
       "name": "05_limites",
-      "base": 7,
-      "extra": 0,
+      "base": 8,
+      "extra": -1,
       "activities": []
     },
     {
@@ -85,6 +85,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T16:57:54.755Z",
+  "updatedAt": "2026-06-24T16:58:00.053Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
