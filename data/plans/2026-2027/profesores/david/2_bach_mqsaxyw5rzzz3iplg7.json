@@ -94,8 +94,15 @@
     },
     {
       "id": "mqsbpema1ul51g0xfzn",
-      "name": "Unidad 12",
+      "name": "12_inferencia",
       "base": 9,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mqsbpxdt1727tx45ana",
+      "name": "Unidad 13",
+      "base": 5,
       "extra": 0,
       "activities": []
     }
@@ -106,6 +113,6 @@
     "2": "2026-02-26",
     "3": "2026-05-07"
   },
-  "updatedAt": "2026-06-24T17:04:41.742Z",
+  "updatedAt": "2026-06-24T17:04:50.809Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_bach_mqsaxyw5rzzz3iplg7.json"
 }
