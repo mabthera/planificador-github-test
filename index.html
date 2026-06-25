@@ -959,6 +959,12 @@
             color: #374151;
         }
 
+        .day-cell.holiday-cell.personal-holiday-cell {
+            background: #9ca3af;
+            /* Gray-400 */
+            color: #111827;
+        }
+
         /* Combined View Styles */
         .subject-selector {
             background: var(--bg-card);
@@ -1273,6 +1279,11 @@
         body.dark-mode .day-cell.holiday-cell {
             background: #3f3f46;
             color: #d4d4d8;
+        }
+
+        body.dark-mode .day-cell.holiday-cell.personal-holiday-cell {
+            background: #27272a;
+            color: #f4f4f5;
         }
 
         body.dark-mode input,
@@ -2529,6 +2540,14 @@ const DepartmentUsers =         [
 
             isEffectiveHoliday: (dateStr) => app.getEffectiveHolidays().includes(dateStr),
             isGlobalHoliday: (dateStr) => Utils.uniqueSortedDates(AppState.data.globalHolidays).includes(dateStr),
+            isPersonalHoliday: (dateStr) => app.normalizeHolidayChanges(AppState.data.userHolidayChanges).added.includes(dateStr),
+            getHolidayCellInfo: (dateStr) => {
+                const isPersonal = app.isPersonalHoliday(dateStr);
+                return {
+                    className: isPersonal ? ' holiday-cell personal-holiday-cell' : ' holiday-cell',
+                    label: isPersonal ? 'Festivo personal' : 'Festivo'
+                };
+            },
 
             normalizeCurrentData: () => {
                 if (!AppState.data) AppState.data = {};
@@ -3814,16 +3833,17 @@ const DepartmentUsers =         [
                         let className = 'day-cell';
                         if (isWeekend) className += ' weekend';
 
-                        const isGlobalHoliday = app.isEffectiveHoliday(dateStr);
+                        const isHoliday = app.isEffectiveHoliday(dateStr);
+                        const holidayCell = app.getHolidayCellInfo(dateStr);
 
-                        if (isGlobalHoliday) {
-                            className += ' holiday-cell';
-                            cellContent += '<div class="day-info">Festivo</div>';
+                        if (isHoliday) {
+                            className += holidayCell.className;
+                            cellContent += `<div class="day-info">${holidayCell.label}</div>`;
                         } else if (item) {
                             if (item.type === 'holiday') {
                                 // Fallback just in case
-                                className += ' holiday-cell';
-                                cellContent += '<div class="day-info">Festivo</div>';
+                                className += holidayCell.className;
+                                cellContent += `<div class="day-info">${holidayCell.label}</div>`;
                             } else if (item.type === 'class') {
 
                                 // --- SPLIT VIEW LOGIC FOR ACTIVITY MODE ---
@@ -4315,16 +4335,17 @@ const DepartmentUsers =         [
                         let className = 'day-cell';
                         if (isWeekend) className += ' weekend';
 
-                        const isGlobalHoliday = app.isEffectiveHoliday(dateStr);
+                        const isHoliday = app.isEffectiveHoliday(dateStr);
+                        const holidayCell = app.getHolidayCellInfo(dateStr);
 
-                        if (isGlobalHoliday) {
-                            className += ' holiday-cell';
-                            cellContent = `<span class="day-number">${d.getDate()}</span><div class="day-info">Festivo</div>`;
+                        if (isHoliday) {
+                            className += holidayCell.className;
+                            cellContent = `<span class="day-number">${d.getDate()}</span><div class="day-info">${holidayCell.label}</div>`;
                         } else if (item) {
                             if (item.type === 'holiday') {
                                 // Fallback
-                                className += ' holiday-cell';
-                                cellContent = `<span class="day-number">${d.getDate()}</span><div class="day-info">Festivo</div>`;
+                                className += holidayCell.className;
+                                cellContent = `<span class="day-number">${d.getDate()}</span><div class="day-info">${holidayCell.label}</div>`;
                             } else if (item.type === 'multi-class') {
                                 className += ' multi-subject';
                                 cellContent = `<span style="position:absolute; top:2px; right:2px; z-index:5; background:rgba(255,255,255,0.8); border-radius:4px; padding:0 3px; font-size:0.7rem; font-weight:bold; color:#333; pointer-events: none;">${d.getDate()}</span>`;
