@@ -7,8 +7,8 @@
   "schedule": {
     "1": 1,
     "2": 1,
-    "3": 1,
-    "4": 1,
+    "3": 0,
+    "4": 2,
     "5": 0
   },
   "planningMode": "unit",
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-06-25T09:15:04.487Z",
+  "updatedAt": "2026-06-25T09:15:11.411Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
