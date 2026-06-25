@@ -72,8 +72,8 @@
     {
       "id": "xl4hfo62j3rudl22r1v",
       "name": "UD 9: Variables Aleatorias y Distribuciones",
-      "base": 11,
-      "extra": -1,
+      "base": 10,
+      "extra": 0,
       "activities": []
     }
   ],
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-06-25T11:07:47.764Z",
+  "updatedAt": "2026-06-25T11:07:53.283Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
