@@ -1097,10 +1097,94 @@
         }
 
         .combined-today-summary {
-            margin-top: 0.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin: 0.55rem auto 0;
             font-size: 0.9rem;
             line-height: 1.35;
             max-width: 520px;
+            text-align: left;
+        }
+
+        .today-summary-empty {
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .today-summary-overview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .today-summary-pill {
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--text-main);
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 0.18rem 0.55rem;
+        }
+
+        .today-summary-card {
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-left: 6px solid var(--primary);
+            border-radius: 8px;
+            padding: 0.6rem 0.7rem;
+        }
+
+        .today-summary-card-head {
+            align-items: center;
+            display: flex;
+            gap: 0.45rem;
+            justify-content: space-between;
+        }
+
+        .today-subject-name {
+            align-items: center;
+            display: inline-flex;
+            gap: 0.4rem;
+            font-weight: 800;
+            min-width: 0;
+        }
+
+        .today-subject-dot {
+            border-radius: 50%;
+            flex: 0 0 auto;
+            height: 0.72rem;
+            width: 0.72rem;
+        }
+
+        .today-session-badge {
+            border-radius: 999px;
+            flex: 0 0 auto;
+            font-size: 0.74rem;
+            font-weight: 800;
+            padding: 0.16rem 0.5rem;
+        }
+
+        .today-summary-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.45rem;
+        }
+
+        .today-unit-chip {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 0.76rem;
+            padding: 0.18rem 0.42rem;
+        }
+
+        .today-unit-chip strong {
+            font-weight: 800;
         }
 
         .combined-day-tab {
@@ -1635,6 +1719,18 @@
             color: #e5e7eb;
         }
 
+        body.dark-mode .today-summary-card,
+        body.dark-mode .today-summary-pill {
+            background: #2d2d2d;
+            border-color: #3f3f46;
+        }
+
+        body.dark-mode .today-unit-chip {
+            background: #1f1f1f;
+            border-color: #3f3f46;
+            color: #e5e7eb;
+        }
+
         body.dark-mode .day-modal-content {
             background: #1f1f1f;
             border-color: #3f3f46;
@@ -2049,7 +2145,7 @@
                         <h2 id="combined-today-title">Hoy</h2>
                         <button id="combined-today-date" class="combined-today-date" type="button" title="Cambiar fecha" onclick="app.openCombinedDateInput()"></button>
                         <input id="combined-today-date-input" class="combined-today-date-input" type="date" onchange="app.handleCombinedDateInput(this.value)" onblur="app.hideCombinedDateInput()">
-                        <div id="combined-today-summary" class="combined-today-summary text-muted"></div>
+                        <div id="combined-today-summary" class="combined-today-summary"></div>
                         <button id="combined-today-reset" class="combined-today-reset hidden" type="button" onclick="app.setCombinedFocusDate()">Volver a hoy</button>
                     </div>
                     <button id="combined-next-day-tab" class="combined-day-tab side-tab" type="button" onclick="app.shiftCombinedFocusDate(1)"></button>
@@ -4636,6 +4732,55 @@ const DepartmentUsers =         [
                 return `${prefix}${totalSubjects} ${totalSubjects === 1 ? 'materia' : 'materias'}, ${totalSessions} ${totalSessions === 1 ? 'sesión' : 'sesiones'}: ${subjectNames}.`;
             },
 
+            normalizeSubjectColor: (color) => /^#[0-9a-f]{6}$/i.test(color || '') ? color : '#64748b',
+
+            buildCombinedTodaySummaryHtml: (dateStr, item) => {
+                if (AppState.selectedSubjects.length === 0) {
+                    return '<div class="today-summary-empty">Selecciona al menos una materia para ver el resumen de hoy.</div>';
+                }
+
+                const isHoliday = app.isEffectiveHoliday(dateStr);
+                const holidayLabel = isHoliday ? app.getHolidayCellInfo(dateStr).label : '';
+
+                if ((!item || item.type === 'holiday') && !holidayLabel) {
+                    return '<div class="today-summary-empty">No hay sesiones programadas.</div>';
+                }
+
+                if (item && item.type === 'multi-class') {
+                    const totalSubjects = item.sessions.length;
+                    const totalSessions = item.sessions.reduce((sum, session) => sum + Number(session.totalSessions || 0), 0);
+                    let html = `<div class="today-summary-overview">
+                        <span class="today-summary-pill">${totalSubjects} ${totalSubjects === 1 ? 'materia' : 'materias'}</span>
+                        <span class="today-summary-pill">${totalSessions} ${totalSessions === 1 ? 'sesión' : 'sesiones'}</span>
+                        ${holidayLabel ? `<span class="today-summary-pill">${Utils.escapeHtml(holidayLabel)}</span>` : ''}
+                    </div>`;
+
+                    item.sessions.forEach(session => {
+                        const color = app.normalizeSubjectColor(session.subject.color);
+                        const textColor = Utils.getContrastColor(color);
+                        const subjectName = Utils.escapeHtml(session.subject.name);
+                        const total = Number(session.totalSessions || 0);
+                        const allocations = session.allocations.map(allocation => {
+                            const label = Utils.escapeHtml(app.formatAllocationLabel(allocation));
+                            const sessions = Number(allocation.sessions || 0);
+                            return `<span class="today-unit-chip"><strong>${sessions}</strong> ses. · ${label}</span>`;
+                        }).join('');
+
+                        html += `
+                            <div class="today-summary-card" style="border-left-color:${color};">
+                                <div class="today-summary-card-head">
+                                    <span class="today-subject-name"><span class="today-subject-dot" style="background:${color};"></span>${subjectName}</span>
+                                    <span class="today-session-badge" style="background:${color}; color:${textColor};">${total} ses.</span>
+                                </div>
+                                <div class="today-summary-tags">${allocations}</div>
+                            </div>
+                        `;
+                    });
+                    return html;
+                }
+
+                return `<div class="today-summary-empty">${Utils.escapeHtml(holidayLabel || 'No hay sesiones programadas.')}</div>`;
+            },
             getCombinedFocusDate: () => AppState.combinedFocusDate || Utils.formatDate(new Date()),
 
             setCombinedFocusDate: (dateStr = null) => {
@@ -4708,7 +4853,7 @@ const DepartmentUsers =         [
                 title.innerText = app.getRelativeDayLabel(focusDateStr);
                 dateLabel.innerText = app.formatDisplayDate(focusDateStr);
                 if (dateInput) dateInput.value = focusDateStr;
-                summary.innerText = app.summarizeCombinedDay(focusDateStr, item);
+                summary.innerHTML = app.buildCombinedTodaySummaryHtml(focusDateStr, item);
                 prevTab.innerHTML = `<span>&larr; ${app.getRelativeDayLabel(prevDateStr)}</span><small>${app.formatCompactDate(prevDateStr)}</small>`;
                 nextTab.innerHTML = `<span>${app.getRelativeDayLabel(nextDateStr)} &rarr;</span><small>${app.formatCompactDate(nextDateStr)}</small>`;
 
