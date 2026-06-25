@@ -1018,6 +1018,119 @@
             flex-shrink: 0;
         }
 
+        .combined-today-header {
+            text-align: center;
+            min-width: 260px;
+        }
+
+        .combined-today-header h2 {
+            margin: 0;
+        }
+
+        .combined-today-summary {
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            line-height: 1.35;
+            max-width: 520px;
+        }
+
+        .combined-day-number {
+            border: 0;
+            background: rgba(255, 255, 255, 0.86);
+            border-radius: 4px;
+            color: #333;
+            cursor: pointer;
+            font-size: 0.72rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 3px 5px;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 6;
+        }
+
+        .combined-day-number:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .day-modal {
+            align-items: center;
+            background: rgba(15, 23, 42, 0.45);
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            left: 0;
+            padding: 1.5rem;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .day-modal.hidden {
+            display: none;
+        }
+
+        .day-modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            color: var(--text-main);
+            max-height: min(78vh, 720px);
+            max-width: 680px;
+            overflow: auto;
+            width: min(100%, 680px);
+        }
+
+        .day-modal-header {
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+        }
+
+        .day-modal-header h3 {
+            margin: 0.15rem 0 0;
+        }
+
+        .day-modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            padding: 1rem 1.25rem 1.25rem;
+        }
+
+        .day-detail-subject {
+            border: 1px solid var(--border);
+            border-left-width: 5px;
+            border-radius: 8px;
+            padding: 0.85rem;
+            background: var(--bg-hover);
+        }
+
+        .day-detail-subject-title {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-detail-list {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        .day-detail-list li {
+            margin: 0.25rem 0;
+        }
+
         /* Multi-subject day cell */
         .day-cell.multi-subject {
             padding: 2px;
@@ -1349,6 +1462,21 @@
 
         body.dark-mode .subject-checkbox-item:hover {
             background: #1e1e1e;
+        }
+
+        body.dark-mode .combined-day-number {
+            background: rgba(15, 23, 42, 0.88);
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .day-modal-content {
+            background: #1f1f1f;
+            border-color: #3f3f46;
+        }
+
+        body.dark-mode .day-detail-subject {
+            background: #2d2d2d;
+            border-color: #3f3f46;
         }
 
         .dark-toggle {
@@ -1748,7 +1876,10 @@
         <div id="view-combined" class="view-container hidden">
             <div class="flex justify-between items-center mb-4">
                 <button onclick="app.navigateTo('dashboard')">← Volver</button>
-                <h2>Calendario Combinado</h2>
+                <div class="combined-today-header">
+                    <h2>Hoy</h2>
+                    <div id="combined-today-summary" class="combined-today-summary text-muted"></div>
+                </div>
                 <div></div>
             </div>
 
@@ -1770,6 +1901,19 @@
             <div id="combined-calendar-alerts" class="hidden calendar-warnings"></div>
             <div id="combined-calendar-grid" class="month-grid">
                 <!-- Calendar injected here -->
+            </div>
+        </div>
+
+        <div id="combined-day-modal" class="day-modal hidden" onclick="app.closeCombinedDayModal(event)">
+            <div class="day-modal-content" role="dialog" aria-modal="true" aria-labelledby="combined-day-modal-title" onclick="event.stopPropagation()">
+                <div class="day-modal-header">
+                    <div>
+                        <div class="text-muted text-sm">Resumen del día</div>
+                        <h3 id="combined-day-modal-title"></h3>
+                    </div>
+                    <button class="icon-btn" aria-label="Cerrar" onclick="app.closeCombinedDayModal()">×</button>
+                </div>
+                <div id="combined-day-modal-body" class="day-modal-body"></div>
             </div>
         </div>
     </main>
@@ -2477,7 +2621,13 @@ const DepartmentUsers =         [
             uniqueSortedDates: (dates) => Array.from(new Set((dates || [])
                 .map(date => String(date || '').trim())
                 .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date))
-            )).sort()
+            )).sort(),
+            escapeHtml: (value) => String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
         };
 
         const app = {
@@ -3005,7 +3155,7 @@ const DepartmentUsers =         [
                 } else if (view === 'combined') {
                     app.updateSessionUi();
                     app.renderCombinedView();
-                    document.getElementById('current-view-title').innerText = 'Calendario Combinado';
+                    document.getElementById('current-view-title').innerText = 'Hoy';
                 } else if (view === 'detail') {
                     app.updateSessionUi();
                     document.getElementById('current-view-title').innerText = 'Materia';
@@ -4269,6 +4419,111 @@ const DepartmentUsers =         [
                 return { combinedMap, warnings };
             },
 
+            formatDisplayDate: (dateStr) => {
+                const date = Utils.parseDate(dateStr);
+                return date.toLocaleDateString('es-ES', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            },
+
+            getCombinedDayNumberButton: (dateStr, dayNumber) => `
+                <button class="combined-day-number" type="button" title="Ver resumen del día"
+                    onclick="event.stopPropagation(); app.openCombinedDayModal('${dateStr}')">${dayNumber}</button>`,
+
+            formatAllocationLabel: (allocation) => {
+                const item = allocation.item || {};
+                if (item.parentUnitName) return `${item.parentUnitName}: ${item.displayName}`;
+                return item.displayName || 'Sesión';
+            },
+
+            summarizeCombinedDay: (dateStr, item) => {
+                if (AppState.selectedSubjects.length === 0) return 'Selecciona al menos una materia para ver el resumen de hoy.';
+
+                const isHoliday = app.isEffectiveHoliday(dateStr);
+                const holidayLabel = isHoliday ? app.getHolidayCellInfo(dateStr).label : '';
+
+                if (!item || item.type === 'holiday') {
+                    return holidayLabel || 'No hay sesiones programadas.';
+                }
+
+                const totalSubjects = item.sessions.length;
+                const totalSessions = item.sessions.reduce((sum, session) => sum + Number(session.totalSessions || 0), 0);
+                const subjectNames = item.sessions.map(session => session.subject.name).join(', ');
+                const prefix = holidayLabel ? `${holidayLabel}. ` : '';
+                return `${prefix}${totalSubjects} ${totalSubjects === 1 ? 'materia' : 'materias'}, ${totalSessions} ${totalSessions === 1 ? 'sesión' : 'sesiones'}: ${subjectNames}.`;
+            },
+
+            renderCombinedTodaySummary: (combinedMap) => {
+                const el = document.getElementById('combined-today-summary');
+                if (!el) return;
+
+                const todayStr = Utils.formatDate(new Date());
+                const item = combinedMap.get(todayStr);
+                el.innerText = app.summarizeCombinedDay(todayStr, item);
+            },
+
+            buildCombinedDayDetailHtml: (dateStr, item) => {
+                const isHoliday = app.isEffectiveHoliday(dateStr);
+                const holidayLabel = isHoliday ? app.getHolidayCellInfo(dateStr).label : '';
+
+                if ((!item || item.type === 'holiday') && !holidayLabel) {
+                    return '<p class="text-muted">No hay materias, unidades ni sesiones programadas para este día.</p>';
+                }
+
+                let html = '';
+                if (holidayLabel) {
+                    html += `<div class="day-detail-subject" style="border-left-color:#9ca3af;"><strong>${Utils.escapeHtml(holidayLabel)}</strong></div>`;
+                }
+
+                if (!item || item.type !== 'multi-class') return html;
+
+                item.sessions.forEach(session => {
+                    const subjectName = Utils.escapeHtml(session.subject.name);
+                    const color = session.subject.color || '#64748b';
+                    const total = Number(session.totalSessions || 0);
+                    const allocations = session.allocations.map(allocation => {
+                        const label = Utils.escapeHtml(app.formatAllocationLabel(allocation));
+                        const sessions = Number(allocation.sessions || 0);
+                        const sessionLabel = sessions === 1 ? 'sesión' : 'sesiones';
+                        return `<li>${label} <span class="text-muted">(${sessions} ${sessionLabel})</span></li>`;
+                    }).join('');
+
+                    html += `
+                        <div class="day-detail-subject" style="border-left-color:${color};">
+                            <div class="day-detail-subject-title">
+                                <span>${subjectName}</span>
+                                <span class="text-muted text-sm">${total} ${total === 1 ? 'sesión' : 'sesiones'}</span>
+                            </div>
+                            <ul class="day-detail-list">${allocations}</ul>
+                        </div>
+                    `;
+                });
+
+                return html;
+            },
+
+            openCombinedDayModal: (dateStr) => {
+                const modal = document.getElementById('combined-day-modal');
+                const title = document.getElementById('combined-day-modal-title');
+                const body = document.getElementById('combined-day-modal-body');
+                if (!modal || !title || !body) return;
+
+                const { combinedMap } = app.calculateCombinedCalendar();
+                const item = combinedMap.get(dateStr);
+                title.innerText = app.formatDisplayDate(dateStr);
+                body.innerHTML = app.buildCombinedDayDetailHtml(dateStr, item);
+                modal.classList.remove('hidden');
+            },
+
+            closeCombinedDayModal: (event) => {
+                if (event && event.currentTarget !== event.target) return;
+                const modal = document.getElementById('combined-day-modal');
+                if (modal) modal.classList.add('hidden');
+            },
+
             renderCombinedCalendar: () => {
                 const { combinedMap, warnings } = app.calculateCombinedCalendar();
                 const grid = document.getElementById('combined-calendar-grid');
@@ -4281,6 +4536,8 @@ const DepartmentUsers =         [
                 } else {
                     alerts.classList.add('hidden');
                 }
+
+                app.renderCombinedTodaySummary(combinedMap);
 
                 if (AppState.selectedSubjects.length === 0) {
                     grid.innerHTML = '<p class="text-muted">Selecciona al menos una materia para ver el calendario.</p>';
@@ -4340,21 +4597,21 @@ const DepartmentUsers =         [
 
                         if (isHoliday) {
                             className += holidayCell.className;
-                            cellContent = `<span class="day-number">${d.getDate()}</span><div class="day-info">${holidayCell.label}</div>`;
+                            cellContent = `${app.getCombinedDayNumberButton(dateStr, d.getDate())}<div class="day-info">${holidayCell.label}</div>`;
                         } else if (item) {
                             if (item.type === 'holiday') {
                                 // Fallback
                                 className += holidayCell.className;
-                                cellContent = `<span class="day-number">${d.getDate()}</span><div class="day-info">${holidayCell.label}</div>`;
+                                cellContent = `${app.getCombinedDayNumberButton(dateStr, d.getDate())}<div class="day-info">${holidayCell.label}</div>`;
                             } else if (item.type === 'multi-class') {
                                 className += ' multi-subject';
-                                cellContent = `<span style="position:absolute; top:2px; right:2px; z-index:5; background:rgba(255,255,255,0.8); border-radius:4px; padding:0 3px; font-size:0.7rem; font-weight:bold; color:#333; pointer-events: none;">${d.getDate()}</span>`;
+                                cellContent = app.getCombinedDayNumberButton(dateStr, d.getDate());
 
                                 item.sessions.forEach(session => {
                                     const subColor = session.subject.color;
-                                    const subName = session.subject.name;
+                                    const subName = Utils.escapeHtml(session.subject.name);
                                     const totalSessions = session.totalSessions;
-                                    const labels = session.allocations.map(a => a.item.displayName);
+                                    const labels = session.allocations.map(a => Utils.escapeHtml(app.formatAllocationLabel(a)));
 
                                     // Horizontal Bars: Stacked vertically
                                     // Show labels (Unit Name) inside bar instead of Subject Name
@@ -4369,7 +4626,7 @@ const DepartmentUsers =         [
                                 });
                             }
                         } else {
-                            cellContent = `<span class="day-number">${d.getDate()}</span>`;
+                            cellContent = app.getCombinedDayNumberButton(dateStr, d.getDate());
                         }
 
                         html += `<div class="${className}" style="${cellStyle}">${cellContent}</div>`;
