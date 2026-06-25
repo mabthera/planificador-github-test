@@ -1018,20 +1018,163 @@
             flex-shrink: 0;
         }
 
+        .combined-topbar {
+            gap: 1rem;
+        }
+
+        .combined-topbar > button,
+        .combined-topbar > div:last-child {
+            flex: 0 0 auto;
+        }
+
+        .combined-topbar .combined-today-shell {
+            flex: 1 1 auto;
+        }
+
+        .combined-today-shell {
+            align-items: stretch;
+            display: grid;
+            grid-template-columns: minmax(110px, 150px) minmax(280px, 520px) minmax(110px, 150px);
+            justify-content: center;
+            gap: 0.5rem;
+            width: min(100%, 860px);
+        }
+
         .combined-today-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
             text-align: center;
             min-width: 260px;
+            box-shadow: var(--shadow-sm);
         }
 
         .combined-today-header h2 {
             margin: 0;
         }
 
+        .combined-today-kicker {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .combined-today-date {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 0.82rem;
+            justify-content: center;
+            margin-top: 0.15rem;
+            padding: 0.15rem 0.6rem;
+        }
+
+        .combined-today-date:hover,
+        .combined-today-date:focus {
+            background: var(--bg-hover);
+            border-color: var(--border);
+            color: var(--primary);
+            outline: none;
+        }
+
+        .combined-today-date-input {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: none;
+            font-size: 0.9rem;
+            margin: 0.45rem auto 0;
+            padding: 0.35rem 0.5rem;
+        }
+
+        .combined-today-date-input.is-visible {
+            display: block;
+        }
+
         .combined-today-summary {
-            margin-top: 0.25rem;
+            margin-top: 0.35rem;
             font-size: 0.9rem;
             line-height: 1.35;
             max-width: 520px;
+        }
+
+        .combined-day-tab {
+            align-items: center;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            font-weight: 700;
+            justify-content: center;
+            line-height: 1.2;
+            min-height: 100%;
+            padding: 0.65rem 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .combined-day-tab:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .combined-day-tab small {
+            color: inherit;
+            font-size: 0.7rem;
+            font-weight: 500;
+            opacity: 0.78;
+            margin-top: 0.2rem;
+        }
+
+        .combined-today-reset {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-top: 0.55rem;
+            padding: 0.25rem 0.7rem;
+        }
+
+        .combined-today-reset:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        @media (max-width: 720px) {
+            .combined-topbar {
+                align-items: stretch;
+                flex-wrap: wrap;
+            }
+
+            .combined-topbar .combined-today-shell {
+                flex-basis: 100%;
+                order: 2;
+            }
+
+            .combined-today-shell {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .combined-today-header {
+                grid-column: 1 / -1;
+                grid-row: 1;
+            }
+
+            .combined-day-tab {
+                min-height: 58px;
+            }
         }
 
         .combined-day-number {
@@ -1469,6 +1612,29 @@
             color: #e5e7eb;
         }
 
+        body.dark-mode .combined-today-header,
+        body.dark-mode .combined-day-tab {
+            background: #2d2d2d;
+            border-color: #3f3f46;
+        }
+
+        body.dark-mode .combined-day-tab:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        body.dark-mode .combined-today-reset {
+            border-color: #3f3f46;
+        }
+
+        body.dark-mode .combined-today-date:hover,
+        body.dark-mode .combined-today-date:focus,
+        body.dark-mode .combined-today-date-input {
+            background: #1f1f1f;
+            border-color: #3f3f46;
+            color: #e5e7eb;
+        }
+
         body.dark-mode .day-modal-content {
             background: #1f1f1f;
             border-color: #3f3f46;
@@ -1874,11 +2040,19 @@
 
         <!-- COMBINED VIEW -->
         <div id="view-combined" class="view-container hidden">
-            <div class="flex justify-between items-center mb-4">
+            <div class="combined-topbar flex justify-between items-center mb-4">
                 <button onclick="app.navigateTo('dashboard')">← Volver</button>
-                <div class="combined-today-header">
-                    <h2>Hoy</h2>
-                    <div id="combined-today-summary" class="combined-today-summary text-muted"></div>
+                <div class="combined-today-shell">
+                    <button id="combined-prev-day-tab" class="combined-day-tab side-tab" type="button" onclick="app.shiftCombinedFocusDate(-1)"></button>
+                    <div class="combined-today-header">
+                        <div class="combined-today-kicker">Vista del día</div>
+                        <h2 id="combined-today-title">Hoy</h2>
+                        <button id="combined-today-date" class="combined-today-date" type="button" title="Cambiar fecha" onclick="app.openCombinedDateInput()"></button>
+                        <input id="combined-today-date-input" class="combined-today-date-input" type="date" onchange="app.handleCombinedDateInput(this.value)" onblur="app.hideCombinedDateInput()">
+                        <div id="combined-today-summary" class="combined-today-summary text-muted"></div>
+                        <button id="combined-today-reset" class="combined-today-reset hidden" type="button" onclick="app.setCombinedFocusDate()">Volver a hoy</button>
+                    </div>
+                    <button id="combined-next-day-tab" class="combined-day-tab side-tab" type="button" onclick="app.shiftCombinedFocusDate(1)"></button>
                 </div>
                 <div></div>
             </div>
@@ -2569,6 +2743,7 @@ const DepartmentUsers =         [
             currentSubjectId: null,
             holidayMode: false,
             selectedSubjects: [], // For combined view
+            combinedFocusDate: null,
             history: [],
             historyIndex: -1,
             maxHistory: 50,
@@ -3070,6 +3245,7 @@ const DepartmentUsers =         [
                 AppState.currentUser = user;
                 AppState.currentSubjectId = null;
                 AppState.selectedSubjects = [];
+                AppState.combinedFocusDate = null;
                 AppState.history = [];
                 AppState.historyIndex = -1;
                 AppState.isUndoRedo = false;
@@ -3095,6 +3271,7 @@ const DepartmentUsers =         [
                 AppState.currentUser = null;
                 AppState.currentSubjectId = null;
                 AppState.selectedSubjects = [];
+                AppState.combinedFocusDate = null;
                 AppState.data = app.emptyData();
                 AppState.history = [];
                 AppState.historyIndex = -1;
@@ -4284,6 +4461,9 @@ const DepartmentUsers =         [
                 if (AppState.selectedSubjects.length === 0) {
                     AppState.selectedSubjects = AppState.data.subjects.map(s => s.id);
                 }
+                if (!AppState.combinedFocusDate) {
+                    AppState.combinedFocusDate = Utils.formatDate(new Date());
+                }
 
                 app.renderSubjectSelector();
                 app.renderCombinedCalendar();
@@ -4456,13 +4636,85 @@ const DepartmentUsers =         [
                 return `${prefix}${totalSubjects} ${totalSubjects === 1 ? 'materia' : 'materias'}, ${totalSessions} ${totalSessions === 1 ? 'sesión' : 'sesiones'}: ${subjectNames}.`;
             },
 
-            renderCombinedTodaySummary: (combinedMap) => {
-                const el = document.getElementById('combined-today-summary');
-                if (!el) return;
+            getCombinedFocusDate: () => AppState.combinedFocusDate || Utils.formatDate(new Date()),
 
+            setCombinedFocusDate: (dateStr = null) => {
+                AppState.combinedFocusDate = dateStr || Utils.formatDate(new Date());
+                app.renderCombinedCalendar();
+            },
+
+            shiftCombinedFocusDate: (days) => {
+                const current = Utils.parseDate(app.getCombinedFocusDate());
+                const next = Utils.addDays(current, days);
+                app.setCombinedFocusDate(Utils.formatDate(next));
+            },
+
+            openCombinedDateInput: () => {
+                const input = document.getElementById('combined-today-date-input');
+                if (!input) return;
+                input.value = app.getCombinedFocusDate();
+                input.classList.add('is-visible');
+                input.focus();
+                if (typeof input.showPicker === 'function') {
+                    input.showPicker();
+                }
+            },
+
+            hideCombinedDateInput: () => {
+                const input = document.getElementById('combined-today-date-input');
+                if (input) input.classList.remove('is-visible');
+            },
+
+            handleCombinedDateInput: (dateStr) => {
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr || '')) return;
+                app.setCombinedFocusDate(dateStr);
+                app.hideCombinedDateInput();
+            },
+
+            getRelativeDayLabel: (dateStr) => {
+                const today = Utils.parseDate(Utils.formatDate(new Date()));
+                const date = Utils.parseDate(dateStr);
+                const diff = Math.round((date - today) / 86400000);
+                if (diff === -2) return 'Anteayer';
+                if (diff === -1) return 'Ayer';
+                if (diff === 0) return 'Hoy';
+                if (diff === 1) return 'Mañana';
+                if (diff === 2) return 'Pasado mañana';
+                return date.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
+            },
+
+            formatCompactDate: (dateStr) => Utils.parseDate(dateStr).toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'short'
+            }),
+
+            renderCombinedTodaySummary: (combinedMap) => {
+                const title = document.getElementById('combined-today-title');
+                const dateLabel = document.getElementById('combined-today-date');
+                const summary = document.getElementById('combined-today-summary');
+                const reset = document.getElementById('combined-today-reset');
+                const dateInput = document.getElementById('combined-today-date-input');
+                const prevTab = document.getElementById('combined-prev-day-tab');
+                const nextTab = document.getElementById('combined-next-day-tab');
+                if (!title || !dateLabel || !summary || !prevTab || !nextTab) return;
+
+                const focusDateStr = app.getCombinedFocusDate();
+                const focusDate = Utils.parseDate(focusDateStr);
+                const prevDateStr = Utils.formatDate(Utils.addDays(focusDate, -1));
+                const nextDateStr = Utils.formatDate(Utils.addDays(focusDate, 1));
                 const todayStr = Utils.formatDate(new Date());
-                const item = combinedMap.get(todayStr);
-                el.innerText = app.summarizeCombinedDay(todayStr, item);
+                const item = combinedMap.get(focusDateStr);
+
+                title.innerText = app.getRelativeDayLabel(focusDateStr);
+                dateLabel.innerText = app.formatDisplayDate(focusDateStr);
+                if (dateInput) dateInput.value = focusDateStr;
+                summary.innerText = app.summarizeCombinedDay(focusDateStr, item);
+                prevTab.innerHTML = `<span>&larr; ${app.getRelativeDayLabel(prevDateStr)}</span><small>${app.formatCompactDate(prevDateStr)}</small>`;
+                nextTab.innerHTML = `<span>${app.getRelativeDayLabel(nextDateStr)} &rarr;</span><small>${app.formatCompactDate(nextDateStr)}</small>`;
+
+                if (reset) {
+                    reset.classList.toggle('hidden', focusDateStr === todayStr);
+                }
             },
 
             buildCombinedDayDetailHtml: (dateStr, item) => {
