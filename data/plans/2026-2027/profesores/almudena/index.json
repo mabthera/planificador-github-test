@@ -4,18 +4,11 @@
   "academicYear": "2026-2027",
   "subjects": [
     {
-      "id": "mqusg0den52l4egamjf",
-      "name": "Ejemplo Almu",
-      "file": "ejemplo_almu_mqusg0den52l4egamjf.json",
-      "path": "data/plans/2026-2027/profesores/almudena/ejemplo_almu_mqusg0den52l4egamjf.json",
-      "updatedAt": "2026-06-26T10:31:55.769Z"
-    },
-    {
       "id": "mquskcdz33qwd3sbqv8",
       "name": "1º ESO - Modelo detallado 2026-2027 (copia)",
       "file": "1_eso_-_modelo_detallado_2026-2027_copia_mquskcdz33qwd3sbqv8.json",
       "path": "data/plans/2026-2027/profesores/almudena/1_eso_-_modelo_detallado_2026-2027_copia_mquskcdz33qwd3sbqv8.json",
-      "updatedAt": "2026-06-26T10:31:56.565Z"
+      "updatedAt": "2026-06-26T10:52:30.592Z"
     }
   ]
 }
