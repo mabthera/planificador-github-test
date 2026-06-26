@@ -2,7 +2,7 @@
   "id": "mqusg0den52l4egamjf",
   "name": "Ejemplo Almu",
   "color": "#d033db",
-  "startDate": "2026-09-08",
+  "startDate": "2026-09-09",
   "endDate": "2027-06-21",
   "schedule": {
     "1": 1,
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "almudena",
   "source": "shared-example",
-  "updatedAt": "2026-06-26T10:30:45.769Z",
+  "updatedAt": "2026-06-26T10:30:52.027Z",
   "githubPath": "data/plans/2026-2027/profesores/almudena/ejemplo_almu_mqusg0den52l4egamjf.json"
 }
