@@ -1,8 +1,14 @@
 {
-    "displayName":  "Almudena",
-    "folder":  "almudena",
-    "academicYear":  "2026-2027",
-    "subjects":  [
-
-                 ]
+  "displayName": "Almudena",
+  "folder": "almudena",
+  "academicYear": "2026-2027",
+  "subjects": [
+    {
+      "id": "mqusg0den52l4egamjf",
+      "name": "1º ESO - Modelo 2026-2027 (copia)",
+      "file": "1_eso_-_modelo_2026-2027_copia_mqusg0den52l4egamjf.json",
+      "path": "data/plans/2026-2027/profesores/almudena/1_eso_-_modelo_2026-2027_copia_mqusg0den52l4egamjf.json",
+      "updatedAt": "2026-06-26T10:28:33.564Z"
+    }
+  ]
 }
