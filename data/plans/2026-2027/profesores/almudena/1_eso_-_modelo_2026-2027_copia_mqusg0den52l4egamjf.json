@@ -17,7 +17,7 @@
       "id": "mqusg0degidajur4p58",
       "name": "UD 01. Números naturales y operaciones",
       "base": 14,
-      "extra": 0,
+      "extra": 3,
       "activities": []
     },
     {
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "almudena",
   "source": "shared-example",
-  "updatedAt": "2026-06-26T10:29:05.602Z",
+  "updatedAt": "2026-06-26T10:29:34.151Z",
   "githubPath": "data/plans/2026-2027/profesores/almudena/1_eso_-_modelo_2026-2027_copia_mqusg0den52l4egamjf.json"
 }
