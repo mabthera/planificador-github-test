@@ -5,10 +5,10 @@
   "subjects": [
     {
       "id": "mqusg0den52l4egamjf",
-      "name": "1º ESO - Modelo 2026-2027 (copia)",
-      "file": "1_eso_-_modelo_2026-2027_copia_mqusg0den52l4egamjf.json",
-      "path": "data/plans/2026-2027/profesores/almudena/1_eso_-_modelo_2026-2027_copia_mqusg0den52l4egamjf.json",
-      "updatedAt": "2026-06-26T10:29:40.436Z"
+      "name": "Ejemplo Almu",
+      "file": "ejemplo_almu_mqusg0den52l4egamjf.json",
+      "path": "data/plans/2026-2027/profesores/almudena/ejemplo_almu_mqusg0den52l4egamjf.json",
+      "updatedAt": "2026-06-26T10:30:33.110Z"
     }
   ]
 }
