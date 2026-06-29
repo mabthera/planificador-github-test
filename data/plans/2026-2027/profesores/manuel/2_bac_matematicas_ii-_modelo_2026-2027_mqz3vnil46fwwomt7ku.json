@@ -1,7 +1,7 @@
 {
   "id": "mqz3vnil46fwwomt7ku",
   "name": "2ºBAC Matemáticas II- Modelo 2026-2027",
-  "color": "#d033db",
+  "color": "#334fdb",
   "startDate": "2026-09-08",
   "endDate": "2027-06-30",
   "schedule": {
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-06-29T11:02:12.893Z",
+  "updatedAt": "2026-06-29T11:02:24.704Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bac_matematicas_ii-_modelo_2026-2027_mqz3vnil46fwwomt7ku.json"
 }
