@@ -16,7 +16,7 @@
     {
       "id": "bsz015kqnxk83v2yyel",
       "name": "UD 1: Números y Matemática Financiera",
-      "base": 16,
+      "base": 14,
       "extra": 0,
       "activities": []
     },
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-07-16T18:17:45.372Z",
+  "updatedAt": "2026-07-16T18:17:52.137Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
