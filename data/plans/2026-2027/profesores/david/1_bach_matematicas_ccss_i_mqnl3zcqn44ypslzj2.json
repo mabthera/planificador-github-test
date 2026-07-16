@@ -51,7 +51,7 @@
     {
       "id": "lkrxxh4jsjibh9quqrw",
       "name": "UD 6: Iniciación al Cálculo Diferencial",
-      "base": 17,
+      "base": 16,
       "extra": 0,
       "activities": []
     },
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-07-16T18:18:35.234Z",
+  "updatedAt": "2026-07-16T18:18:39.535Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
