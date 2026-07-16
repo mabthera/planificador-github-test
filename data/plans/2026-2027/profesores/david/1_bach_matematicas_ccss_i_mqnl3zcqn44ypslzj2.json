@@ -23,14 +23,14 @@
     {
       "id": "9bbrkfotv1usyq7q293",
       "name": "UD 2: Ecuaciones y Sistemas",
-      "base": 23,
+      "base": 22,
       "extra": 0,
       "activities": []
     },
     {
       "id": "qss6hdf2p88xkhzlkho",
       "name": "UD 3: Inecuaciones Lineales",
-      "base": 20,
+      "base": 19,
       "extra": 0,
       "activities": []
     },
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-07-16T18:17:39.749Z",
+  "updatedAt": "2026-07-16T18:17:45.372Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
