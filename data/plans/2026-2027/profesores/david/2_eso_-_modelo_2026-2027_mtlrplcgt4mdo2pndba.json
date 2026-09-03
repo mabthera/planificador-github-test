@@ -29,14 +29,14 @@
     },
     {
       "id": "mtlr3g2h053ihm24yc1a",
-      "name": "UD 03. Potencias, raíces y notación científica",
+      "name": "03. Potencias, raíces y notación científica",
       "base": 14,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtlr3g2h9sfn7rcsx09",
-      "name": "UD 04. Razonamiento proporcional y porcentajes",
+      "name": "04. Razonamiento proporcional y porcentajes",
       "base": 19,
       "extra": 0,
       "activities": []
@@ -109,6 +109,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:02:05.697Z",
+  "updatedAt": "2026-09-03T17:02:11.044Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlrplcgt4mdo2pndba.json"
 }
