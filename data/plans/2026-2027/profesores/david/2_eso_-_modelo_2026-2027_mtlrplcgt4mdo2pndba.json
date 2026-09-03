@@ -85,7 +85,7 @@
     },
     {
       "id": "mtlr3g2hv5nbsvwtbag",
-      "name": "UD 11. Estadística unidimensional y tratamiento de datos",
+      "name": "11. Estadística unidimensional y tratamiento de datos",
       "base": 13,
       "extra": 0,
       "activities": []
@@ -109,6 +109,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:02:38.887Z",
+  "updatedAt": "2026-09-03T17:02:44.861Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlrplcgt4mdo2pndba.json"
 }
