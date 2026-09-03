@@ -50,14 +50,14 @@
     },
     {
       "id": "mtlr3g2h22uksvr0umr",
-      "name": "UD 06. Ecuaciones de 1.er y 2.º grado",
+      "name": "06. Ecuaciones de 1.er y 2.º grado",
       "base": 18,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtlr3g2h3fnqmvmpd9y",
-      "name": "UD 07. Sistemas de ecuaciones lineales",
+      "name": "07. Sistemas de ecuaciones lineales",
       "base": 15,
       "extra": 0,
       "activities": []
@@ -109,6 +109,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:02:16.335Z",
+  "updatedAt": "2026-09-03T17:02:21.892Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlrplcgt4mdo2pndba.json"
 }
