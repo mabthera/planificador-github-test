@@ -78,7 +78,7 @@
     },
     {
       "id": "mtlr3g2h3nk55lw7nlo",
-      "name": "UD 10. Cuerpos geométricos, áreas, volúmenes y capacidades",
+      "name": "10. Cuerpos geométricos, áreas, volúmenes y capacidades",
       "base": 17,
       "extra": 0,
       "activities": []
@@ -109,6 +109,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:02:32.899Z",
+  "updatedAt": "2026-09-03T17:02:38.887Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlrplcgt4mdo2pndba.json"
 }
