@@ -71,7 +71,7 @@
     },
     {
       "id": "mtlr3g2hmmvyxhjswca",
-      "name": "UD 09. Geometría plana, Teorema de Pitágoras y Teorema de Tales",
+      "name": "09. Geometría plana, Teorema de Pitágoras y Teorema de Tales",
       "base": 18,
       "extra": 0,
       "activities": []
@@ -109,6 +109,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:02:27.024Z",
+  "updatedAt": "2026-09-03T17:02:32.899Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlrplcgt4mdo2pndba.json"
 }
