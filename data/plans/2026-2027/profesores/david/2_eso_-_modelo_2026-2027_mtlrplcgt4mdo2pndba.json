@@ -22,7 +22,7 @@
     },
     {
       "id": "mtlr3g2hujkan4t977d",
-      "name": "UD 02. Fracciones, decimales y relaciones numéricas",
+      "name": "02. Fracciones, decimales y relaciones numéricas",
       "base": 21,
       "extra": 0,
       "activities": []
@@ -109,6 +109,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:01:59.823Z",
+  "updatedAt": "2026-09-03T17:02:05.697Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlrplcgt4mdo2pndba.json"
 }
