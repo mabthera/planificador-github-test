@@ -23,14 +23,14 @@
     {
       "id": "mtlr3g2hujkan4t977d",
       "name": "02. Fracciones, decimales y relaciones numéricas",
-      "base": 20,
+      "base": 19,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtlr3g2h053ihm24yc1a",
       "name": "03. Potencias, raíces y notación científica",
-      "base": 13,
+      "base": 15,
       "extra": 0,
       "activities": []
     },
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T17:12:52.964Z",
+  "updatedAt": "2026-09-03T17:13:42.785Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtls9m7jgerysni2vrp.json"
 }
