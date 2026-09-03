@@ -51,28 +51,28 @@
     {
       "id": "mtlr3g2h22uksvr0umr",
       "name": "UD 06. Proporcionalidad y porcentajes",
-      "base": 11,
+      "base": 13,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtlr3g2h3fnqmvmpd9y",
       "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
-      "base": 10,
+      "base": 12,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtlr3g2hdel0vwwgit5",
       "name": "UD 08. Tablas, coordenadas y gráficas",
-      "base": 10,
+      "base": 12,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtlr3g2hmmvyxhjswca",
       "name": "UD 09. Rectas, ángulos y polígonos",
-      "base": 10,
+      "base": 12,
       "extra": 0,
       "activities": []
     },
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-09-03T16:41:44.263Z",
+  "updatedAt": "2026-09-03T16:41:50.736Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_-_modelo_2026-2027_mtlr3g2hs2nfzvbbky.json"
 }
