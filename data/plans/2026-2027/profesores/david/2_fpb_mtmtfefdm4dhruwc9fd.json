@@ -18,14 +18,14 @@
     {
       "id": "mtmtfefdbavbfala2nq",
       "name": "1_tienda",
-      "base": 56,
+      "base": 52,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtmtfefd4byc72xado",
       "name": "2_materiales",
-      "base": 49,
+      "base": 46,
       "extra": 0,
       "activities": []
     },
@@ -43,6 +43,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-04T10:33:52.946Z",
+  "updatedAt": "2026-09-04T10:34:53.077Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_mtmtfefdm4dhruwc9fd.json"
 }
