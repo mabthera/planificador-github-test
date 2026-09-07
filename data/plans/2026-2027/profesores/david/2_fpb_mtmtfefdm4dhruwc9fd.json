@@ -32,14 +32,14 @@
     {
       "id": "mtmtfefd4jie0wsw8bc",
       "name": "3_Eco",
-      "base": 58,
+      "base": 53,
       "extra": 0,
       "activities": []
     },
     {
       "id": "mtrgth12sax7z6fcji",
       "name": "4_Recuperación",
-      "base": 5,
+      "base": 6,
       "extra": 0,
       "activities": []
     }
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-07T16:39:55.631Z",
+  "updatedAt": "2026-09-07T16:40:01.322Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_mtmtfefdm4dhruwc9fd.json"
 }
