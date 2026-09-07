@@ -18,7 +18,7 @@
     {
       "id": "mtmtfefdbavbfala2nq",
       "name": "1_tienda",
-      "base": 50,
+      "base": 48,
       "extra": 0,
       "activities": []
     },
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-07T16:39:39.249Z",
+  "updatedAt": "2026-09-07T16:39:44.426Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_mtmtfefdm4dhruwc9fd.json"
 }
