@@ -39,6 +39,13 @@
     {
       "id": "mtub2ozbsv7shy6ojrd",
       "name": "4 Programación Lineal",
+      "base": 9,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mtub32skhqzzbhkujm9",
+      "name": "Unidad 5",
       "base": 5,
       "extra": 0,
       "activities": []
@@ -50,6 +57,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-09T16:21:37.959Z",
+  "updatedAt": "2026-09-09T16:21:43.701Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
