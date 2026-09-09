@@ -4,7 +4,7 @@
   "academicYear": "2026-2027",
   "name": "Bach2",
   "color": "#3498db",
-  "startDate": "2026-09-09",
+  "startDate": "2026-09-10",
   "endDate": "2027-05-10",
   "schedule": {
     "1": 1,
@@ -113,6 +113,6 @@
     "2": "2027-02-25",
     "3": "2027-05-10"
   },
-  "updatedAt": "2026-09-09T16:49:20.750Z",
+  "updatedAt": "2026-09-09T16:49:49.521Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
