@@ -2,20 +2,5 @@
   "displayName": "Pablo",
   "folder": "pablo",
   "academicYear": "2026-2027",
-  "subjects": [
-    {
-      "id": "mqpphottffhsnq4kjzb",
-      "name": "BorrarBach2",
-      "file": "borrarbach2_mqpphottffhsnq4kjzb.json",
-      "path": "data/plans/2026-2027/profesores/pablo/borrarbach2_mqpphottffhsnq4kjzb.json",
-      "updatedAt": "2026-09-09T17:23:34.228Z"
-    },
-    {
-      "id": "mtuda5ezcq6tjwi14e4",
-      "name": "Nueva materia",
-      "file": "nueva_materia_mtuda5ezcq6tjwi14e4.json",
-      "path": "data/plans/2026-2027/profesores/pablo/nueva_materia_mtuda5ezcq6tjwi14e4.json",
-      "updatedAt": "2026-09-09T17:23:38.712Z"
-    }
-  ]
+  "subjects": []
 }
