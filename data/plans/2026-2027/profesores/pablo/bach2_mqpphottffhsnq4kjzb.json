@@ -53,7 +53,7 @@
     {
       "id": "mtub3lzmfepzd3oo0qg",
       "name": "6 Derivadas",
-      "base": 5,
+      "base": 7,
       "extra": 0,
       "activities": []
     }
@@ -64,6 +64,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-09T16:22:19.660Z",
+  "updatedAt": "2026-09-09T16:22:22.941Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
