@@ -60,7 +60,7 @@
     {
       "id": "mtub3y5ltyh090i07tl",
       "name": "7 Aplicación derivadas",
-      "base": 5,
+      "base": 9,
       "extra": 0,
       "activities": []
     },
@@ -113,6 +113,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-09T16:24:54.999Z",
+  "updatedAt": "2026-09-09T16:24:58.873Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
