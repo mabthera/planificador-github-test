@@ -45,7 +45,7 @@
     },
     {
       "id": "mtub32skhqzzbhkujm9",
-      "name": "Unidad 5",
+      "name": "5 Límites y continuidad",
       "base": 5,
       "extra": 0,
       "activities": []
@@ -57,6 +57,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-09T16:21:43.701Z",
+  "updatedAt": "2026-09-09T16:22:00.233Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
