@@ -95,7 +95,7 @@
     {
       "id": "mtub4pl95yja0kb3fqk",
       "name": "12 inferencia estadística",
-      "base": 7,
+      "base": 9,
       "extra": 0,
       "activities": []
     },
@@ -113,6 +113,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-09T16:27:51.328Z",
+  "updatedAt": "2026-09-09T16:27:57.546Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
