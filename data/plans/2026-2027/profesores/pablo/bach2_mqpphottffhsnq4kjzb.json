@@ -81,7 +81,7 @@
     {
       "id": "mtub4nkjyxjbna26jd",
       "name": "10 Probabilidad",
-      "base": 6,
+      "base": 9,
       "extra": 0,
       "activities": []
     },
@@ -113,6 +113,6 @@
     "2": "2027-03-26",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-09T16:24:38.296Z",
+  "updatedAt": "2026-09-09T16:24:43.697Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/bach2_mqpphottffhsnq4kjzb.json"
 }
