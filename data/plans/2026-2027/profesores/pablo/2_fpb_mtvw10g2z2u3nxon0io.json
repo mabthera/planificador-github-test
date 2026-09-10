@@ -17,7 +17,7 @@
   "units": [
     {
       "id": "mtmtfefdbavbfala2nq",
-      "name": "1_tienda",
+      "name": "P1",
       "base": 48,
       "extra": 0,
       "activities": []
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-10T18:57:00.066Z",
+  "updatedAt": "2026-09-10T18:57:49.939Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/2_fpb_mtvw10g2z2u3nxon0io.json"
 }
