@@ -24,7 +24,7 @@
     },
     {
       "id": "mtmtfefd4byc72xado",
-      "name": "2_materiales",
+      "name": "P2",
       "base": 47,
       "extra": 0,
       "activities": []
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-10T18:57:49.939Z",
+  "updatedAt": "2026-09-10T18:57:53.674Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/2_fpb_mtvw10g2z2u3nxon0io.json"
 }
