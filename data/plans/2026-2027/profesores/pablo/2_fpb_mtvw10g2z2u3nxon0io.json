@@ -31,7 +31,7 @@
     },
     {
       "id": "mtmtfefd4jie0wsw8bc",
-      "name": "3_Eco",
+      "name": "P3",
       "base": 53,
       "extra": 0,
       "activities": []
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-09-10T18:57:53.674Z",
+  "updatedAt": "2026-09-10T18:57:58.167Z",
   "githubPath": "data/plans/2026-2027/profesores/pablo/2_fpb_mtvw10g2z2u3nxon0io.json"
 }
