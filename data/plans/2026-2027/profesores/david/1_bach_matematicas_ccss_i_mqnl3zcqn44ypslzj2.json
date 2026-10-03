@@ -71,7 +71,7 @@
     },
     {
       "id": "mus8jxi36ze2tqwwsw7",
-      "name": "UD 9. Repaso global y reserva",
+      "name": "UD 9. Matemáticas para la vida",
       "base": 20,
       "extra": 0,
       "activities": []
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-10-03T10:20:46.175Z",
+  "updatedAt": "2026-10-03T10:21:03.802Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
