@@ -79,7 +79,7 @@
     {
       "id": "mus8jxi36ze2tqwwsw7",
       "name": "UD 10. Repaso blogal",
-      "base": 5,
+      "base": 12,
       "extra": 0,
       "activities": []
     }
@@ -93,6 +93,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-10-03T10:15:23.304Z",
+  "updatedAt": "2026-10-03T10:15:32.985Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
