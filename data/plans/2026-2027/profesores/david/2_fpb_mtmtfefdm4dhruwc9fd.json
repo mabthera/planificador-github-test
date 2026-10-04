@@ -32,7 +32,7 @@
     {
       "id": "mtmtfefd4jie0wsw8bc",
       "name": "3_Eco",
-      "base": 53,
+      "base": 52,
       "extra": 0,
       "activities": []
     },
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-10-04T16:18:59.078Z",
+  "updatedAt": "2026-10-04T16:19:11.662Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_mtmtfefdm4dhruwc9fd.json"
 }
