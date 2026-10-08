@@ -30,7 +30,7 @@
     {
       "id": "qss6hdf2p88xkhzlkho",
       "name": "UD 3: Inecuaciones Lineales",
-      "base": 19,
+      "base": 15,
       "extra": 0,
       "activities": []
     },
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-10-08T10:56:47.227Z",
+  "updatedAt": "2026-10-08T11:06:01.392Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
