@@ -58,7 +58,7 @@
     {
       "id": "po98scrt3ugv3kle700",
       "name": "UD 7: Muestreo, datos y preparación inferencial",
-      "base": 15,
+      "base": 16,
       "extra": 0,
       "activities": []
     },
@@ -86,6 +86,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-10-08T11:11:22.473Z",
+  "updatedAt": "2026-10-08T11:11:38.645Z",
   "githubPath": "data/plans/2026-2027/profesores/david/1_bach_matematicas_ccss_i_mqnl3zcqn44ypslzj2.json"
 }
