@@ -25,7 +25,7 @@
     {
       "id": "mtmtfefd4byc72xado",
       "name": "2_materiales",
-      "base": 47,
+      "base": 43,
       "extra": 0,
       "activities": []
     },
@@ -50,6 +50,6 @@
     "2": "2027-03-11",
     "3": "2027-06-22"
   },
-  "updatedAt": "2026-11-01T19:03:49.334Z",
+  "updatedAt": "2026-11-01T19:03:56.567Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_fpb_mtmtfefdm4dhruwc9fd.json"
 }
