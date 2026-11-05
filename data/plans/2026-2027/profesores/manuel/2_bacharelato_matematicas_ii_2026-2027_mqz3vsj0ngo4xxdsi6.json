@@ -24,7 +24,7 @@
       "id": "mqz3vsj08wao5ywccyw",
       "name": "UD 02. Determinantes.",
       "base": 7,
-      "extra": 0,
+      "extra": 2,
       "activities": []
     },
     {
@@ -120,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:42:48.833Z",
+  "updatedAt": "2026-11-05T18:42:56.116Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
