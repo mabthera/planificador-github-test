@@ -16,8 +16,8 @@
     {
       "id": "mqz3vsj0rjvspax9k68",
       "name": "UD 01. Matrices",
-      "base": 6,
-      "extra": 0,
+      "base": 7,
+      "extra": -1,
       "activities": []
     },
     {
@@ -120,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:44:03.905Z",
+  "updatedAt": "2026-11-05T18:44:10.601Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
