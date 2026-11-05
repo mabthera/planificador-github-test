@@ -1,0 +1,121 @@
+{
+  "id": "mw3vpm978wd7vgv3ctr",
+  "name": "2º Bacharelato Matemáticas II 2026-2027 (copia)",
+  "color": "#d033db",
+  "startDate": "2026-09-09",
+  "endDate": "2027-06-30",
+  "schedule": {
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1
+  },
+  "planningMode": "unit",
+  "units": [
+    {
+      "id": "mw3vpm97xh9k0i908u",
+      "name": "UD 01. Matrices",
+      "base": 6,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97wi112ki3c9",
+      "name": "UD 02. Determinantes.",
+      "base": 9,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm970hxmtob0bxgc",
+      "name": "UD 03. Sistemas",
+      "base": 9,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm9751per680gtm",
+      "name": "UD 04. Vectores",
+      "base": 6,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97ssc9o0hl5p",
+      "name": "UD 05. Puntos, rectas y planos en el espacio",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97es5bs9cm62n",
+      "name": "UD 06. Proporcionalidad y porcentajes",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97pezy2vv1v6n",
+      "name": "UD 07. Lenguaje algebraico y ecuaciones sencillas",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97w8q2ed112y",
+      "name": "UD 08. Tablas, coordenadas y gráficas",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm977lalctzv04a",
+      "name": "UD 09. Rectas, ángulos y polígonos",
+      "base": 10,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97r1ftsiuc1g",
+      "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
+      "base": 11,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97o1e9so5a14q",
+      "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
+      "base": 15,
+      "extra": 0,
+      "activities": []
+    },
+    {
+      "id": "mw3vpm97cov08esej6b",
+      "name": "UD 12. Estadística y probabilidad",
+      "base": 15,
+      "extra": 0,
+      "activities": []
+    }
+  ],
+  "customDates": [
+    {
+      "date": "2027-01-20",
+      "label": "Recuperación 1ª evaluación"
+    },
+    {
+      "date": "2027-03-17",
+      "label": "Recuperación 2ª evaluación"
+    }
+  ],
+  "evaluations": {
+    "1": "2026-11-26",
+    "2": "2027-02-25",
+    "3": "2027-05-13"
+  },
+  "academicYear": "2026-2027",
+  "ownerFolder": "manuel",
+  "source": "shared-example",
+  "updatedAt": "2026-11-05T18:28:31.604Z",
+  "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_copia_mw3vpm978wd7vgv3ctr.json"
+}
