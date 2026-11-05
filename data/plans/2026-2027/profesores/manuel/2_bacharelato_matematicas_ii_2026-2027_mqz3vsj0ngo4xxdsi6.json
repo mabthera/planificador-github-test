@@ -51,7 +51,7 @@
     {
       "id": "mqz3vsj0116gti45ctq",
       "name": "UD 06. Geometía métrica",
-      "base": 14,
+      "base": 12,
       "extra": 0,
       "activities": []
     },
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:34:34.500Z",
+  "updatedAt": "2026-11-05T18:35:18.398Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
