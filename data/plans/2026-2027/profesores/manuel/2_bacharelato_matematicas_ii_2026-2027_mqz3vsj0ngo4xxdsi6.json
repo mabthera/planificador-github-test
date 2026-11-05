@@ -106,6 +106,10 @@
     {
       "date": "2027-03-17",
       "label": "Recuperación 2ª evaluación"
+    },
+    {
+      "date": "2026-11-24",
+      "label": "Examen 1ª evaluación"
     }
   ],
   "evaluations": {
@@ -116,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:36:02.255Z",
+  "updatedAt": "2026-11-05T18:36:43.241Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
