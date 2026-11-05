@@ -3,7 +3,7 @@
   "name": "2º Bacharelato Matemáticas II 2026-2027",
   "color": "#d033db",
   "startDate": "2026-09-09",
-  "endDate": "2027-06-30",
+  "endDate": "2027-05-14",
   "schedule": {
     "1": 0,
     "2": 1,
@@ -120,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:50:34.604Z",
+  "updatedAt": "2026-11-05T18:50:42.858Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
