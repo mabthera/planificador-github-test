@@ -31,7 +31,7 @@
       "id": "mqz3vsj0juk1od745lj",
       "name": "UD 03. Sistemas",
       "base": 9,
-      "extra": 0,
+      "extra": -1,
       "activities": []
     },
     {
@@ -120,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:43:42.893Z",
+  "updatedAt": "2026-11-05T18:43:57.180Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
