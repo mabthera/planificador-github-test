@@ -82,20 +82,6 @@
       "base": 10,
       "extra": 0,
       "activities": []
-    },
-    {
-      "id": "mqz3vsj0glgsoy0n9ds",
-      "name": "UD 11. Cuerpos geométricos, áreas y volúmenes",
-      "base": 15,
-      "extra": 0,
-      "activities": []
-    },
-    {
-      "id": "mqz3vsj02f9nt0znpzj",
-      "name": "UD 12. Estadística y probabilidad",
-      "base": 15,
-      "extra": 0,
-      "activities": []
     }
   ],
   "customDates": [
@@ -120,6 +106,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:51:12.319Z",
+  "updatedAt": "2026-11-05T18:51:21.069Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
