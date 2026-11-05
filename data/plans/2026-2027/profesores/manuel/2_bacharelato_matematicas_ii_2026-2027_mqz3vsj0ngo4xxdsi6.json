@@ -44,7 +44,7 @@
     {
       "id": "mqz3vsj0juqsj2qd5k",
       "name": "UD 05. Puntos, rectas y planos en el espacio",
-      "base": 15,
+      "base": 16,
       "extra": 0,
       "activities": []
     },
@@ -120,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:36:43.241Z",
+  "updatedAt": "2026-11-05T18:41:05.824Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
