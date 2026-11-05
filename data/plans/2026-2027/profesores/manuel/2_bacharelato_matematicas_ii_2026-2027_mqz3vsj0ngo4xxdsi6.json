@@ -78,8 +78,8 @@
     },
     {
       "id": "mqz3vsj041spwfkzkm2",
-      "name": "UD 10. Perímetros, áreas y teorema de Pitágoras",
-      "base": 11,
+      "name": "UD 10. Distribuciones de probabilidad",
+      "base": 10,
       "extra": 0,
       "activities": []
     },
@@ -120,6 +120,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "manuel",
   "source": "shared-example",
-  "updatedAt": "2026-11-05T18:50:42.858Z",
+  "updatedAt": "2026-11-05T18:51:12.319Z",
   "githubPath": "data/plans/2026-2027/profesores/manuel/2_bacharelato_matematicas_ii_2026-2027_mqz3vsj0ngo4xxdsi6.json"
 }
