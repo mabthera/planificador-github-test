@@ -45,7 +45,7 @@
       "id": "mtlr3g2hkun9dc00ded",
       "name": "05. Modelo matemático, lenguaje algebraico y polinomios",
       "base": 15,
-      "extra": 0,
+      "extra": -2,
       "activities": []
     },
     {
@@ -116,6 +116,6 @@
   "academicYear": "2026-2027",
   "ownerFolder": "david",
   "source": "shared-example",
-  "updatedAt": "2026-11-17T09:01:03.909Z",
+  "updatedAt": "2026-11-17T09:01:32.182Z",
   "githubPath": "data/plans/2026-2027/profesores/david/2_eso_2026-2027_mtlsmhzbb2948zc8i47.json"
 }
